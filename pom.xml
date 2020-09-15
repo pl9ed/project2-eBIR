@@ -7,6 +7,18 @@
 	<version>0.1</version>
 	<packaging>war</packaging>
 
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<sonar.projectKey>pl9ed_project2-eBIR</sonar.projectKey>
+		<sonar.organization>pl9ed</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+	</properties>
+
+	<build>
+		<finalName>${artifactId}</finalName>
+	</build>
+
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
 		<dependency>
@@ -58,6 +70,7 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.4.21.Final</version>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
