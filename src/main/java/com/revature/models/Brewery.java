@@ -3,9 +3,16 @@ package com.revature.models;
 import java.time.LocalDate;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+
+@Entity
 public class Brewery {
 	
 	// fields from API
+	@Id
 	private int id;
 	private String name = "";
 	private String breweryType = "";
@@ -22,6 +29,7 @@ public class Brewery {
 	
 	// custom fields
 	private double rating;
+	@OneToMany
 	private Set<Review> reviews;
 	
 	public Brewery() {}

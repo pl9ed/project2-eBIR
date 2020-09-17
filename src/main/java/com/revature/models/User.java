@@ -3,18 +3,24 @@ package com.revature.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import org.mindrot.jbcrypt.BCrypt;
 
 import lombok.EqualsAndHashCode;
 
+@Entity
 @EqualsAndHashCode
 public class User {
-	
+	@Id
 	private String username = "";
 	private String password = "";
 	private String firstName = "";
 	private String lastName = "";
 	private String email = "";
+	@OneToMany
 	private List<Brewery> favorites = new ArrayList<Brewery>();
 	
 	public User() {}
