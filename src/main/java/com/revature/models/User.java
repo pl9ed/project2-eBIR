@@ -10,6 +10,8 @@ import javax.persistence.Table;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import com.sun.istack.NotNull;
+
 import lombok.EqualsAndHashCode;
 
 @Entity
@@ -17,6 +19,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode
 public class User {
 	@Id
+	@NotNull
 	private String username = "";
 	private String password = "";
 	private String firstName = "";
