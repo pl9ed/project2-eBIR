@@ -6,29 +6,34 @@ import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
 
-private static Session session;
+	private static Session session;
+	private static SessionFactory sf;
 	
-	// Static initializer
-	// Will run when the class is loaded initially
-//	static {
-//		
-//	}
 	
-	private static SessionFactory sf =
-			new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-	
+	// check this if you can't connect to your DB or if HibernateUtil isn't working
+	static {
+		Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
+		cfg.setProperty("hibernate.connection.url", System.getenv("db_url"));
+		cfg.setProperty("hibernate.connection.password", System.getenv("postgres_pw"));
+		try {
+			sf = cfg.buildSessionFactory();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	private HibernateUtil() {
 		super();
 	}
-	
+
 	public static Session getSession() {
-		if(session == null || !session.isOpen()) {
+		if (session == null || !session.isOpen()) {
 			session = sf.openSession();
 		}
-		
+
 		return session;
 	}
-	
+
 	public static void closeSession() {
 		session.close();
 	}

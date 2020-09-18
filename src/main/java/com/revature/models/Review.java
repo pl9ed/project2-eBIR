@@ -1,12 +1,30 @@
 package com.revature.models;
 
-import lombok.EqualsAndHashCode;
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-@EqualsAndHashCode
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@EqualsAndHashCode @Getter @Setter
 public class Review {
 	
+	@Id
+	private int id;
+	
 	// user who submitted review
+	@ManyToOne
+	@JoinColumn(name="Submitter", nullable=false)
 	private User submitter = new User();
+	
+	@ManyToOne
+	@JoinColumn(name="brewery")
 	private Brewery brewery = new Brewery();
 	private String reviewText = "";
 	
