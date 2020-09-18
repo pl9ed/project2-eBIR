@@ -52,5 +52,66 @@ public class ReviewDAOTest {
 	public void testSaveReview() {   
 	    assertTrue(rd.saveReview(td.r1));
 	}
+	
+	@Test
+	public void testSaveDuplicate() {
+		
+	}
 
+	@Test
+	public void testDelete() {
+		
+	}
+	
+	@Test
+	public void testDeleteNull() {
+		
+	}
+	
+	@Test
+	public void testDeleteNonExistent() {
+		
+	}
+	
+	@Test
+	public void testFind() {
+		
+	}
+	
+	@Test
+	public void testFindNull() {
+		
+	}
+	
+	@Test
+	public void testFindNonExistent() {
+		
+	}
+	
+	@Test
+	public void testUpdate() {
+		
+	}
+	
+	@Test
+	public void testUpdateNull() {
+		
+	}
+	
+	@Test
+	public void testUpdateMissingReq() {
+		
+	}
+	
+	@Test
+	public void testUpdateInvalidReq() {
+		
+	}
+	
+	@Test
+	public void testFindAll() {
+		
+	}
+	
+	
 }
