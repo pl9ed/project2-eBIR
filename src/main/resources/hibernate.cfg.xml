@@ -10,6 +10,8 @@
 		<property name="hibernate.connection.password">churknam</property>
 		<property name="hibernate.connection.url">jdbc:postgresql://training.cyrobrynznqt.us-east-2.rds.amazonaws.com:5432/postgres</property>
 		 -->
+		 
+		 <!-- check this if you can't connect to your DB or if HibernateUtil isn't working -->
 		<property name="hibernate.connection.username">postgres</property>
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 		<property name="hibernate.connection.pool_size">10</property>

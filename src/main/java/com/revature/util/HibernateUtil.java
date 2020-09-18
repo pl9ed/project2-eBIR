@@ -8,7 +8,9 @@ public class HibernateUtil {
 
 	private static Session session;
 	private static SessionFactory sf;
-
+	
+	
+	// check this if you can't connect to your DB or if HibernateUtil isn't working
 	static {
 		Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
 		cfg.setProperty("hibernate.connection.url", System.getenv("db_url"));

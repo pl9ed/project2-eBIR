@@ -16,7 +16,7 @@ public class BreweryController {
 	@Autowired
 	private IReviewDAO dao;
 	
-	@PostMapping
+	@PostMapping("review")
 	@ResponseBody
 	public ResponseEntity<Review> addReview(@RequestBody Review review) {
 		if (review != null) {
@@ -33,7 +33,5 @@ public class BreweryController {
 		// problem with review object
 		return ResponseEntity.status(400).build();
 	}
-	
-	
 
 }
