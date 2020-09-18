@@ -18,8 +18,10 @@ public class Review {
 	
 	// user who submitted review
 	@ManyToOne
-	@JoinColumn(name="Username")
+	@JoinColumn(name="username")
 	private User submitter = new User();
+	@ManyToOne
+	@JoinColumn(name="brewery")
 	private Brewery brewery = new Brewery();
 	private String reviewText = "";
 	

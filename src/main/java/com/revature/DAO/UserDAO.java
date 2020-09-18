@@ -1,5 +1,6 @@
 package com.revature.DAO;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -23,9 +24,27 @@ public class UserDAO implements IUserDAO{
 	}
 
 	@Override
-	public User findUser(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public User findUser(String username) {
+		return HibernateUtil.getSession().get(User.class, username);
+	}
+	
+	@Override
+	public boolean saveUser(User u) {
+		if (u == null) {
+			return false;
+		}
+		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+		
+		Serializable ret = s.save(u);
+		
+		if (ret == u.getUsername()) {
+			tx.commit();
+			return true;
+		} else {
+			tx.rollback();
+			return false;
+		}
 	}
 
 	@Override
@@ -44,5 +63,24 @@ public class UserDAO implements IUserDAO{
 		s.save(user);
 		tx.commit();
 		
+	}
+
+	@Override
+	public boolean updateUser(User u) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteUser(User u) {
+		if (u == null) {
+			return false;
+		}
+		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+		s.delete(u);
+		
+		tx.commit();
+		return true;
 	}
 }

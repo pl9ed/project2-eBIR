@@ -11,12 +11,10 @@ import com.revature.models.Review;
 import com.revature.models.User;
 import com.revature.util.HibernateUtil;
 
-public class ReviewDAO implements IReviewDAO{
-	private Session s;
-	
-	{
-		s = HibernateUtil.getSession();
-	}
+public class ReviewDAO implements IReviewDAO {
+	private Session s = HibernateUtil.getSession();
+
+	public ReviewDAO() {}
 
 	@Override
 	public List<Review> findAll() {
@@ -32,12 +30,20 @@ public class ReviewDAO implements IReviewDAO{
 
 	@Override
 	public boolean saveReview(Review review) {
+		if (review == null) {
+			return false;
+		}
+		
 		Transaction t = s.beginTransaction();
 		
 		Serializable ret = s.save(review);
-		t.commit();
 		
-		return ret != null;
+		if (ret != null) {
+			t.commit();
+			return true;
+		}
+		t.rollback();
+		return false;
 	}
 
 	@Override
@@ -49,7 +55,24 @@ public class ReviewDAO implements IReviewDAO{
 	public Review find(int id) {
 		return s.get(Review.class, id);
 	}
-	
 
+	@Override
+	public boolean updateReview(Review review) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteReview(Review review) {
+		if (review == null) {
+			return false;
+		}
+		s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+		s.delete(review);
+		
+		tx.commit();
+		return true;
+	}
 
 }

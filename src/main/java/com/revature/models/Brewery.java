@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 
@@ -29,9 +30,20 @@ public class Brewery {
 	
 	// custom fields
 	private double rating;
-	@OneToMany
+	
+	// total number of reviews
+	private int n = 0;
+	
+	@OneToMany(mappedBy="brewery")
 	private Set<Review> reviews;
 	
+	// calculate new rating using cumulative moving average
+	public void updateRating(double newRating) {
+		n++;
+		this.rating = rating + ((newRating - rating) / n);
+	}
+	
+	// constructors, setters/getters
 	public Brewery() {}
 
 	public int getId() {
@@ -136,6 +148,14 @@ public class Brewery {
 
 	public void setUpdatedAt(LocalDate updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+	
+	public double getRating() {
+		return this.rating;
+	}
+	
+	public double getNumberofRatings() {
+		return this.n;
 	}
 
 	@Override

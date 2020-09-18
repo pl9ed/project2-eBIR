@@ -8,13 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.revature.TestData;
-
-public class ReviewDAOTest {
-	private TestData td = new TestData();
-	private ReviewDAO rd;
-	private UserDAO ud;
-	private BreweryDAO bd;
+public class BreweryDAOTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -26,26 +20,20 @@ public class ReviewDAOTest {
 
 	@Before
 	public void setUp() throws Exception {
-		rd = new ReviewDAO();
-		ud = new UserDAO();
-		bd = new BreweryDAO();
 	}
 
 	@After
 	public void tearDown() throws Exception {
 	}
-	
+
 	@Test
-	public void testSaveReviewNull() {
-	    assertFalse(ud.saveUser(null));
+	public void testSaveBrewery() {
+		fail("Not yet implemented");
 	}
 	
 	@Test
-	public void testSaveReview() {   
-	    ud.saveUser(td.u1);
-	    bd.saveBrewery(td.b1);
-	    
-	    assertTrue(rd.saveReview(td.r1));
+	public void testSaveBreweryNull() {
+		
 	}
 
 }

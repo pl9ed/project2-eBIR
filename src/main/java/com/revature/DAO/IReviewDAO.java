@@ -14,6 +14,7 @@ public interface IReviewDAO {
 	public Review find(Review r);
 	public Review find(int id);
 	
-	// return true on success
 	public boolean saveReview(Review review);
+	public boolean updateReview(Review review);
+	public boolean deleteReview(Review review);
 }
