@@ -3,6 +3,7 @@ package com.revature.DAO;
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
@@ -13,6 +14,7 @@ import com.revature.util.HibernateUtil;
 @Repository
 public class BreweryDAO implements IBreweryDAO {
 	private Session s;
+	private static Logger log = Logger.getLogger(BreweryDAO.class);
 	
 	//handles the brewery info and the database
 
@@ -38,6 +40,7 @@ public class BreweryDAO implements IBreweryDAO {
 		Serializable ret = s.save(b);
 		if (ret != null ) {
 			tx.commit();
+			log.info("saved " + b.getName() + " into database.");
 			return true;
 		} else {
 			tx.rollback();
@@ -61,6 +64,7 @@ public class BreweryDAO implements IBreweryDAO {
 		s.delete(b);
 		
 		tx.commit();
+		log.info("brewery deleted");
 		return true;
 	}
 
