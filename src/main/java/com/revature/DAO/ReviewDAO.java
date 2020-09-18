@@ -38,14 +38,19 @@ public class ReviewDAO implements IReviewDAO {
 		
 		Transaction t = s.beginTransaction();
 		
-		Serializable ret = s.save(review);
-		
-		if (ret != null) {
-			t.commit();
-			return true;
+		try {
+			Serializable ret = s.save(review);
+			if (ret != null) {
+				t.commit();
+				return true;
+			}
+			t.rollback();
+		} catch (Exception e) {
+			e.printStackTrace(); // TODO replace with log
+			t.rollback();
 		}
-		t.rollback();
 		return false;
+		
 	}
 
 	@Override
