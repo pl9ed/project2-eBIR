@@ -3,11 +3,14 @@ package com.revature.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.sun.istack.NotNull;
@@ -15,6 +18,7 @@ import com.sun.istack.NotNull;
 import lombok.EqualsAndHashCode;
 
 @Entity
+@Table(name="Users")
 @EqualsAndHashCode
 public class User {
 	@Id
@@ -26,12 +30,10 @@ public class User {
 	private String lastName = "";
 	private String email = "";
 	
-	@OneToMany(mappedBy="id")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="id")
 	private List<Brewery> favorites = new ArrayList<Brewery>();
 	
-	public User() {
-		
-	}
+	public User() {}
 	
 	public User(String username, String password, String firstName, String lastName, String email) {
 		super();

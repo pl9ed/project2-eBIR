@@ -14,8 +14,12 @@ import com.revature.util.HibernateUtil;
 
 @Repository
 public class ReviewDAO implements IReviewDAO {
-	private Session s = HibernateUtil.getSession();
+	private Session s;
 
+	{
+		s = HibernateUtil.getSession();
+	}
+	
 	public ReviewDAO() {}
 
 	@Override
@@ -43,11 +47,11 @@ public class ReviewDAO implements IReviewDAO {
 			if (ret != null) {
 				t.commit();
 				return true;
+			} else {
+				t.rollback();
 			}
-			t.rollback();
 		} catch (Exception e) {
-			e.printStackTrace(); // TODO replace with log
-			t.rollback();
+			e.printStackTrace();
 		}
 		return false;
 		

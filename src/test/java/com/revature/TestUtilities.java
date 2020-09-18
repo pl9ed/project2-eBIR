@@ -46,17 +46,17 @@ public class TestUtilities {
 		try {
 			Session s = HibernateUtil.getSession();
 			Transaction tx = s.beginTransaction();
-			Query query = s.createQuery("delete from User");
+			Query query = s.createQuery("delete from User cascade");
 			query.executeUpdate();
 			tx.commit();
 			
 			tx = s.beginTransaction();
-			query = s.createQuery("delete from Brewery");
+			query = s.createQuery("delete from Brewery cascade");
 			query.executeUpdate();
 			tx.commit();
 			
 			tx = s.beginTransaction();
-			query = s.createQuery("delete from Review");
+			query = s.createQuery("delete from Review cascade");
 			query.executeUpdate();
 			tx.commit();
 		} catch (Exception e) {

@@ -9,6 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.revature.TestUtilities;
+import com.revature.util.HibernateUtil;
 
 public class ReviewDAOTest {
 	private TestUtilities td = new TestUtilities();
@@ -18,6 +19,7 @@ public class ReviewDAOTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		TestUtilities.clearDB();
 	}
 
 	@AfterClass
@@ -30,12 +32,15 @@ public class ReviewDAOTest {
 		rd = new ReviewDAO();
 		ud = new UserDAO();
 		bd = new BreweryDAO();
+		
+	    ud.saveUser(td.u1);
+	    bd.saveBrewery(td.b1);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 	    TestUtilities.clearDB();
-
+		HibernateUtil.closeSession();
 	}
 	
 	@Test
@@ -45,9 +50,6 @@ public class ReviewDAOTest {
 	
 	@Test
 	public void testSaveReview() {   
-	    ud.saveUser(td.u1);
-	    bd.saveBrewery(td.b1);
-	    
 	    assertTrue(rd.saveReview(td.r1));
 	}
 
