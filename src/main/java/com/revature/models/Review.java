@@ -1,14 +1,20 @@
 package com.revature.models;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@EqualsAndHashCode
+@EqualsAndHashCode @Getter @Setter
 public class Review {
+	
+	@Id
+	private int id;
 	
 	// user who submitted review
 	@ManyToOne
