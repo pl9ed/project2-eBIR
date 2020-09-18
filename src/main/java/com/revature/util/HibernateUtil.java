@@ -15,6 +15,7 @@ public class HibernateUtil {
 		Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
 		cfg.setProperty("hibernate.connection.url", System.getenv("db_url"));
 		cfg.setProperty("hibernate.connection.password", System.getenv("postgres_pw"));
+		cfg.setProperty("hibernate.connection.username", System.getenv("postgres_username"));
 		try {
 			sf = cfg.buildSessionFactory();
 		} catch (Exception e) {

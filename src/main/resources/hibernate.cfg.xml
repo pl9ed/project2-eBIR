@@ -15,7 +15,6 @@
 
 		<!-- check this if you can't connect to your DB or if HibernateUtil isn't 
 			working -->
-		<property name="hibernate.connection.username">postgres</property>
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 		<property name="hibernate.connection.pool_size">10</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>

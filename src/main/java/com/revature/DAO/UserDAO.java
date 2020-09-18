@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
@@ -17,16 +18,9 @@ import com.revature.models.User;
 import com.revature.util.HibernateUtil;
 
 @Repository
-public class UserDAO implements IUserDAO{
+public class UserDAO implements IUserDAO {
 
-	private IUserDAO userDAO;
-	private static Logger log = Logger.getLogger(UserDAO.class);
-	
-	//for JUnit testing
-	public UserDAO(IUserDAO userDAO) {
-		super();
-		this.userDAO = userDAO;
-	}
+	private static Logger log = Logger.getLogger(BreweryDAO.class);
 	
 	public UserDAO() {
 		super();
