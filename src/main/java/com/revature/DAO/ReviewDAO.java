@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
@@ -14,14 +16,15 @@ import com.revature.util.HibernateUtil;
 
 @Repository
 public class ReviewDAO implements IReviewDAO {
-	private Session s = HibernateUtil.getSession();
+	private Session s;
 
-	public ReviewDAO() {}
+	public ReviewDAO() {
+		s = HibernateUtil.getSession();
+	}
 
 	@Override
 	public List<Review> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return s.createQuery("FROM Review r", Review.class).getResultList();
 	}
 
 	@Override
@@ -38,19 +41,19 @@ public class ReviewDAO implements IReviewDAO {
 		
 		Transaction t = s.beginTransaction();
 		
-		Serializable ret = s.save(review);
-		
-		if (ret != null) {
-			t.commit();
-			return true;
+		try {
+			Serializable ret = s.save(review);
+			if (ret != null) {
+				t.commit();
+				return true;
+			} else {
+				t.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		t.rollback();
 		return false;
-	}
-
-	@Override
-	public Review find(Review r) {
-		return find(r.getId());
+		
 	}
 
 	@Override
@@ -60,7 +63,22 @@ public class ReviewDAO implements IReviewDAO {
 
 	@Override
 	public boolean updateReview(Review review) {
-		// TODO Auto-generated method stub
+		if (!(review instanceof Review)) {
+			return false;
+		}
+		
+		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+
+		try {
+			Review ret = (Review) s.merge(review);
+			tx.commit();
+			return ret.equals(review);
+		} catch (Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+		}
+		
 		return false;
 	}
 

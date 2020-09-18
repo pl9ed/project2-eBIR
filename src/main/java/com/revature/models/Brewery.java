@@ -2,9 +2,13 @@ package com.revature.models;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -37,7 +41,8 @@ public class Brewery {
 	// total number of reviews
 	private int n = 0;
 	
-	@OneToMany(mappedBy="brewery")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="brewery")
 	private Set<Review> reviews;
 	
 	// calculate new rating using cumulative moving average

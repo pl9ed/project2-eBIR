@@ -34,11 +34,4 @@ public class BreweryController {
 		// problem with review object
 		return ResponseEntity.status(400).build();
 	}
-	
-	@GetMapping("*")
-	@ResponseBody
-	public String test(@RequestBody Review review) {
-		return review.toString();
-	}
-
 }
