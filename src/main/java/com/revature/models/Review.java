@@ -29,6 +29,10 @@ public class Review {
 	private String reviewText = "";
 	
 	public Review() {}
+	
+	public int getId() {
+		return id;
+	}
 
 	public User getSubmitter() {
 		return submitter;
