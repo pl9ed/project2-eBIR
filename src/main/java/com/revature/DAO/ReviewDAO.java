@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
@@ -16,16 +18,13 @@ import com.revature.util.HibernateUtil;
 public class ReviewDAO implements IReviewDAO {
 	private Session s;
 
-	{
+	public ReviewDAO() {
 		s = HibernateUtil.getSession();
 	}
-	
-	public ReviewDAO() {}
 
 	@Override
 	public List<Review> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return s.createQuery("FROM Review r", Review.class).getResultList();
 	}
 
 	@Override
@@ -58,11 +57,6 @@ public class ReviewDAO implements IReviewDAO {
 	}
 
 	@Override
-	public Review find(Review r) {
-		return find(r.getId());
-	}
-
-	@Override
 	public Review find(int id) {
 		return s.get(Review.class, id);
 	}
@@ -74,18 +68,18 @@ public class ReviewDAO implements IReviewDAO {
 		}
 		
 		Session s = HibernateUtil.getSession();
-		Review ret = new Review();
 		Transaction tx = s.beginTransaction();
 
 		try {
-			ret = (Review) s.merge(review);
+			Review ret = (Review) s.merge(review);
 			tx.commit();
+			return ret.equals(review);
 		} catch (Exception e) {
 			e.printStackTrace();
 			tx.rollback();
 		}
 		
-		return ret.equals(review);
+		return false;
 	}
 
 	@Override

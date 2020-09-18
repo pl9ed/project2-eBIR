@@ -1,6 +1,10 @@
 package com.revature.DAO;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -9,6 +13,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.revature.TestUtilities;
+import com.revature.models.Brewery;
+import com.revature.models.Review;
+import com.revature.models.User;
 import com.revature.util.HibernateUtil;
 
 public class ReviewDAOTest {
@@ -33,8 +40,9 @@ public class ReviewDAOTest {
 		ud = new UserDAO();
 		bd = new BreweryDAO();
 		
-	    ud.saveUser(td.u1);
-	    bd.saveBrewery(td.b1);
+	    ud.saveUser(td.u1); ud.saveUser(td.u2);
+	    bd.saveBrewery(td.b1); bd.saveBrewery(td.b2);
+	    
 	}
 
 	@After
@@ -55,62 +63,89 @@ public class ReviewDAOTest {
 	
 	@Test
 	public void testSaveDuplicate() {
-		
+		rd.saveReview(td.r1);
+		rd.saveReview(td.r1);
+		assertTrue(1 == rd.findAll().size());
 	}
 
 	@Test
 	public void testDelete() {
-		
+		rd.saveReview(td.r1);
+		assertTrue(rd.deleteReview(td.r1));
 	}
 	
 	@Test
 	public void testDeleteNull() {
-		
+		assertFalse(rd.deleteReview(null));
 	}
 	
 	@Test
 	public void testDeleteNonExistent() {
-		
+		int n = rd.findAll().size();
+		rd.deleteReview(td.r1);
+		assertTrue(n == rd.findAll().size());
 	}
 	
 	@Test
 	public void testFind() {
+		rd.saveReview(td.r1);
 		
-	}
-	
-	@Test
-	public void testFindNull() {
-		
+		assertEquals(td.r1, rd.find(td.r1.getId()));
 	}
 	
 	@Test
 	public void testFindNonExistent() {
-		
+		assertTrue(null == rd.find(-1));
 	}
 	
 	@Test
 	public void testUpdate() {
-		
+		rd.saveReview(td.r1);
+		Review temp = td.r1;
+		String newText = "updated";
+		temp.setReviewText(newText);
+		assertTrue(rd.updateReview(temp));
+		assertEquals(newText, rd.find(td.r1.getId()).getReviewText());
 	}
 	
 	@Test
 	public void testUpdateNull() {
-		
+		assertFalse(rd.updateReview(null));
 	}
 	
 	@Test
 	public void testUpdateMissingReq() {
-		
+		Review missing = new Review();
+		assertFalse(rd.updateReview(missing));
 	}
 	
 	@Test
 	public void testUpdateInvalidReq() {
+		Review invalid = td.r1;
+		Review invalid2 = td.r1;
 		
+		// review for brewery that doesn't exist in DB
+		invalid.setBrewery(new Brewery());
+		invalid2.setSubmitter(new User());
+		
+		assertFalse(rd.updateReview(invalid));
+		assertFalse(rd.updateReview(invalid2));
 	}
 	
 	@Test
 	public void testFindAll() {
+		rd.saveReview(td.r1);
+		assertTrue(1 == rd.findAll().size());
 		
+		rd.saveReview(td.r2);
+		List<Review> all = rd.findAll();
+		assertTrue(2 == all.size());
+		assertTrue(all.contains(td.r1) && all.contains(td.r2));
+	}
+	
+	@Test
+	public void testFindAllEmpty() {
+		assertTrue(0 == rd.findAll().size());
 	}
 	
 	

@@ -118,5 +118,10 @@ public class UserDAOTest {
 		System.out.println(ud.findAll().size());
 		assertTrue(n == ud.findAll().size());
 	}
+	
+	@Test
+	public void testFindAllEmpty() {
+		assertTrue(0 == ud.findAll().size());
+	}
 
 }
