@@ -49,7 +49,7 @@ public class UserDAO implements IUserDAO{
 	}
 
 	@Override
-<<<<<<< HEAD
+
 	public User findUser(String username) {
 		return HibernateUtil.getSession().get(User.class, username);
 	}
@@ -71,7 +71,8 @@ public class UserDAO implements IUserDAO{
 			tx.rollback();
 			return false;
 		}
-=======
+	}
+
 	public User findByUsername(String username) {
 		User user=null;
 
@@ -87,7 +88,6 @@ public class UserDAO implements IUserDAO{
 		}
 		
 		return user;
->>>>>>> dfc33b94da219c3235fde1659d549cb994277ee7
 	}
 
 	@Override
@@ -177,5 +177,11 @@ public class UserDAO implements IUserDAO{
 		
 		tx.commit();
 		return true;
+	}
+
+	@Override
+	public void setUser(String username, String password, String firstname, String lastname, String email) {
+		// TODO Auto-generated method stub
+		
 	}
 }
