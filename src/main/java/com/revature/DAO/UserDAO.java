@@ -20,6 +20,7 @@ import com.revature.util.HibernateUtil;
 public class UserDAO implements IUserDAO{
 
 	private IUserDAO userDAO;
+	private static Logger log = Logger.getLogger(UserDAO.class);
 	
 	//for JUnit testing
 	public UserDAO(IUserDAO userDAO) {
@@ -70,6 +71,7 @@ public class UserDAO implements IUserDAO{
 		
 		if (ret == u.getUsername()) {
 			tx.commit();
+			log.info("saved " + u.getUsername() + " into database");
 			return true;
 		} else {
 			tx.rollback();
@@ -86,6 +88,7 @@ public class UserDAO implements IUserDAO{
 			
 			user = s.get(User.class,new String(username));
 			tx.commit();
+			log.info("found " + user.getFirstName() + " from database");
 		}catch (Exception e)  {
 			e.printStackTrace();
 			return null;
@@ -104,6 +107,7 @@ public class UserDAO implements IUserDAO{
 			
 			s.save(user);
 			tx.commit();
+			log.info("inserted " + user.getFirstName() + " into database");
 		}catch (Exception e)  {
 			e.printStackTrace();
 			return false;
@@ -125,6 +129,7 @@ public class UserDAO implements IUserDAO{
 		user.setFirstName(newFirstname);
 		s.merge(user);
 		tx.commit();
+		log.info("updated " + user.getUsername() + " first name to " + newFirstname);
 		
 	}
 
@@ -137,7 +142,7 @@ public class UserDAO implements IUserDAO{
 		user.setLastName(newLastname);
 		s.merge(user);
 		tx.commit();
-		
+		log.info("updated " + user.getUsername() + " last name to " + newLastname);
 	}
 
 	@Override
@@ -149,7 +154,8 @@ public class UserDAO implements IUserDAO{
 		user.setPassword(newPassword);
 		s.merge(user);
 		tx.commit();
-		
+		log.info("updated " + user.getUsername() + " password to " + newPassword);
+
 	}
 
 	@Override
@@ -161,7 +167,8 @@ public class UserDAO implements IUserDAO{
 		user.setEmail(email);
 		s.merge(user);
 		tx.commit();
-		
+		log.info("updated " +user.getUsername() + " email to " + email);
+
 	}
 
 	@Override
@@ -195,6 +202,7 @@ public class UserDAO implements IUserDAO{
 		s.delete(u);
 		
 		tx.commit();
+		log.info("user deleted");
 		return true;
 	}
 

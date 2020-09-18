@@ -33,6 +33,14 @@ public class Review {
 	private String reviewText = "";
 	
 	public Review() {}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public int getId() {
+		return id;
+	}
 
 	public User getSubmitter() {
 		return submitter;
