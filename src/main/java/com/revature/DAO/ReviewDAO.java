@@ -6,11 +6,13 @@ import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import com.revature.models.Review;
 import com.revature.models.User;
 import com.revature.util.HibernateUtil;
 
+@Repository
 public class ReviewDAO implements IReviewDAO {
 	private Session s = HibernateUtil.getSession();
 

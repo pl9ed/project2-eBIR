@@ -21,6 +21,7 @@ public class User {
 	@Id
 	@NotNull
 	private String username = "";
+	
 	private String password = "";
 	private String firstName = "";
 	private String lastName = "";

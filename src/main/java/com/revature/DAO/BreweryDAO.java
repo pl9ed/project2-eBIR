@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import com.revature.models.Brewery;
 import com.revature.util.HibernateUtil;
 
+@Repository
 public class BreweryDAO implements IBreweryDAO {
 	private Session s;
 	

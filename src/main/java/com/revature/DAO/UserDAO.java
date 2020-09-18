@@ -9,12 +9,13 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import com.revature.models.Brewery;
 import com.revature.models.User;
 import com.revature.util.HibernateUtil;
 
-
+@Repository
 public class UserDAO implements IUserDAO{
 
 	private IUserDAO userDAO;
