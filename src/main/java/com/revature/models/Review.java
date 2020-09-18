@@ -30,6 +30,10 @@ public class Review {
 	
 	public Review() {}
 	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public int getId() {
 		return id;
 	}
