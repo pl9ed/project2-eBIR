@@ -1,9 +1,11 @@
 package com.revature.models;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -18,8 +20,9 @@ public class Review {
 	
 	// user who submitted review
 	@ManyToOne
-	@JoinColumn(name="username")
+	@JoinColumn(name="Submitter", nullable=false)
 	private User submitter = new User();
+	
 	@ManyToOne
 	@JoinColumn(name="brewery")
 	private Brewery brewery = new Brewery();
