@@ -8,10 +8,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.revature.TestData;
+import com.revature.TestUtilities;
 
 public class ReviewDAOTest {
-	private TestData td = new TestData();
+	private TestUtilities td = new TestUtilities();
 	private ReviewDAO rd;
 	private UserDAO ud;
 	private BreweryDAO bd;
@@ -26,6 +26,7 @@ public class ReviewDAOTest {
 
 	@Before
 	public void setUp() throws Exception {
+	    TestUtilities.clearDB();
 		rd = new ReviewDAO();
 		ud = new UserDAO();
 		bd = new BreweryDAO();
@@ -33,6 +34,8 @@ public class ReviewDAOTest {
 
 	@After
 	public void tearDown() throws Exception {
+	    TestUtilities.clearDB();
+
 	}
 	
 	@Test

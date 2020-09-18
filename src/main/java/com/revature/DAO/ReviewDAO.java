@@ -65,8 +65,23 @@ public class ReviewDAO implements IReviewDAO {
 
 	@Override
 	public boolean updateReview(Review review) {
-		// TODO Auto-generated method stub
-		return false;
+		if (!(review instanceof Review)) {
+			return false;
+		}
+		
+		Session s = HibernateUtil.getSession();
+		Review ret = new Review();
+		Transaction tx = s.beginTransaction();
+
+		try {
+			ret = (Review) s.merge(review);
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+		}
+		
+		return ret.equals(review);
 	}
 
 	@Override

@@ -15,7 +15,6 @@ import com.sun.istack.NotNull;
 import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(name="Users")
 @EqualsAndHashCode
 public class User {
 	@Id
@@ -27,7 +26,7 @@ public class User {
 	private String lastName = "";
 	private String email = "";
 	
-	@OneToMany(mappedBy="name")
+	@OneToMany(mappedBy="id")
 	private List<Brewery> favorites = new ArrayList<Brewery>();
 	
 	public User() {

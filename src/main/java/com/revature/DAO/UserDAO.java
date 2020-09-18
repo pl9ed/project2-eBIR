@@ -1,6 +1,7 @@
 package com.revature.DAO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -33,7 +34,8 @@ public class UserDAO implements IUserDAO{
 	//handles user info and the database
 	@Override
 	public List<User> findAll(){
-		List<User> list = null; 
+		// init to empty list instead than null
+		List<User> list = new ArrayList<User>(); 
 		
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
@@ -57,7 +59,8 @@ public class UserDAO implements IUserDAO{
 	
 	@Override
 	public boolean saveUser(User u) {
-		if (u == null) {
+		// also need to check empty id
+		if (u == null || u.getUsername().length() < 1) {
 			return false;
 		}
 		Session s = HibernateUtil.getSession();
@@ -163,8 +166,23 @@ public class UserDAO implements IUserDAO{
 
 	@Override
 	public boolean updateUser(User u) {
-		// TODO Auto-generated method stub
-		return false;
+		if (!(u instanceof User)) {
+			return false;
+		}
+		
+		Session s = HibernateUtil.getSession();
+		User ret = new User();
+		Transaction tx = s.beginTransaction();
+
+		try {
+			ret = (User) s.merge(u);
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+		}
+		
+		return ret.equals(u);
 	}
 
 	@Override

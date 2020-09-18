@@ -1,28 +1,28 @@
 package com.revature.DAO;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import javax.persistence.Query;
+import java.util.Random;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.revature.TestData;
+import com.revature.TestUtilities;
 import com.revature.models.User;
 import com.revature.util.HibernateUtil;
 
 public class UserDAOTest {
-	private TestData td = new TestData();
+	private TestUtilities td = new TestUtilities();
 	private UserDAO ud;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		TestUtilities.clearDB();
 	}
 
 	@AfterClass
@@ -37,20 +37,7 @@ public class UserDAOTest {
 	@After
 	public void tearDown() throws Exception {
 		HibernateUtil.closeSession();
-		clearDB();
-	}
-	
-	private void clearDB() {
-		String hql = "delete from User";
-		try {
-			Session s = HibernateUtil.getSession();
-			Transaction tx = s.beginTransaction();
-			Query query = s.createQuery(hql);
-			query.executeUpdate();
-			tx.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		TestUtilities.clearDB();
 	}
 
 	@Test
@@ -67,13 +54,6 @@ public class UserDAOTest {
 	}
 	
 	@Test
-	public void testDeleteUser() {
-		ud.saveUser(td.u1);
-		assertTrue(ud.deleteUser(td.u1));
-		assertTrue(ud.findUser(td.u1.getUsername()) == null);
-	}
-	
-	@Test
 	public void testSaveUserNull() {
 		assertFalse(ud.saveUser(null));
 	}
@@ -81,7 +61,62 @@ public class UserDAOTest {
 	@Test
 	public void testSaveUserMissingReq() {
 		User u = new User();
-		assertFalse(ud.saveUser(u));
+		int n = ud.findAll().size();
+		System.out.println(n);
+		ud.saveUser(u);
+		
+		// check number of records hasn't changed
+		assertTrue(n == ud.findAll().size());
+	}
+	
+	@Test
+	public void testDeleteUser() {
+		ud.saveUser(td.u1);
+		assertTrue(ud.deleteUser(td.u1));
+		assertTrue(ud.findUser(td.u1.getUsername()) == null);
+	}
+	
+	@Test
+	public void testDeleteNull() {
+		assertFalse(ud.deleteUser(null));
+	}
+	
+	@Test
+	public void testDeleteNonExistant() {
+		ud.saveUser(td.u1);
+		ud.deleteUser(td.u2);
+		assertTrue(ud.findAll().size() == 1);
+	}
+	
+	@Test
+	public void testUpdateUser() {
+		ud.saveUser(td.u1);
+		User temp = td.u1;
+		temp.setEmail("a@b.c");
+		assertTrue(ud.updateUser(temp));
+		assertEquals(ud.findUser(td.u1.getUsername()).getEmail(), "a@b.c");
+	}
+	
+	@Test
+	public void testUpdateUserNull() {
+		assertFalse(ud.updateUser(null));
+	}
+	
+	@Test
+	public void testFindAll() {
+		// generate random number of users between 1 and 10
+		// check if return size is consistent
+		Random rand = new Random();
+		int n = rand.nextInt(9);
+		
+		for (int i=0; i < n; i++) {
+			User temp = new User();
+			temp.setUsername("user" + i);
+			ud.saveUser(temp);
+		}
+		System.out.println(n);
+		System.out.println(ud.findAll().size());
+		assertTrue(n == ud.findAll().size());
 	}
 
 }
