@@ -118,10 +118,4 @@ public class UserDAO implements IUserDAO {
 		log.info("user deleted");
 		return true;
 	}
-
-	@Override
-	public void setUser(String username, String password, String firstname, String lastname, String email) {
-		// TODO Auto-generated method stub
-		
-	}
 }
