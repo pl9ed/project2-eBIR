@@ -38,7 +38,7 @@ public class Brewery {
 	// custom fields
 	private double rating;
 	
-	// total number of reviews
+	// total number of ratings
 	private int n = 0;
 	
 	@OnDelete(action = OnDeleteAction.CASCADE)
@@ -162,8 +162,12 @@ public class Brewery {
 		return this.rating;
 	}
 	
-	public double getNumberofRatings() {
+	public int getNumberofRatings() {
 		return this.n;
+	}
+	
+	public Set<Review> getReviews() {
+		return this.getReviews();
 	}
 
 }
