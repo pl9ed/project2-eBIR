@@ -1,11 +1,13 @@
 package com.revature.models;
 
-import javax.persistence.Embeddable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,16 +21,26 @@ public class Review {
 	private int id;
 	
 	// user who submitted review
-	@ManyToOne
-	@JoinColumn(name="Submitter", nullable=false)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="submitter", nullable=false)
 	private User submitter = new User();
 	
-	@ManyToOne
-	@JoinColumn(name="brewery")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="brewery", nullable=false)
 	private Brewery brewery = new Brewery();
 	private String reviewText = "";
 	
 	public Review() {}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public int getId() {
+		return id;
+	}
 
 	public User getSubmitter() {
 		return submitter;

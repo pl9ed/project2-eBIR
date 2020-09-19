@@ -1,12 +1,14 @@
 package com.revature.DAO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
@@ -16,15 +18,9 @@ import com.revature.models.User;
 import com.revature.util.HibernateUtil;
 
 @Repository
-public class UserDAO implements IUserDAO{
+public class UserDAO implements IUserDAO {
 
-	private IUserDAO userDAO;
-	
-	//for JUnit testing
-	public UserDAO(IUserDAO userDAO) {
-		super();
-		this.userDAO = userDAO;
-	}
+	private static Logger log = Logger.getLogger(BreweryDAO.class);
 	
 	public UserDAO() {
 		super();
@@ -33,7 +29,8 @@ public class UserDAO implements IUserDAO{
 	//handles user info and the database
 	@Override
 	public List<User> findAll(){
-		List<User> list = null; 
+		// init to empty list instead than null
+		List<User> list = new ArrayList<User>(); 
 		
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
@@ -57,7 +54,8 @@ public class UserDAO implements IUserDAO{
 	
 	@Override
 	public boolean saveUser(User u) {
-		if (u == null) {
+		// also need to check empty id
+		if (u == null || u.getUsername().length() < 1) {
 			return false;
 		}
 		Session s = HibernateUtil.getSession();
@@ -67,6 +65,7 @@ public class UserDAO implements IUserDAO{
 		
 		if (ret == u.getUsername()) {
 			tx.commit();
+			log.info("saved " + u.getUsername() + " into database");
 			return true;
 		} else {
 			tx.rollback();
@@ -83,6 +82,7 @@ public class UserDAO implements IUserDAO{
 			
 			user = s.get(User.class,new String(username));
 			tx.commit();
+			log.info("found " + user.getFirstName() + " from database");
 		}catch (Exception e)  {
 			e.printStackTrace();
 			return null;
@@ -101,6 +101,7 @@ public class UserDAO implements IUserDAO{
 			
 			s.save(user);
 			tx.commit();
+			log.info("inserted " + user.getFirstName() + " into database");
 		}catch (Exception e)  {
 			e.printStackTrace();
 			return false;
@@ -122,6 +123,7 @@ public class UserDAO implements IUserDAO{
 		user.setFirstName(newFirstname);
 		s.merge(user);
 		tx.commit();
+		log.info("updated " + user.getUsername() + " first name to " + newFirstname);
 		
 	}
 
@@ -134,7 +136,7 @@ public class UserDAO implements IUserDAO{
 		user.setLastName(newLastname);
 		s.merge(user);
 		tx.commit();
-		
+		log.info("updated " + user.getUsername() + " last name to " + newLastname);
 	}
 
 	@Override
@@ -146,7 +148,8 @@ public class UserDAO implements IUserDAO{
 		user.setPassword(newPassword);
 		s.merge(user);
 		tx.commit();
-		
+		log.info("updated " + user.getUsername() + " password to " + newPassword);
+
 	}
 
 	@Override
@@ -158,13 +161,29 @@ public class UserDAO implements IUserDAO{
 		user.setEmail(email);
 		s.merge(user);
 		tx.commit();
-		
+		log.info("updated " +user.getUsername() + " email to " + email);
+
 	}
 
 	@Override
 	public boolean updateUser(User u) {
-		// TODO Auto-generated method stub
-		return false;
+		if (!(u instanceof User)) {
+			return false;
+		}
+		
+		Session s = HibernateUtil.getSession();
+		User ret = new User();
+		Transaction tx = s.beginTransaction();
+
+		try {
+			ret = (User) s.merge(u);
+			tx.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+		}
+		
+		return ret.equals(u);
 	}
 
 	@Override
@@ -177,6 +196,7 @@ public class UserDAO implements IUserDAO{
 		s.delete(u);
 		
 		tx.commit();
+		log.info("user deleted");
 		return true;
 	}
 
