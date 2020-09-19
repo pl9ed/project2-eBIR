@@ -1,5 +1,8 @@
 package com.revature.services;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,6 +53,16 @@ public class BreweryService {
 		}
 		u.getFavorites().remove(b);
 		return uDAO.updateUser(u);
+	}
+	
+	public Set<Review> getReviewsFor(Brewery b) {
+		Set<Review> ret = new HashSet<Review>();
+		try {
+			ret = rDAO.findBy(b);
+		} catch (NullPointerException e) {
+			// log here
+		}
+		return ret;
 	}
 
 }

@@ -4,6 +4,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -55,6 +58,7 @@ public class BreweryServiceTest {
 		when(bDAO.updateBrewery(td.b1)).thenReturn(true);
 		when(rDAO.saveReview(td.r1)).thenReturn(true);
 		when(uDAO.updateUser(td.u1)).thenReturn(true);
+		
 	}
 
 	@After
@@ -172,6 +176,19 @@ public class BreweryServiceTest {
 		Brewery b = new Brewery();
 		assertFalse(bs.removeFavorite(td.u1, b));
 	}
-
+	
+	@Test
+	public void testGetReviewsFor() {
+		Set<Review> b1rev = new HashSet<Review>();
+		b1rev.add(td.r1);
+		when(rDAO.findBy(td.b1)).thenReturn(b1rev);
+		
+		assertTrue(bs.getReviewsFor(td.b1).contains(td.r1));
+	}
+	
+	@Test
+	public void testGetReviewsNull() {
+		assertTrue(bs.getReviewsFor(null).size() == 0);
+	}
 
 }

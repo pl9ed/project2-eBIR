@@ -1,6 +1,7 @@
 package com.revature.DAO;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -10,6 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
+import com.revature.models.Brewery;
 import com.revature.models.Review;
 import com.revature.models.User;
 import com.revature.util.HibernateUtil;
@@ -23,12 +25,18 @@ public class ReviewDAO implements IReviewDAO {
 	}
 
 	@Override
-	public List<Review> findAll() {
-		return s.createQuery("FROM Review r", Review.class).getResultList();
+	public Set<Review> findAll() {
+		return new HashSet<Review>(s.createQuery("FROM Review r", Review.class).getResultList());
 	}
 
 	@Override
-	public Set<Review> findByUser(User user) {
+	public Set<Review> findBy(User u) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public Set<Review> findBy(Brewery b) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -94,5 +102,8 @@ public class ReviewDAO implements IReviewDAO {
 		tx.commit();
 		return true;
 	}
+
+
+
 
 }

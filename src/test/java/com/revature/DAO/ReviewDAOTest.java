@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+import java.util.Set;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -138,7 +139,7 @@ public class ReviewDAOTest {
 		assertTrue(1 == rd.findAll().size());
 		
 		rd.saveReview(td.r2);
-		List<Review> all = rd.findAll();
+		Set<Review> all = rd.findAll();
 		assertTrue(2 == all.size());
 		assertTrue(all.contains(td.r1) && all.contains(td.r2));
 	}
