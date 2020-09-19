@@ -62,12 +62,17 @@ public class User {
 
 	// hash password
 	public void setPassword(String password) {
-		this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+		if (password != null && password.length() > 0) {
+			this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+		}
 	}
 	
 	// check password
 	public boolean checkPassword(String password) {
-		return BCrypt.checkpw(password, this.password);
+		if (password != null && password.length() > 0) {
+			return BCrypt.checkpw(password, this.password);
+		}
+		return false;
 	}
 
 	public String getFirstName() {
@@ -92,9 +97,8 @@ public class User {
 
 	public boolean setEmail(String email) {
 		if (email != null) {
-			Pattern p = Pattern.compile(".*@.*[.].*");
-			Matcher m = p.matcher(email);
-			if (m.find()) {
+			String regex = "(.+)[@](.+)[.](.+)";
+			if (email.matches(regex)) {
 				this.email = email;
 				return true;
 			}
