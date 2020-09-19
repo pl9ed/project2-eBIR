@@ -2,6 +2,8 @@ package com.revature.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -60,12 +62,17 @@ public class User {
 
 	// hash password
 	public void setPassword(String password) {
-		this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+		if (password != null && password.length() > 0) {
+			this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+		}
 	}
 	
 	// check password
 	public boolean checkPassword(String password) {
-		return BCrypt.checkpw(password, this.password);
+		if (password != null && password.length() > 0) {
+			return BCrypt.checkpw(password, this.password);
+		}
+		return false;
 	}
 
 	public String getFirstName() {
@@ -88,8 +95,15 @@ public class User {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public boolean setEmail(String email) {
+		if (email != null) {
+			String regex = "(.+)[@](.+)[.](.+)";
+			if (email.matches(regex)) {
+				this.email = email;
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public List<Brewery> getFavorites() {
