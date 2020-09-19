@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.DAO.IUserDAO;
+import com.revature.exceptions.ResourceNotFoundException;
 import com.revature.models.User;
 
 @Service
@@ -42,7 +43,7 @@ public class UserService {
 				user = temp;
 			} 
 		} catch(NullPointerException e) {
-			// temp is null
+			throw new ResourceNotFoundException("User with username: " + username + " not found!");
 		}
 		return user;
 	}
@@ -52,7 +53,7 @@ public class UserService {
 		user.setFirstName(newFirstname);
 		try{
 			userDAO.updateUser(user);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}

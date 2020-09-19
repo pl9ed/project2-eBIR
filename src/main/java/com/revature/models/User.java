@@ -2,6 +2,8 @@ package com.revature.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -88,8 +90,16 @@ public class User {
 		return email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public boolean setEmail(String email) {
+		if (email != null) {
+			Pattern p = Pattern.compile(".*@.*[.].*");
+			Matcher m = p.matcher(email);
+			if (m.find()) {
+				this.email = email;
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public List<Brewery> getFavorites() {
