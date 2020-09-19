@@ -62,7 +62,6 @@ public class UserDAOTest {
 	public void testSaveUserMissingReq() {
 		User u = new User();
 		int n = ud.findAll().size();
-		System.out.println(n);
 		ud.saveUser(u);
 		
 		// check number of records hasn't changed
@@ -114,8 +113,6 @@ public class UserDAOTest {
 			temp.setUsername("user" + i);
 			ud.saveUser(temp);
 		}
-		System.out.println(n);
-		System.out.println(ud.findAll().size());
 		assertTrue(n == ud.findAll().size());
 	}
 	

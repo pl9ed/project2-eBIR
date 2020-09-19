@@ -38,12 +38,13 @@ public class Brewery {
 	// custom fields
 	private double rating;
 	
-	// total number of reviews
+	// total number of ratings
 	private int n = 0;
 	
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="brewery")
-	private Set<Review> reviews;
+	// brewery doesn't actually need to keep track of this, since it's already on the review side
+//	@OnDelete(action = OnDeleteAction.CASCADE)
+//	@OneToMany(cascade = CascadeType.ALL, mappedBy="brewery")
+//	private Set<Review> reviews;
 	
 	// calculate new rating using cumulative moving average
 	public void updateRating(double newRating) {
@@ -162,7 +163,7 @@ public class Brewery {
 		return this.rating;
 	}
 	
-	public double getNumberofRatings() {
+	public int getNumberofRatings() {
 		return this.n;
 	}
 
