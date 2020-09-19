@@ -18,16 +18,15 @@ public class BreweryService {
 	private IBreweryDAO bDAO;
 	
 	public boolean addReview(Review r) {
-		boolean revSuccess = rDAO.saveReview(r);
-		Brewery b = r.getBrewery();
-		b.getReviews().add(r);
-		boolean brewSuccess = bDAO.updateBrewery(b);
-		return (revSuccess && brewSuccess);
+		return rDAO.saveReview(r);
 	}
 	
-	public double updateRating(double newRating, Brewery b) {
+	public boolean updateRating(double newRating, Brewery b) {
+		if (newRating > 5 || newRating < 0) {
+			return false;
+		}
 		b.updateRating(newRating);
-		return b.getRating();
+		return bDAO.updateBrewery(b);
 	}
 
 }
