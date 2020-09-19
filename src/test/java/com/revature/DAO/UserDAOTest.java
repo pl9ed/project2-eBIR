@@ -120,5 +120,37 @@ public class UserDAOTest {
 	public void testFindAllEmpty() {
 		assertTrue(0 == ud.findAll().size());
 	}
+	
+	@Test
+	public void testFindUser() {
+		ud.saveUser(td.u1);
+		assertEquals(td.u1,ud.findUser(td.u1.getUsername()));
+	}
+	
+	@Test
+	public void testFindUserNull() {
+		assertEquals(null, ud.findUser(null));
+	}
+	
+	@Test
+	public void testFindUserMissing() {
+		assertEquals(null, ud.findUser("divgh837gh38q7gh"));
+	}
+	
+	@Test
+	public void testFindByUsername() {
+		ud.saveUser(td.u1);
+		assertEquals(td.u1,ud.findByUsername(td.u1.getUsername()));
+	}
+	
+	@Test
+	public void testFindByUsernameNull() {
+		assertEquals(null, ud.findByUsername(null));
+	}
+	
+	@Test
+	public void testFindByUsernameMissing() {
+		assertEquals(null, ud.findByUsername("divgh837gh38q7gh"));
+	}
 
 }

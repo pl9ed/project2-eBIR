@@ -1,22 +1,25 @@
 package com.revature.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.revature.DAO.IUserDAO;
-import com.revature.DAO.UserDAO;
 import com.revature.models.User;
 
+@Service
 public class UserService {
 	
+	@Autowired
 	private IUserDAO userDAO;
 	
 	public UserService() {
 		super();
-		this.userDAO = new UserDAO();
 	}
 	
 	//creates a new user object with given details and inserts user into DB
 	public User register(String username, String password, String firstName, String lastName, String email) {
 		User user = new User(username, password, firstName, lastName, email);
-		boolean value = userDAO.insert(user);
+		boolean value = userDAO.saveUser(user);
 		if (value==false) {
 			return null;
 		}
@@ -24,67 +27,77 @@ public class UserService {
 	}
 	
 	//for user login, checks if account exists with get() to find username. Compares password input with actual password in DB.
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return User object on successful login, null otherwise
+	 */
 	public User login(String username, String password) {
-		User user= null;
+		User user = null;
 		try {
-			user = userDAO.findByUsername(username);
-
-		}catch(NullPointerException e) {
-			e.printStackTrace();
-			return null;
+			User temp = userDAO.findByUsername(username);
+			
+			if (temp.checkPassword(password)) {
+				user = temp;
+			} 
+		} catch(NullPointerException e) {
+			// temp is null
 		}
-		
-		if (password.equals(user.getPassword())) {
-			return user;
-		} else {
-			System.out.println("Wrong password");
-		}
-		return null;
+		return user;
 	}
 	
 	//update user first name
 	public String updateFirstName(User user, String newFirstname) {
+		user.setFirstName(newFirstname);
 		try{
-			userDAO.updateFirstName(user, newFirstname);
+			userDAO.updateUser(user);
 		}catch(Exception e) {
 			e.printStackTrace();
-			System.out.println("update failed");
 			return null;
 		}
-		return newFirstname;
+		return user.getFirstName();
 	}
 	
 	//update user last name
 	public String updateLastName(User user, String newLastName) {
+		user.setLastName(newLastName);
 		try {
-			userDAO.updateLastName(user, newLastName);
+			userDAO.updateUser(user);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-		return newLastName;
+		return user.getLastName();
 	}
 	
 	//update password
+	/**
+	 * Returns the hashed password
+	 * null for exceptions
+	*/
 	public String updatePassword(User user, String newPassword) {
+		user.setPassword(newPassword);
 		try {
-			userDAO.updatePassword(user, newPassword);
+			userDAO.updateUser(user);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-		return newPassword;
+		return user.getPassword();
 	}
 	
 	//update email
 	public String updateEmail(User user, String newEmail) {
+		user.setEmail(newEmail);
 		try {
-			userDAO.updateEmail(user, newEmail);
+			userDAO.updateUser(user);
 		} catch(Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-		return newEmail;
+		return user.getEmail();
 	}
+	
 	
 }
