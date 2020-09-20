@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.revature.exceptions.ResourceNotFoundException;
 import com.revature.models.User;
 import com.revature.services.UserService;
@@ -19,6 +22,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService us;
+	
+	@Autowired
+	private ObjectMapper om;
 	
 	@PostMapping("user/register")
 	@ResponseBody
@@ -37,9 +43,12 @@ public class UserController {
 	}
 	@PostMapping("user/login")
 	@ResponseBody
-	public ResponseEntity<User> login(@RequestBody User u) {
+	public ResponseEntity<User> login(HttpEntity<String> login) {
+		ObjectNode node = om.readValue(login.getBody(), ObjectNode.class);
+		String user = node.get("username").textValue();
+		String pass = node.get("password").textValue();
 		try {
-			User user = us.login(u.getUsername(), u.getPassword());
+			User user = us.login(user, pass);
 			return ResponseEntity.status(HttpStatus.OK).body(user);
 		} catch (ResourceNotFoundException e) {
 			// no user with that username

@@ -107,7 +107,12 @@ public class UserControllerTest {
 	
 	@Test
 	public void testLogin() {
+		when(us.login("u1", "pass")).thenReturn(td.u1);
+		String json = om.writeValueAsString(td.u1);
 		
+		given()
+			.standaloneSetup(uc)
+			.body(json)
 	}
 	
 	@Test
