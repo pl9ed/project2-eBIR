@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.revature.exceptions.ResourceNotFoundException;
@@ -23,8 +26,7 @@ public class UserController {
 	@Autowired
 	private UserService us;
 	
-	@Autowired
-	private ObjectMapper om;
+	private static ObjectMapper om = new ObjectMapper();
 	
 	@PostMapping("user/register")
 	@ResponseBody
@@ -44,18 +46,22 @@ public class UserController {
 	@PostMapping("user/login")
 	@ResponseBody
 	public ResponseEntity<User> login(HttpEntity<String> login) {
-		ObjectNode node = om.readValue(login.getBody(), ObjectNode.class);
-		String user = node.get("username").textValue();
-		String pass = node.get("password").textValue();
+		ObjectNode node;
+
 		try {
-			User user = us.login(user, pass);
+			node = om.readValue(login.getBody(), ObjectNode.class);
+			String username = node.get("username").textValue();
+			String pass = node.get("password").textValue();
+			User user = us.login(username, pass);
 			return ResponseEntity.status(HttpStatus.OK).body(user);
 		} catch (ResourceNotFoundException e) {
 			// no user with that username
 			// TODO log
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
-		} catch (Exception e) {
-			// bad request (incorrect JSON format, null user, etc)
+		} catch (JsonMappingException e) {
+			// incorrect json format
+			// TODO log
+		} catch (JsonProcessingException e) {
 			// TODO log
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);

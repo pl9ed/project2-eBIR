@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.when;
 
@@ -108,11 +109,19 @@ public class UserControllerTest {
 	@Test
 	public void testLogin() {
 		when(us.login("u1", "pass")).thenReturn(td.u1);
-		String json = om.writeValueAsString(td.u1);
+		String json = "{ \"username\" : \"u1\","
+				+ "\"password\" : \"pass\" }";
 		
 		given()
 			.standaloneSetup(uc)
 			.body(json)
+			.contentType("application/json")
+		.when()
+			.post("/user/login")
+		.then()
+			.statusCode(200)
+			.assertThat()
+				.body("username", equalTo(td.u1.getUsername()));
 	}
 	
 	@Test
