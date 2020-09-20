@@ -102,6 +102,14 @@ public class UserDAOTest {
 	}
 	
 	@Test
+	public void testUpdateUserInvalid() {
+		User u = new User();
+		assertFalse(ud.updateUser(u));
+		u.setUsername(null);
+		assertFalse(ud.updateUser(u));
+	}
+	
+	@Test
 	public void testFindAll() {
 		// generate random number of users between 1 and 10
 		// check if return size is consistent

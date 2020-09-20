@@ -38,14 +38,14 @@ public class BreweryControllerUnitTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
-	public void testAddReviewNoBody() {
-		given()
-		.when()
-			.post("/review")
-		.then()
-			.log().all()
-			.assertThat().statusCode(400);
-	}
+//	@Test
+//	public void testAddReviewNoBody() {
+//		given()
+//		.when()
+//			.post("/review")
+//		.then()
+//			.log().all()
+//			.assertThat().statusCode(400);
+//	}
 
 }
