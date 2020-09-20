@@ -30,6 +30,7 @@ public class Review {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="brewery", nullable=false)
 	private Brewery brewery = new Brewery();
+	
 	private String reviewText = "";
 	
 	public Review() {}
