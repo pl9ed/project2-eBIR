@@ -5,8 +5,8 @@
 <hibernate-configuration>
 	<session-factory>
 
-		<!-- <property name="hibernate.connection.username">root</property> <property 
-			name="hibernate.connection.password">churknam</property> <property name="hibernate.connection.url">jdbc:postgresql://training.cyrobrynznqt.us-east-2.rds.amazonaws.com:5432/postgres</property> -->
+		 <property name="hibernate.connection.username">root</property> <property 
+			name="hibernate.connection.password">churknam</property> <property name="hibernate.connection.url">jdbc:postgresql://training.cyrobrynznqt.us-east-2.rds.amazonaws.com:5432/postgres</property> 
 
 		<!-- <property name="hibernate.connection.username">jwa200810</property> 
 			<property name="hibernate.connection.password">password</property> <property 
