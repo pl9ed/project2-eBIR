@@ -25,6 +25,9 @@ public class UserController {
 	public ResponseEntity<User> register(@RequestBody User u) {
 		try {
 			User user = us.register(u.getUsername(), u.getPassword(), u.getFirstName(), u.getLastName(), u.getEmail());
+			if (user == null) { // user already exists
+				return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+			}
 			return ResponseEntity.status(HttpStatus.CREATED).body(user);
 		} catch (Exception e) {
 			// TODO log
@@ -57,9 +60,21 @@ public class UserController {
 //		 * without using HttpSession session
 //		 */
 //	}
+	
+	@PutMapping("user/update")
+	@ResponseBody
+	public ResponseEntity<User> updateUser(@RequestBody User u) {
+		// this impl might mean it'd be possible to add a user that doesn't yet exist
+		if (us.updateUser(u)) {
+			return ResponseEntity.status(HttpStatus.OK).body(u);
+		}
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+	}
+	
+	// front end updates user all at once, might not need update method for each field
 	@PutMapping("user/update_first_name")
 	@ResponseBody
-	public String updatFirstName(@RequestBody User u) {
+	public String updateFirstName(@RequestBody User u) {
 		String nFN = us.updateFirstName(u, u.getFirstName());
 		return nFN;
 	}
