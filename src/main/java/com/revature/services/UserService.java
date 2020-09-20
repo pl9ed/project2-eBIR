@@ -1,15 +1,21 @@
 package com.revature.services;
 
+import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.DAO.BreweryDAO;
 import com.revature.DAO.IUserDAO;
 import com.revature.exceptions.ResourceNotFoundException;
 import com.revature.models.User;
 
+
+
 @Service
 public class UserService {
-	
+	private static Logger log = Logger.getLogger(BreweryDAO.class);
+
 	@Autowired
 	private IUserDAO userDAO;
 	
@@ -42,6 +48,7 @@ public class UserService {
 				user = temp;
 			} 
 		} catch(NullPointerException e) {
+			log.error("login failed");
 			throw new ResourceNotFoundException("User with username: " + username + " not found!");
 		}
 		return user;
@@ -55,7 +62,8 @@ public class UserService {
 				return user.getFirstName();
 			}
 		} catch (Exception e) {
-			//TODO log
+			e.printStackTrace();
+			log.error("exception encountered");
 		}
 		return null;
 	}
@@ -69,7 +77,8 @@ public class UserService {
 			}
 				
 		} catch(Exception e) {
-			// TODO log
+			e.printStackTrace();
+			log.error("exception encountered");
 		}
 		return null;
 	}
@@ -86,7 +95,8 @@ public class UserService {
 				return user.getPassword();
 			}
 		} catch(Exception e) {
-			// TODO log
+			e.printStackTrace();
+			log.error("exception encountered");
 		}
 		return null;
 	}
@@ -100,7 +110,8 @@ public class UserService {
 				}
 			}
 		} catch(Exception e) {
-			//TODO log
+			e.printStackTrace();
+			log.error("exception encountered");
 		}
 		return null;
 	}
