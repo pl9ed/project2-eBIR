@@ -20,11 +20,10 @@ public class UserService {
 	//creates a new user object with given details and inserts user into DB
 	public User register(String username, String password, String firstName, String lastName, String email) {
 		User user = new User(username, password, firstName, lastName, email);
-		boolean value = userDAO.saveUser(user);
-		if (value==false) {
-			return null;
+		if (userDAO.saveUser(user)) {
+			return user;
 		}
-		return user;
+		return null;
 	}
 	
 	//for user login, checks if account exists with get() to find username. Compares password input with actual password in DB.
@@ -34,7 +33,7 @@ public class UserService {
 	 * @param password
 	 * @return User object on successful login, null otherwise
 	 */
-	public User login(String username, String password) {
+	public User login(String username, String password) throws ResourceNotFoundException {
 		User user = null;
 		try {
 			User temp = userDAO.findByUsername(username);
