@@ -15,6 +15,8 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -28,8 +30,9 @@ import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 
 
-
-public class UserControllerUnitTest {
+@ContextConfiguration(locations = "/applicationContext.xml")
+@SpringBootTest
+public class UserControllerWACTest {
 	
 	private TestUtilities td;
 	private static ObjectMapper om = new ObjectMapper();
