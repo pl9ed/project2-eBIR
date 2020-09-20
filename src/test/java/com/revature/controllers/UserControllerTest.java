@@ -3,6 +3,7 @@ package com.revature.controllers;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 import org.apache.http.HttpStatus;
@@ -16,8 +17,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.TestUtilities;
+import com.revature.exceptions.ResourceNotFoundException;
+import com.revature.models.User;
 import com.revature.services.UserService;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
@@ -53,6 +57,7 @@ public class UserControllerTest {
 		
 		// td.u1 exists and will be able to login
 		// can't use getPassword, since the user object does the hashing
+		when(us.login("u1", "pass")).thenReturn(td.u1);
 
 	}
 
@@ -125,36 +130,90 @@ public class UserControllerTest {
 	}
 	
 	@Test
-	public void testLoginNull() {
+	public void testLoginEmpty() {
+		given()
+			.standaloneSetup(uc)
+			.body("")
+			.contentType("application/json")
+		.when()
+			.post("/user/login")
+		.then()
+			.statusCode(400);
 		
 	}
 	
 	@Test
 	public void testLoginInvalid() {
-		
+		String json = "{\"username\" : \"a\", \"pass\" : \"pass\"}";
+		given()
+			.standaloneSetup(uc)
+			.body(json)
+			.contentType("application/json")
+		.when()
+			.post("/user/login")
+		.then()
+			.statusCode(400);
 	}
 	
 	@Test
 	public void testLoginNoUser() {
+		String json = "{\"username\" : \"u2\", \"password\" : \"pass\"}";
+		when(us.login("u2", "pass")).thenReturn(null);
 		
+		given()
+			.standaloneSetup(uc)
+			.body(json)
+			.contentType("application/json")
+		.when()
+			.post("/user/login")
+		.then()
+			.statusCode(401);
 	}
 	
 	@Test
-	public void testUpdateUser() {
+	public void testLoginWrongPassword() {
+		String json = "{\"username\" : \"u1\", \"password\" : \"pass123\"}";
+		when(us.login("u1", "pass123")).thenThrow(new ResourceNotFoundException("Incorrect Login"));
 		
+		given()
+			.standaloneSetup(uc)
+			.body(json)
+			.contentType("application/json")
+		.when()
+			.post("/user/login")
+		.then()
+			.statusCode(401);
 	}
 	
 	@Test
-	public void testUpdateUserNull() {
+	public void testUpdateUser() throws JsonProcessingException {
+		when(us.updateUser(any(User.class))).thenReturn(true);
 		
+		given()
+			.standaloneSetup(uc)
+			.body(om.writeValueAsString(td.u1))
+			.contentType("application/json")
+		.when()
+			.put("/user/update")
+		.then()
+			.statusCode(200)
+			.assertThat()
+				.body("username", equalTo(td.u1.getUsername()));
 	}
 	
 	@Test
-	public void testUpdateUserInvalid() {
-		
+	public void testUpdateUserInvalid() throws JsonMappingException, JsonProcessingException {		
+		given()
+			.standaloneSetup(uc)
+			.body(om.writeValueAsString(null))
+			.contentType("application/json")
+		.when()
+			.put("/user/update")
+		.then()
+			.statusCode(400);
 	}
 	
-	
+	/*
 	@Test
 	public void testUpdateFN() {
 		
@@ -199,5 +258,5 @@ public class UserControllerTest {
 	public void testChangePWInvalid() {
 		
 	}
-
+	*/
 }

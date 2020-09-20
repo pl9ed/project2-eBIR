@@ -53,6 +53,9 @@ public class UserController {
 			String username = node.get("username").textValue();
 			String pass = node.get("password").textValue();
 			User user = us.login(username, pass);
+			if (user == null) {
+				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+			}
 			return ResponseEntity.status(HttpStatus.OK).body(user);
 		} catch (ResourceNotFoundException e) {
 			// no user with that username
@@ -62,6 +65,8 @@ public class UserController {
 			// incorrect json format
 			// TODO log
 		} catch (JsonProcessingException e) {
+			// TODO log
+		} catch (Exception e) {
 			// TODO log
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
