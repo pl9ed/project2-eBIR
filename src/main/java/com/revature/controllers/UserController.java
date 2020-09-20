@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -81,6 +80,8 @@ public class UserController {
 //		 */
 //	}
 	
+	
+	
 	@PutMapping("user/update")
 	@ResponseBody
 	public ResponseEntity<User> updateUser(@RequestBody User u) {
@@ -91,6 +92,7 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
 	
+	/*
 	// front end updates user all at once, might not need update method for each field
 	@PutMapping("user/update_first_name")
 	@ResponseBody
@@ -112,5 +114,6 @@ public class UserController {
 		String nPw = us.updatePassword(u, u.getPassword());
 		return nPw;
 	}
+	*/
 
 }
