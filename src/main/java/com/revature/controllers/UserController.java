@@ -2,6 +2,7 @@ package com.revature.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.revature.exceptions.ResourceNotFoundException;
 import com.revature.models.User;
 import com.revature.services.UserService;
 
@@ -20,16 +22,31 @@ public class UserController {
 	
 	@PostMapping("user/register")
 	@ResponseBody
-	@ResponseStatus(value = HttpStatus.CREATED, reason = "User Created")
-	public User register(@RequestBody User u) {
-		User user = us.register(u.getUsername(), u.getPassword(), u.getFirstName(), u.getLastName(), u.getEmail());
-		return user;
+	public ResponseEntity<User> register(@RequestBody User u) {
+		try {
+			User user = us.register(u.getUsername(), u.getPassword(), u.getFirstName(), u.getLastName(), u.getEmail());
+			return ResponseEntity.status(HttpStatus.CREATED).body(user);
+		} catch (Exception e) {
+			// TODO log
+			
+		}
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
 	@PostMapping("user/login")
 	@ResponseBody
-	public User login(@RequestBody User u) {
-		User user = us.login(u.getUsername(), u.getPassword());
-		return user;
+	public ResponseEntity<User> login(@RequestBody User u) {
+		try {
+			User user = us.login(u.getUsername(), u.getPassword());
+			return ResponseEntity.status(HttpStatus.OK).body(user);
+		} catch (ResourceNotFoundException e) {
+			// no user with that username
+			// TODO log
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+		} catch (Exception e) {
+			// bad request (incorrect JSON format, null user, etc)
+			// TODO log
+		}
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
 //	
 //	@GetMapping("logout")
@@ -60,4 +77,5 @@ public class UserController {
 		String nPw = us.updatePassword(u, u.getPassword());
 		return nPw;
 	}
+
 }
