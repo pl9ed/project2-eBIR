@@ -86,7 +86,12 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	public boolean updateUser(User u) {
-		if (!(u instanceof User)) {
+		// doubles as null check for both user and username
+		try {
+			if (u.getUsername().length() < 1) {
+				return false;
+			}
+		} catch (NullPointerException e) {
 			return false;
 		}
 		

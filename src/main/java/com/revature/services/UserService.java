@@ -50,26 +50,29 @@ public class UserService {
 	
 	//update user first name
 	public String updateFirstName(User user, String newFirstname) {
-		user.setFirstName(newFirstname);
 		try{
-			userDAO.updateUser(user);
+			user.setFirstName(newFirstname);
+			if (userDAO.updateUser(user)) {
+				return user.getFirstName();
+			}
 		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			//TODO log
 		}
-		return user.getFirstName();
+		return null;
 	}
 	
 	//update user last name
 	public String updateLastName(User user, String newLastName) {
-		user.setLastName(newLastName);
 		try {
-			userDAO.updateUser(user);
+			user.setLastName(newLastName);
+			if (userDAO.updateUser(user)) {
+				return user.getLastName();
+			}
+				
 		} catch(Exception e) {
-			e.printStackTrace();
-			return null;
+			// TODO log
 		}
-		return user.getLastName();
+		return null;
 	}
 	
 	//update password
@@ -78,26 +81,33 @@ public class UserService {
 	 * null for exceptions
 	*/
 	public String updatePassword(User user, String newPassword) {
-		user.setPassword(newPassword);
 		try {
-			userDAO.updateUser(user);
+			user.setPassword(newPassword);
+			if (userDAO.updateUser(user)) {
+				return user.getPassword();
+			}
 		} catch(Exception e) {
-			e.printStackTrace();
-			return null;
+			// TODO log
 		}
-		return user.getPassword();
+		return null;
 	}
 	
 	//update email
 	public String updateEmail(User user, String newEmail) {
-		user.setEmail(newEmail);
 		try {
-			userDAO.updateUser(user);
+			if (user.setEmail(newEmail)) {
+				if (userDAO.updateUser(user)) {
+					return user.getEmail();
+				}
+			}
 		} catch(Exception e) {
-			e.printStackTrace();
-			return null;
+			//TODO log
 		}
-		return user.getEmail();
+		return null;
+	}
+	
+	public boolean updateUser(User u) {
+		return userDAO.updateUser(u);
 	}
 	
 	
