@@ -52,9 +52,10 @@ public class UserDAO implements IUserDAO {
 		try {
 			ret = HibernateUtil.getSession().get(User.class, username);
 		} catch (IllegalArgumentException e) {
-			// TODO log
+			log.info("IllegalArgumentException encountered");
+
 		} catch (NullPointerException e) {
-			// TODO log
+			log.info("NullPointerException encountered");
 		}
 		return ret;
 	}
@@ -76,6 +77,7 @@ public class UserDAO implements IUserDAO {
 			return true;
 		} else {
 			tx.rollback();
+			log.error("could not save user");
 			return false;
 		}
 	}
@@ -89,9 +91,11 @@ public class UserDAO implements IUserDAO {
 		// doubles as null check for both user and username
 		try {
 			if (u.getUsername().length() < 1) {
+				log.error("username is too short");
 				return false;
 			}
 		} catch (NullPointerException e) {
+			log.info("username is empty");
 			return false;
 		}
 		
@@ -105,14 +109,16 @@ public class UserDAO implements IUserDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			tx.rollback();
+			log.error("encountered an exception, intiated rollback");
 		}
-		
+		log.info("successfully updated " + u.getUsername());
 		return ret.equals(u);
 	}
 
 	@Override
 	public boolean deleteUser(User u) {
 		if (u == null) {
+			log.info("delete failed, no user specified");
 			return false;
 		}
 		Session s = HibernateUtil.getSession();
