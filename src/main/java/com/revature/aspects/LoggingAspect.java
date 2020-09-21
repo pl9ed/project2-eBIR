@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoggingAspect {
 	
-	private static Logger log = LogManager.getLogger("info");
+	private static Logger log = LogManager.getLogger(LoggingAspect.class);
 	
 	@Before("within(com.revature.DAO.*)")
 	public void logDAOArgs(JoinPoint jp) {

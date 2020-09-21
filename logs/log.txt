@@ -954,3 +954,12 @@
 2020-09-20 20:53:23 INFO  BreweryDAO:63 - first name updated to abc123
 2020-09-20 20:53:23 INFO  BreweryDAO:63 - first name updated to abc123
 2020-09-20 20:53:23 INFO  BreweryDAO:98 - password updated to $2a$10$6La5UURaNBdSYlKn4wMBBO5LIQOYtNpRpwOAsunBn0U6Un3crm.Fi
+2020-09-21 11:36:21 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-21 11:36:21 INFO  BreweryDAO:79 - brewery deleted
+2020-09-21 11:36:21 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-21 11:36:21 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-21 11:36:22 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-21 11:36:22 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-21 11:36:22 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-21 11:36:22 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-21 11:36:22 INFO  BreweryDAO:79 - brewery deleted
