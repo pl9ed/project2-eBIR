@@ -46,12 +46,12 @@ public class UserService {
 			
 			if (temp.checkPassword(password)) {
 				user = temp;
+				log.info("logged in successfully as " + user.getUsername());
 			} 
 		} catch(NullPointerException e) {
 			log.error("login failed");
 			throw new ResourceNotFoundException("User with username: " + username + " not found!");
 		}
-		log.info("logged in successfully as " + user.getUsername());
 		return user;
 	}
 	
@@ -122,7 +122,7 @@ public class UserService {
 	}
 	
 	public boolean updateUser(User u) {
-		log.info("updating " + u.getUsername());
+		// log in DAO
 		return userDAO.updateUser(u);
 	}
 	

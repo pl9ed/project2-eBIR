@@ -6,6 +6,7 @@ target/
 
 # Log file
 *.log
+logs/log.txt
 
 # BlueJ files
 *.ctxt

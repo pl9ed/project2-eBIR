@@ -25,6 +25,7 @@ import com.revature.TestUtilities;
 import com.revature.exceptions.ResourceNotFoundException;
 import com.revature.models.User;
 import com.revature.services.UserService;
+import com.revature.util.HibernateUtil;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
@@ -49,6 +50,7 @@ public class UserControllerWACTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		HibernateUtil.closeSession();
 	}
 
 	@Before

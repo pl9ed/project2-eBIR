@@ -20,3 +20,830 @@
 2020-09-20 16:46:27 INFO  BreweryDAO:63 - first name updated to abc123
 2020-09-20 16:46:27 INFO  BreweryDAO:63 - first name updated to abc123
 2020-09-20 16:46:27 INFO  BreweryDAO:98 - password updated to $2a$10$MnhkUE4pPZEl9w.HeHUEXenF7OlIJrPMjhXbbn8nv4Qv3AqZr0S1.
+2020-09-20 20:28:12 INFO  BreweryDAO:29 - successfully saved to database
+2020-09-20 20:28:20 ERROR BreweryDAO:34 - encountered an error with saving to database
+2020-09-20 20:28:20 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:28:23 ERROR BreweryDAO:64 - could not find an user with that username
+2020-09-20 20:28:23 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:28:23 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:28:24 ERROR BreweryDAO:64 - could not find an user with that username
+2020-09-20 20:28:24 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:28:24 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:24 INFO  BreweryDAO:79 - brewery deleted
+2020-09-20 20:28:25 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:25 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:25 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:25 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:25 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:26 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:26 INFO  BreweryDAO:79 - brewery deleted
+2020-09-20 20:28:26 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:27 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:28:27 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:27 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:28:27 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:27 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:28:27 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:27 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:28:28 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:28 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:28:28 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:28 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:28:28 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:28 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:28:28 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:28 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:28:29 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:29 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:28:29 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:29 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:28:29 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:29 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:28:29 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:29 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:28:29 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:30 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:28:30 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:30 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:28:30 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:30 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:28:30 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:30 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:28:30 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:30 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:28:30 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:30 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:28:31 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:31 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:28:31 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:31 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:28:31 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:31 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:28:31 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:31 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:28:32 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:32 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:28:32 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:32 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:28:32 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:32 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:28:32 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:32 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:28:33 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:33 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:28:33 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:28:33 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:28:33 ERROR BreweryDAO:94 - username is too short
+2020-09-20 20:28:33 INFO  BreweryDAO:98 - username is empty
+2020-09-20 20:28:33 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:33 INFO  BreweryDAO:129 - user deleted
+2020-09-20 20:28:34 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:34 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:34 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:34 INFO  BreweryDAO:76 - saved user0 into database
+2020-09-20 20:28:34 INFO  BreweryDAO:76 - saved user1 into database
+2020-09-20 20:28:34 INFO  BreweryDAO:76 - saved user2 into database
+2020-09-20 20:28:34 INFO  BreweryDAO:76 - saved user3 into database
+2020-09-20 20:28:34 INFO  BreweryDAO:76 - saved user4 into database
+2020-09-20 20:28:34 INFO  BreweryDAO:76 - saved user5 into database
+2020-09-20 20:28:34 INFO  BreweryDAO:76 - saved user6 into database
+2020-09-20 20:28:34 INFO  BreweryDAO:76 - saved user7 into database
+2020-09-20 20:28:35 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:35 INFO  BreweryDAO:114 - successfully updated u1
+2020-09-20 20:28:35 INFO  BreweryDAO:98 - username is empty
+2020-09-20 20:28:35 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:35 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:35 INFO  BreweryDAO:55 - IllegalArgumentException encountered
+2020-09-20 20:28:36 INFO  BreweryDAO:121 - delete failed, no user specified
+2020-09-20 20:28:36 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:28:36 INFO  BreweryDAO:129 - user deleted
+2020-09-20 20:28:36 INFO  BreweryDAO:55 - IllegalArgumentException encountered
+2020-09-20 20:28:37 INFO  BreweryDAO:78 - last name updated to abc123
+2020-09-20 20:28:37 INFO  BreweryDAO:78 - last name updated to abc123
+2020-09-20 20:28:37 ERROR BreweryDAO:84 - exception encountered
+2020-09-20 20:28:37 ERROR BreweryDAO:119 - exception encountered
+2020-09-20 20:28:37 INFO  BreweryDAO:113 - updated email to abc@aaa.b
+2020-09-20 20:28:37 INFO  BreweryDAO:113 - updated email to abc@aaa.b
+2020-09-20 20:28:37 INFO  BreweryDAO:54 - logged in successfully as u1
+2020-09-20 20:28:37 INFO  BreweryDAO:125 - updating u1
+2020-09-20 20:28:37 INFO  BreweryDAO:125 - updating 
+2020-09-20 20:28:37 INFO  BreweryDAO:125 - updating null
+2020-09-20 20:28:38 ERROR BreweryDAO:103 - exception encountered
+2020-09-20 20:28:38 INFO  BreweryDAO:63 - first name updated to null
+2020-09-20 20:28:38 ERROR BreweryDAO:51 - login failed
+2020-09-20 20:28:38 ERROR BreweryDAO:68 - exception encountered
+2020-09-20 20:28:38 INFO  BreweryDAO:98 - password updated to $2a$10$YISIHzI.CXeS2HQLp9o5KeEMXAwXfh7/Z.snfq8BeEeYlKrpgGUwC
+2020-09-20 20:28:38 INFO  BreweryDAO:78 - last name updated to null
+2020-09-20 20:28:38 INFO  BreweryDAO:63 - first name updated to abc123
+2020-09-20 20:28:38 INFO  BreweryDAO:63 - first name updated to abc123
+2020-09-20 20:28:38 INFO  BreweryDAO:98 - password updated to $2a$10$f83pociXdxRfxXQSP85bH.rwny718ciZydLvyIrTkAwWzhicKtMbG
+2020-09-20 20:29:39 INFO  BreweryDAO:29 - successfully saved to database
+2020-09-20 20:29:46 INFO  BreweryDAO:29 - successfully saved to database
+2020-09-20 20:29:46 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:29:48 ERROR BreweryDAO:64 - could not find an user with that username
+2020-09-20 20:29:48 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:29:48 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:29:49 ERROR BreweryDAO:64 - could not find an user with that username
+2020-09-20 20:29:49 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:29:50 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:50 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:50 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:50 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:50 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:50 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:51 INFO  BreweryDAO:79 - brewery deleted
+2020-09-20 20:29:51 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:51 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:29:51 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:51 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:29:52 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:52 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:29:52 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:52 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:29:52 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:52 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:29:52 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:52 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:29:52 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:52 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:29:52 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:52 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:29:53 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:53 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:29:53 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:53 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:29:53 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:53 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:29:53 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:53 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:29:53 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:53 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:29:53 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:53 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:29:54 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:54 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:29:54 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:54 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:29:54 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:54 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:29:54 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:54 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:29:54 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:54 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:29:54 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:54 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:29:55 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:55 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:29:55 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:55 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:29:55 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:55 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:29:55 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:55 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:29:56 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:56 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:29:56 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:56 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:29:56 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:56 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:29:56 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:29:56 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:29:56 ERROR BreweryDAO:94 - username is too short
+2020-09-20 20:29:56 INFO  BreweryDAO:98 - username is empty
+2020-09-20 20:29:56 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:56 INFO  BreweryDAO:129 - user deleted
+2020-09-20 20:29:57 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:57 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:57 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:57 INFO  BreweryDAO:76 - saved user0 into database
+2020-09-20 20:29:58 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:58 INFO  BreweryDAO:114 - successfully updated u1
+2020-09-20 20:29:58 INFO  BreweryDAO:98 - username is empty
+2020-09-20 20:29:58 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:58 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:58 INFO  BreweryDAO:55 - IllegalArgumentException encountered
+2020-09-20 20:29:58 INFO  BreweryDAO:121 - delete failed, no user specified
+2020-09-20 20:29:59 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:29:59 INFO  BreweryDAO:129 - user deleted
+2020-09-20 20:29:59 INFO  BreweryDAO:55 - IllegalArgumentException encountered
+2020-09-20 20:30:00 INFO  BreweryDAO:78 - last name updated to abc123
+2020-09-20 20:30:00 INFO  BreweryDAO:78 - last name updated to abc123
+2020-09-20 20:30:00 ERROR BreweryDAO:84 - exception encountered
+2020-09-20 20:30:00 ERROR BreweryDAO:119 - exception encountered
+2020-09-20 20:30:00 INFO  BreweryDAO:113 - updated email to abc@aaa.b
+2020-09-20 20:30:00 INFO  BreweryDAO:113 - updated email to abc@aaa.b
+2020-09-20 20:30:00 INFO  BreweryDAO:54 - logged in successfully as u1
+2020-09-20 20:30:00 INFO  BreweryDAO:125 - updating u1
+2020-09-20 20:30:00 INFO  BreweryDAO:125 - updating 
+2020-09-20 20:30:00 INFO  BreweryDAO:125 - updating null
+2020-09-20 20:30:01 ERROR BreweryDAO:103 - exception encountered
+2020-09-20 20:30:01 INFO  BreweryDAO:63 - first name updated to null
+2020-09-20 20:30:01 ERROR BreweryDAO:51 - login failed
+2020-09-20 20:30:01 ERROR BreweryDAO:68 - exception encountered
+2020-09-20 20:30:01 INFO  BreweryDAO:98 - password updated to $2a$10$Z6YFmE6Hjug7Yc93gm0Qo.Jb3CGZ7KKPN1OcENM5GEP96H1rmRTPK
+2020-09-20 20:30:02 INFO  BreweryDAO:78 - last name updated to null
+2020-09-20 20:30:02 INFO  BreweryDAO:63 - first name updated to abc123
+2020-09-20 20:30:02 INFO  BreweryDAO:63 - first name updated to abc123
+2020-09-20 20:30:02 INFO  BreweryDAO:98 - password updated to $2a$10$s2R5abM4kJmxAlH4i2d3Lu9iezguZLRV9a6YnZsNtyss.pi2vFy4O
+2020-09-20 20:30:59 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:30:59 INFO  BreweryDAO:79 - brewery deleted
+2020-09-20 20:31:00 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:31:00 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:31:00 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:31:00 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:31:00 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:31:01 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:31:01 INFO  BreweryDAO:79 - brewery deleted
+2020-09-20 20:31:58 INFO  BreweryDAO:29 - successfully saved to database
+2020-09-20 20:32:05 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:32:07 ERROR BreweryDAO:64 - could not find an user with that username
+2020-09-20 20:32:08 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:32:08 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:32:09 ERROR BreweryDAO:64 - could not find an user with that username
+2020-09-20 20:32:09 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:32:09 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:09 INFO  BreweryDAO:79 - brewery deleted
+2020-09-20 20:32:09 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:09 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:09 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:10 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:10 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:10 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:10 INFO  BreweryDAO:79 - brewery deleted
+2020-09-20 20:32:11 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:11 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:32:11 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:11 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:32:11 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:11 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:32:11 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:11 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:32:12 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:12 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:32:12 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:12 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:32:12 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:12 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:32:12 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:12 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:32:13 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:13 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:32:13 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:13 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:32:13 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:13 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:32:13 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:13 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:32:13 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:13 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:32:13 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:13 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:32:14 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:14 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:32:14 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:14 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:32:14 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:14 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:32:14 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:14 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:32:14 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:14 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:32:14 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:14 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:32:15 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:15 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:32:15 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:15 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:32:15 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:15 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:32:15 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:15 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:32:15 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:15 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:32:15 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:16 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:32:16 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:16 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:32:16 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:32:16 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:32:16 ERROR BreweryDAO:94 - username is too short
+2020-09-20 20:32:16 INFO  BreweryDAO:98 - username is empty
+2020-09-20 20:32:16 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:16 INFO  BreweryDAO:129 - user deleted
+2020-09-20 20:32:17 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:17 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:17 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:17 INFO  BreweryDAO:76 - saved user0 into database
+2020-09-20 20:32:17 INFO  BreweryDAO:76 - saved user1 into database
+2020-09-20 20:32:17 INFO  BreweryDAO:76 - saved user2 into database
+2020-09-20 20:32:17 INFO  BreweryDAO:76 - saved user3 into database
+2020-09-20 20:32:17 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:17 INFO  BreweryDAO:114 - successfully updated u1
+2020-09-20 20:32:18 INFO  BreweryDAO:98 - username is empty
+2020-09-20 20:32:18 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:18 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:18 INFO  BreweryDAO:55 - IllegalArgumentException encountered
+2020-09-20 20:32:18 INFO  BreweryDAO:121 - delete failed, no user specified
+2020-09-20 20:32:18 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:32:18 INFO  BreweryDAO:129 - user deleted
+2020-09-20 20:32:19 INFO  BreweryDAO:55 - IllegalArgumentException encountered
+2020-09-20 20:32:19 INFO  BreweryDAO:78 - last name updated to abc123
+2020-09-20 20:32:19 INFO  BreweryDAO:78 - last name updated to abc123
+2020-09-20 20:32:19 ERROR BreweryDAO:84 - exception encountered
+2020-09-20 20:32:20 ERROR BreweryDAO:119 - exception encountered
+2020-09-20 20:32:20 INFO  BreweryDAO:113 - updated email to abc@aaa.b
+2020-09-20 20:32:20 INFO  BreweryDAO:113 - updated email to abc@aaa.b
+2020-09-20 20:32:20 INFO  BreweryDAO:54 - logged in successfully as u1
+2020-09-20 20:32:20 INFO  BreweryDAO:125 - updating u1
+2020-09-20 20:32:20 INFO  BreweryDAO:125 - updating 
+2020-09-20 20:32:20 INFO  BreweryDAO:125 - updating null
+2020-09-20 20:32:20 ERROR BreweryDAO:103 - exception encountered
+2020-09-20 20:32:20 INFO  BreweryDAO:63 - first name updated to null
+2020-09-20 20:32:20 ERROR BreweryDAO:51 - login failed
+2020-09-20 20:32:20 ERROR BreweryDAO:68 - exception encountered
+2020-09-20 20:32:21 INFO  BreweryDAO:98 - password updated to $2a$10$wlRUBYY5mknFcyAi0174puGr3zfhXOJ39fN/xGm6x.gFn1f/ayXpG
+2020-09-20 20:32:21 INFO  BreweryDAO:78 - last name updated to null
+2020-09-20 20:32:21 INFO  BreweryDAO:63 - first name updated to abc123
+2020-09-20 20:32:21 INFO  BreweryDAO:63 - first name updated to abc123
+2020-09-20 20:32:21 INFO  BreweryDAO:98 - password updated to $2a$10$V5GuEBSLrUh5xfFsShTVL.AerMjZDqhbyCqztgsbBV3TNfA83WRBW
+2020-09-20 20:38:06 ERROR BreweryDAO:94 - username is too short
+2020-09-20 20:38:06 INFO  BreweryDAO:98 - username is empty
+2020-09-20 20:38:06 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:38:06 INFO  BreweryDAO:129 - user deleted
+2020-09-20 20:38:07 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:38:07 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:38:07 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:38:08 INFO  BreweryDAO:76 - saved user0 into database
+2020-09-20 20:38:08 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:38:08 INFO  BreweryDAO:114 - successfully updated u1
+2020-09-20 20:38:08 INFO  BreweryDAO:98 - username is empty
+2020-09-20 20:38:08 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:38:08 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:38:09 INFO  BreweryDAO:55 - IllegalArgumentException encountered
+2020-09-20 20:38:09 INFO  BreweryDAO:121 - delete failed, no user specified
+2020-09-20 20:38:09 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:38:09 INFO  BreweryDAO:129 - user deleted
+2020-09-20 20:38:09 INFO  BreweryDAO:55 - IllegalArgumentException encountered
+2020-09-20 20:39:02 INFO  BreweryDAO:78 - last name updated to abc123
+2020-09-20 20:39:02 INFO  BreweryDAO:78 - last name updated to abc123
+2020-09-20 20:39:02 ERROR BreweryDAO:84 - exception encountered
+2020-09-20 20:39:02 ERROR BreweryDAO:119 - exception encountered
+2020-09-20 20:39:03 INFO  BreweryDAO:113 - updated email to abc@aaa.b
+2020-09-20 20:39:03 INFO  BreweryDAO:113 - updated email to abc@aaa.b
+2020-09-20 20:39:03 INFO  BreweryDAO:49 - logged in successfully as u1
+2020-09-20 20:39:03 ERROR BreweryDAO:103 - exception encountered
+2020-09-20 20:39:03 INFO  BreweryDAO:63 - first name updated to null
+2020-09-20 20:39:03 ERROR BreweryDAO:52 - login failed
+2020-09-20 20:39:03 ERROR BreweryDAO:68 - exception encountered
+2020-09-20 20:39:04 INFO  BreweryDAO:98 - password updated to $2a$10$bOuMC4a.gRwMYV1rI33hguUVHs3iIraKNFx/g6947x/q3MSks6mzO
+2020-09-20 20:39:04 INFO  BreweryDAO:78 - last name updated to null
+2020-09-20 20:39:04 INFO  BreweryDAO:63 - first name updated to abc123
+2020-09-20 20:39:04 INFO  BreweryDAO:63 - first name updated to abc123
+2020-09-20 20:39:04 INFO  BreweryDAO:98 - password updated to $2a$10$bSHAFqf0AE3WYVnkI6ec0ecVkAxNb79G0U1gi5yF6OgG.YRtLrkEi
+2020-09-20 20:39:20 INFO  BreweryDAO:29 - successfully saved to database
+2020-09-20 20:39:26 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:39:28 ERROR BreweryDAO:64 - could not find an user with that username
+2020-09-20 20:39:28 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:39:28 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:39:29 ERROR BreweryDAO:64 - could not find an user with that username
+2020-09-20 20:39:29 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:39:30 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:30 INFO  BreweryDAO:79 - brewery deleted
+2020-09-20 20:39:30 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:30 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:30 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:30 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:31 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:31 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:31 INFO  BreweryDAO:79 - brewery deleted
+2020-09-20 20:39:32 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:32 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:39:32 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:32 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:39:32 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:32 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:39:32 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:32 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:39:33 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:33 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:39:33 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:33 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:39:33 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:33 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:39:33 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:33 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:39:33 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:34 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:39:34 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:34 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:39:34 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:34 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:39:34 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:34 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:39:34 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:34 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:39:34 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:34 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:39:35 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:35 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:39:35 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:35 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:39:35 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:35 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:39:35 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:35 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:39:36 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:36 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:39:36 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:36 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:39:36 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:36 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:39:36 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:36 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:39:37 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:37 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:39:37 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:37 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:39:37 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:37 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:39:37 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:37 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:39:37 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:37 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:39:38 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:39:38 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:39:38 ERROR BreweryDAO:94 - username is too short
+2020-09-20 20:39:38 INFO  BreweryDAO:98 - username is empty
+2020-09-20 20:39:38 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:38 INFO  BreweryDAO:129 - user deleted
+2020-09-20 20:39:38 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:38 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:39 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:39 INFO  BreweryDAO:76 - saved user0 into database
+2020-09-20 20:39:39 INFO  BreweryDAO:76 - saved user1 into database
+2020-09-20 20:39:39 INFO  BreweryDAO:76 - saved user2 into database
+2020-09-20 20:39:39 INFO  BreweryDAO:76 - saved user3 into database
+2020-09-20 20:39:39 INFO  BreweryDAO:76 - saved user4 into database
+2020-09-20 20:39:39 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:39 INFO  BreweryDAO:114 - successfully updated u1
+2020-09-20 20:39:40 INFO  BreweryDAO:98 - username is empty
+2020-09-20 20:39:40 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:40 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:40 INFO  BreweryDAO:55 - IllegalArgumentException encountered
+2020-09-20 20:39:40 INFO  BreweryDAO:121 - delete failed, no user specified
+2020-09-20 20:39:40 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:39:40 INFO  BreweryDAO:129 - user deleted
+2020-09-20 20:39:41 INFO  BreweryDAO:55 - IllegalArgumentException encountered
+2020-09-20 20:39:41 INFO  BreweryDAO:78 - last name updated to abc123
+2020-09-20 20:39:41 INFO  BreweryDAO:78 - last name updated to abc123
+2020-09-20 20:39:41 ERROR BreweryDAO:84 - exception encountered
+2020-09-20 20:39:41 ERROR BreweryDAO:119 - exception encountered
+2020-09-20 20:39:42 INFO  BreweryDAO:113 - updated email to abc@aaa.b
+2020-09-20 20:39:42 INFO  BreweryDAO:113 - updated email to abc@aaa.b
+2020-09-20 20:39:42 INFO  BreweryDAO:49 - logged in successfully as u1
+2020-09-20 20:39:42 ERROR BreweryDAO:103 - exception encountered
+2020-09-20 20:39:42 INFO  BreweryDAO:63 - first name updated to null
+2020-09-20 20:39:42 ERROR BreweryDAO:52 - login failed
+2020-09-20 20:39:42 ERROR BreweryDAO:68 - exception encountered
+2020-09-20 20:39:42 INFO  BreweryDAO:98 - password updated to $2a$10$O351ENxmIYCsWVzkC4Vcbe2V/JRtHZYCUNt60WhkZm0CfK/aDrm5O
+2020-09-20 20:39:43 INFO  BreweryDAO:78 - last name updated to null
+2020-09-20 20:39:43 INFO  BreweryDAO:63 - first name updated to abc123
+2020-09-20 20:39:43 INFO  BreweryDAO:63 - first name updated to abc123
+2020-09-20 20:39:43 INFO  BreweryDAO:98 - password updated to $2a$10$//VWYkynYNBINH3O1EWLSOayIEmZk85UKfrwbWFUiB1m7sGrs7hS.
+2020-09-20 20:40:53 INFO  BreweryDAO:29 - successfully saved to database
+2020-09-20 20:41:23 INFO  BreweryDAO:29 - successfully saved to database
+2020-09-20 20:41:30 ERROR BreweryDAO:34 - encountered an error with saving to database
+2020-09-20 20:41:30 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:41:32 ERROR BreweryDAO:64 - could not find an user with that username
+2020-09-20 20:41:32 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:41:32 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:41:33 ERROR BreweryDAO:64 - could not find an user with that username
+2020-09-20 20:41:33 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:41:34 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:34 INFO  BreweryDAO:79 - brewery deleted
+2020-09-20 20:41:34 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:34 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:34 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:34 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:34 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:35 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:35 INFO  BreweryDAO:79 - brewery deleted
+2020-09-20 20:41:35 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:35 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:41:35 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:35 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:41:36 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:36 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:41:36 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:36 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:41:36 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:36 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:41:36 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:36 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:41:37 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:37 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:41:37 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:37 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:41:37 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:37 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:41:37 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:37 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:41:37 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:37 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:41:37 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:37 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:41:38 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:38 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:41:38 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:38 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:41:38 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:38 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:41:38 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:38 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:41:38 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:38 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:41:38 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:38 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:41:39 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:39 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:41:39 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:39 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:41:39 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:39 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:41:39 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:39 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:41:40 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:40 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:41:40 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:40 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:41:40 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:40 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:41:40 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:40 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:41:40 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:40 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:41:40 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:41:41 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:41:41 ERROR BreweryDAO:94 - username is too short
+2020-09-20 20:41:41 INFO  BreweryDAO:98 - username is empty
+2020-09-20 20:41:41 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:41 INFO  BreweryDAO:129 - user deleted
+2020-09-20 20:41:41 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:41 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:41 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:42 INFO  BreweryDAO:76 - saved user0 into database
+2020-09-20 20:41:42 INFO  BreweryDAO:76 - saved user1 into database
+2020-09-20 20:41:42 INFO  BreweryDAO:76 - saved user2 into database
+2020-09-20 20:41:42 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:42 INFO  BreweryDAO:114 - successfully updated u1
+2020-09-20 20:41:42 INFO  BreweryDAO:98 - username is empty
+2020-09-20 20:41:42 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:42 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:43 INFO  BreweryDAO:55 - IllegalArgumentException encountered
+2020-09-20 20:41:43 INFO  BreweryDAO:121 - delete failed, no user specified
+2020-09-20 20:41:43 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:41:43 INFO  BreweryDAO:129 - user deleted
+2020-09-20 20:41:43 INFO  BreweryDAO:55 - IllegalArgumentException encountered
+2020-09-20 20:41:44 INFO  BreweryDAO:78 - last name updated to abc123
+2020-09-20 20:41:44 INFO  BreweryDAO:78 - last name updated to abc123
+2020-09-20 20:41:44 ERROR BreweryDAO:84 - exception encountered
+2020-09-20 20:41:44 ERROR BreweryDAO:119 - exception encountered
+2020-09-20 20:41:44 INFO  BreweryDAO:113 - updated email to abc@aaa.b
+2020-09-20 20:41:44 INFO  BreweryDAO:113 - updated email to abc@aaa.b
+2020-09-20 20:41:44 INFO  BreweryDAO:49 - logged in successfully as u1
+2020-09-20 20:41:44 ERROR BreweryDAO:103 - exception encountered
+2020-09-20 20:41:45 INFO  BreweryDAO:63 - first name updated to null
+2020-09-20 20:41:45 ERROR BreweryDAO:52 - login failed
+2020-09-20 20:41:45 ERROR BreweryDAO:68 - exception encountered
+2020-09-20 20:41:45 INFO  BreweryDAO:98 - password updated to $2a$10$jeatrngVFuEpOnzTjboFOOnujEloaj4Nk895qnZ7WBJDXtYxunSiC
+2020-09-20 20:41:45 INFO  BreweryDAO:78 - last name updated to null
+2020-09-20 20:41:45 INFO  BreweryDAO:63 - first name updated to abc123
+2020-09-20 20:41:45 INFO  BreweryDAO:63 - first name updated to abc123
+2020-09-20 20:41:45 INFO  BreweryDAO:98 - password updated to $2a$10$eP4KeomQ0GMeTZa2hwBfsOMUt6JY4iAPYzUQCLpRdVpgCTVIc552q
+2020-09-20 20:42:09 INFO  BreweryDAO:29 - successfully saved to database
+2020-09-20 20:43:41 INFO  BreweryDAO:29 - successfully saved to database
+2020-09-20 20:43:49 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:43:51 ERROR BreweryDAO:64 - could not find an user with that username
+2020-09-20 20:43:51 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:43:51 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:43:52 ERROR BreweryDAO:64 - could not find an user with that username
+2020-09-20 20:43:52 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:43:52 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:52 INFO  BreweryDAO:79 - brewery deleted
+2020-09-20 20:43:52 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:52 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:52 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:52 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:53 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:53 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:53 INFO  BreweryDAO:79 - brewery deleted
+2020-09-20 20:43:54 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:43:54 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:43:54 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:54 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:43:54 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:43:54 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:43:54 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:54 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:43:54 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:43:54 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:43:54 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:54 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:43:55 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:43:55 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:43:55 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:55 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:43:55 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:43:55 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:43:55 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:55 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:43:55 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:43:55 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:43:55 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:55 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:43:56 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:43:56 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:43:56 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:56 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:43:56 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:43:56 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:43:56 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:56 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:43:56 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:43:56 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:43:56 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:56 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:43:57 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:43:57 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:43:57 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:57 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:43:57 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:43:57 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:43:57 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:57 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:43:58 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:43:58 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:43:58 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:58 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:43:58 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:43:58 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:43:58 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:58 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:43:58 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:43:58 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:43:58 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:43:58 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:43:59 ERROR BreweryDAO:94 - username is too short
+2020-09-20 20:43:59 INFO  BreweryDAO:98 - username is empty
+2020-09-20 20:43:59 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:43:59 INFO  BreweryDAO:129 - user deleted
+2020-09-20 20:43:59 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:43:59 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:43:59 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:43:59 INFO  BreweryDAO:76 - saved user0 into database
+2020-09-20 20:44:00 INFO  BreweryDAO:76 - saved user1 into database
+2020-09-20 20:44:00 INFO  BreweryDAO:76 - saved user2 into database
+2020-09-20 20:44:00 INFO  BreweryDAO:76 - saved user3 into database
+2020-09-20 20:44:00 INFO  BreweryDAO:76 - saved user4 into database
+2020-09-20 20:44:00 INFO  BreweryDAO:76 - saved user5 into database
+2020-09-20 20:44:00 INFO  BreweryDAO:76 - saved user6 into database
+2020-09-20 20:44:00 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:44:00 INFO  BreweryDAO:114 - successfully updated u1
+2020-09-20 20:44:00 INFO  BreweryDAO:98 - username is empty
+2020-09-20 20:44:00 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:44:00 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:44:01 INFO  BreweryDAO:55 - IllegalArgumentException encountered
+2020-09-20 20:44:01 INFO  BreweryDAO:121 - delete failed, no user specified
+2020-09-20 20:44:01 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:44:01 INFO  BreweryDAO:129 - user deleted
+2020-09-20 20:44:01 INFO  BreweryDAO:55 - IllegalArgumentException encountered
+2020-09-20 20:44:02 INFO  BreweryDAO:78 - last name updated to abc123
+2020-09-20 20:44:02 INFO  BreweryDAO:78 - last name updated to abc123
+2020-09-20 20:44:02 ERROR BreweryDAO:84 - exception encountered
+2020-09-20 20:44:02 ERROR BreweryDAO:119 - exception encountered
+2020-09-20 20:44:02 INFO  BreweryDAO:113 - updated email to abc@aaa.b
+2020-09-20 20:44:02 INFO  BreweryDAO:113 - updated email to abc@aaa.b
+2020-09-20 20:44:02 INFO  BreweryDAO:49 - logged in successfully as u1
+2020-09-20 20:44:02 ERROR BreweryDAO:103 - exception encountered
+2020-09-20 20:44:03 INFO  BreweryDAO:63 - first name updated to null
+2020-09-20 20:44:03 ERROR BreweryDAO:52 - login failed
+2020-09-20 20:44:03 ERROR BreweryDAO:68 - exception encountered
+2020-09-20 20:44:03 INFO  BreweryDAO:98 - password updated to $2a$10$u7miSowB169U/eAYcHNTmeeoiByOhz6ZGbNt.hvmBfcJnxGfSSylq
+2020-09-20 20:44:03 INFO  BreweryDAO:78 - last name updated to null
+2020-09-20 20:44:03 INFO  BreweryDAO:63 - first name updated to abc123
+2020-09-20 20:44:03 INFO  BreweryDAO:63 - first name updated to abc123
+2020-09-20 20:44:03 INFO  BreweryDAO:98 - password updated to $2a$10$SjDJZ1Tox0kogpGbQsK7L.PGxJU0O78Ma/su3jP1WRNqw0ATsDRc.
+2020-09-20 20:45:06 INFO  BreweryDAO:29 - successfully saved to database
+2020-09-20 20:45:14 INFO  BreweryDAO:29 - successfully saved to database
+2020-09-20 20:45:15 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:45:17 ERROR BreweryDAO:64 - could not find an user with that username
+2020-09-20 20:45:17 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:45:17 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:45:18 ERROR BreweryDAO:64 - could not find an user with that username
+2020-09-20 20:45:18 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 20:45:19 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:19 INFO  BreweryDAO:79 - brewery deleted
+2020-09-20 20:45:19 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:19 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:19 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:19 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:19 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:20 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:20 INFO  BreweryDAO:79 - brewery deleted
+2020-09-20 20:45:20 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:20 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:45:20 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:21 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:45:21 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:21 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:45:21 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:21 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:45:21 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:21 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:45:21 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:21 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:45:22 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:22 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:45:22 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:22 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:45:22 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:22 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:45:22 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:22 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:45:22 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:23 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:45:23 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:23 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:45:23 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:23 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:45:23 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:23 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:45:23 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:23 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:45:23 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:23 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:45:24 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:24 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:45:24 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:24 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:45:24 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:24 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:45:24 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:24 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:45:24 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:24 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:45:24 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:24 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:45:25 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:25 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:45:25 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:25 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:45:25 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:25 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:45:25 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:25 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:45:25 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:25 INFO  BreweryDAO:76 - saved u2 into database
+2020-09-20 20:45:25 INFO  BreweryDAO:45 - saved b1 into database.
+2020-09-20 20:45:26 INFO  BreweryDAO:45 - saved b2 into database.
+2020-09-20 20:45:26 ERROR BreweryDAO:94 - username is too short
+2020-09-20 20:45:26 INFO  BreweryDAO:98 - username is empty
+2020-09-20 20:45:26 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:26 INFO  BreweryDAO:129 - user deleted
+2020-09-20 20:45:26 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:26 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:26 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:27 INFO  BreweryDAO:76 - saved user0 into database
+2020-09-20 20:45:27 INFO  BreweryDAO:76 - saved user1 into database
+2020-09-20 20:45:27 INFO  BreweryDAO:76 - saved user2 into database
+2020-09-20 20:45:27 INFO  BreweryDAO:76 - saved user3 into database
+2020-09-20 20:45:27 INFO  BreweryDAO:76 - saved user4 into database
+2020-09-20 20:45:27 INFO  BreweryDAO:76 - saved user5 into database
+2020-09-20 20:45:27 INFO  BreweryDAO:76 - saved user6 into database
+2020-09-20 20:45:27 INFO  BreweryDAO:76 - saved user7 into database
+2020-09-20 20:45:27 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:27 INFO  BreweryDAO:114 - successfully updated u1
+2020-09-20 20:45:28 INFO  BreweryDAO:98 - username is empty
+2020-09-20 20:45:28 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:28 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:28 INFO  BreweryDAO:55 - IllegalArgumentException encountered
+2020-09-20 20:45:28 INFO  BreweryDAO:121 - delete failed, no user specified
+2020-09-20 20:45:28 INFO  BreweryDAO:76 - saved u1 into database
+2020-09-20 20:45:28 INFO  BreweryDAO:129 - user deleted
+2020-09-20 20:45:28 INFO  BreweryDAO:55 - IllegalArgumentException encountered
+2020-09-20 20:45:29 INFO  BreweryDAO:78 - last name updated to abc123
+2020-09-20 20:45:29 INFO  BreweryDAO:78 - last name updated to abc123
+2020-09-20 20:45:29 ERROR BreweryDAO:84 - exception encountered
+2020-09-20 20:45:29 ERROR BreweryDAO:119 - exception encountered
+2020-09-20 20:45:30 INFO  BreweryDAO:113 - updated email to abc@aaa.b
+2020-09-20 20:45:30 INFO  BreweryDAO:113 - updated email to abc@aaa.b
+2020-09-20 20:45:30 INFO  BreweryDAO:49 - logged in successfully as u1
+2020-09-20 20:45:30 ERROR BreweryDAO:103 - exception encountered
+2020-09-20 20:45:30 INFO  BreweryDAO:63 - first name updated to null
+2020-09-20 20:45:30 ERROR BreweryDAO:52 - login failed
+2020-09-20 20:45:30 ERROR BreweryDAO:68 - exception encountered
+2020-09-20 20:45:30 INFO  BreweryDAO:98 - password updated to $2a$10$5jySn2KNzEsGeAX6ZuVRGuy.tQ..q5i39EooBlYA1YW0YbKQ6pDvi
+2020-09-20 20:45:31 INFO  BreweryDAO:78 - last name updated to null
+2020-09-20 20:45:31 INFO  BreweryDAO:63 - first name updated to abc123
+2020-09-20 20:45:31 INFO  BreweryDAO:63 - first name updated to abc123
+2020-09-20 20:45:31 INFO  BreweryDAO:98 - password updated to $2a$10$x8X7mtlDrcUQGwzdnvfhWuwX/MhestBI37SDgeMv2muIffZ7Z00AK

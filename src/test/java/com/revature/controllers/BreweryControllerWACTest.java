@@ -26,6 +26,7 @@ import com.revature.DAO.IBreweryDAO;
 import com.revature.DAO.IReviewDAO;
 import com.revature.DAO.IUserDAO;
 import com.revature.models.Review;
+import com.revature.util.HibernateUtil;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 
@@ -54,6 +55,7 @@ public class BreweryControllerWACTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		TestUtilities.clearDB();
 	}
 
 	@AfterClass
@@ -74,6 +76,7 @@ public class BreweryControllerWACTest {
 
 	@After
 	public void tearDown() throws Exception {
+		TestUtilities.clearDB();
 	}
 	
 	@Test
