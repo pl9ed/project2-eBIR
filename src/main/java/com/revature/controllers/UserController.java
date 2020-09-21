@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -15,13 +16,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.revature.DAO.BreweryDAO;
 import com.revature.exceptions.ResourceNotFoundException;
 import com.revature.models.User;
 import com.revature.services.UserService;
 
 @Controller
 public class UserController {
-	
+	private static Logger log = Logger.getLogger(BreweryDAO.class);
+
 	@Autowired
 	private UserService us;
 	
@@ -37,8 +40,8 @@ public class UserController {
 			}
 			return ResponseEntity.status(HttpStatus.CREATED).body(user);
 		} catch (Exception e) {
-			// TODO log
-			
+			e.printStackTrace();
+			log.error("encountered an exception");
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
@@ -58,15 +61,17 @@ public class UserController {
 			return ResponseEntity.status(HttpStatus.OK).body(user);
 		} catch (ResourceNotFoundException e) {
 			// no user with that username
-			// TODO log
+			log.error("could not find an user with that username");
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 		} catch (JsonMappingException e) {
 			// incorrect json format
-			// TODO log
+			e.printStackTrace();
+			log.error("encountered an exception: incorrect json format");
 		} catch (JsonProcessingException e) {
 			// TODO log
 		} catch (Exception e) {
-			// TODO log
+			e.printStackTrace();
+			log.error("exception encountered");
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}

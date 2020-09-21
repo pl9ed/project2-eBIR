@@ -1,15 +1,21 @@
 package com.revature.services;
 
+import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.DAO.BreweryDAO;
 import com.revature.DAO.IUserDAO;
 import com.revature.exceptions.ResourceNotFoundException;
 import com.revature.models.User;
 
+
+
 @Service
 public class UserService {
-	
+	private static Logger log = Logger.getLogger(BreweryDAO.class);
+
 	@Autowired
 	private IUserDAO userDAO;
 	
@@ -42,8 +48,10 @@ public class UserService {
 				user = temp;
 			} 
 		} catch(NullPointerException e) {
+			log.error("login failed");
 			throw new ResourceNotFoundException("User with username: " + username + " not found!");
 		}
+		log.info("logged in successfully as " + user.getUsername());
 		return user;
 	}
 	
@@ -52,10 +60,12 @@ public class UserService {
 		try{
 			user.setFirstName(newFirstname);
 			if (userDAO.updateUser(user)) {
+				log.info("first name updated to " + user.getFirstName());
 				return user.getFirstName();
 			}
 		} catch (Exception e) {
-			//TODO log
+			e.printStackTrace();
+			log.error("exception encountered");
 		}
 		return null;
 	}
@@ -65,11 +75,13 @@ public class UserService {
 		try {
 			user.setLastName(newLastName);
 			if (userDAO.updateUser(user)) {
+				log.info("last name updated to "+ user.getLastName());
 				return user.getLastName();
 			}
 				
 		} catch(Exception e) {
-			// TODO log
+			e.printStackTrace();
+			log.error("exception encountered");
 		}
 		return null;
 	}
@@ -83,10 +95,12 @@ public class UserService {
 		try {
 			user.setPassword(newPassword);
 			if (userDAO.updateUser(user)) {
+				log.info("password updated to " + user.getPassword());
 				return user.getPassword();
 			}
 		} catch(Exception e) {
-			// TODO log
+			e.printStackTrace();
+			log.error("exception encountered");
 		}
 		return null;
 	}
@@ -96,16 +110,19 @@ public class UserService {
 		try {
 			if (user.setEmail(newEmail)) {
 				if (userDAO.updateUser(user)) {
+					log.info("updated email to " +user.getEmail());
 					return user.getEmail();
 				}
 			}
 		} catch(Exception e) {
-			//TODO log
+			e.printStackTrace();
+			log.error("exception encountered");
 		}
 		return null;
 	}
 	
 	public boolean updateUser(User u) {
+		log.info("updating " + u.getUsername());
 		return userDAO.updateUser(u);
 	}
 	

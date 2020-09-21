@@ -1,0 +1,22 @@
+2020-09-20 16:44:51 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 16:44:53 ERROR BreweryDAO:64 - could not find an user with that username
+2020-09-20 16:44:53 ERROR BreweryDAO:74 - exception encountered
+2020-09-20 16:46:25 INFO  BreweryDAO:78 - last name updated to abc123
+2020-09-20 16:46:25 INFO  BreweryDAO:78 - last name updated to abc123
+2020-09-20 16:46:26 ERROR BreweryDAO:84 - exception encountered
+2020-09-20 16:46:26 ERROR BreweryDAO:119 - exception encountered
+2020-09-20 16:46:26 INFO  BreweryDAO:113 - updated email to abc@aaa.b
+2020-09-20 16:46:26 INFO  BreweryDAO:113 - updated email to abc@aaa.b
+2020-09-20 16:46:26 INFO  BreweryDAO:54 - logged in successfully as u1
+2020-09-20 16:46:26 INFO  BreweryDAO:125 - updating u1
+2020-09-20 16:46:26 INFO  BreweryDAO:125 - updating 
+2020-09-20 16:46:26 INFO  BreweryDAO:125 - updating null
+2020-09-20 16:46:26 ERROR BreweryDAO:103 - exception encountered
+2020-09-20 16:46:27 INFO  BreweryDAO:63 - first name updated to null
+2020-09-20 16:46:27 ERROR BreweryDAO:51 - login failed
+2020-09-20 16:46:27 ERROR BreweryDAO:68 - exception encountered
+2020-09-20 16:46:27 INFO  BreweryDAO:98 - password updated to $2a$10$4.aAgV.xSltKkv0ph9F7peTFQydX784ZwNXSguD4MVlEOpUUmmnEm
+2020-09-20 16:46:27 INFO  BreweryDAO:78 - last name updated to null
+2020-09-20 16:46:27 INFO  BreweryDAO:63 - first name updated to abc123
+2020-09-20 16:46:27 INFO  BreweryDAO:63 - first name updated to abc123
+2020-09-20 16:46:27 INFO  BreweryDAO:98 - password updated to $2a$10$MnhkUE4pPZEl9w.HeHUEXenF7OlIJrPMjhXbbn8nv4Qv3AqZr0S1.
