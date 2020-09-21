@@ -23,7 +23,7 @@ import com.revature.services.UserService;
 
 @Controller
 public class UserController {
-	private static Logger log = Logger.getLogger(BreweryDAO.class);
+	private static Logger log = Logger.getLogger(UserController.class);
 
 	@Autowired
 	private UserService us;
@@ -45,6 +45,7 @@ public class UserController {
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
+	
 	@PostMapping("user/login")
 	@ResponseBody
 	public ResponseEntity<User> login(HttpEntity<String> login) {

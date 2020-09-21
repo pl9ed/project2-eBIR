@@ -18,7 +18,7 @@ import com.revature.models.Review;
 
 @Controller
 public class BreweryController {
-	private static Logger log = Logger.getLogger(BreweryDAO.class);
+	private static Logger log = Logger.getLogger(BreweryController.class);
 
 	@Autowired
 	private IReviewDAO dao;
