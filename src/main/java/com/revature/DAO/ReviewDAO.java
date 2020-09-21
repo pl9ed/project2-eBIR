@@ -28,12 +28,6 @@ public class ReviewDAO implements IReviewDAO {
 	public Set<Review> findAll() {
 		return new HashSet<Review>(s.createQuery("FROM Review r", Review.class).getResultList());
 	}
-
-	@Override
-	public Set<Review> findBy(User u) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	@Override
 	public Set<Review> findBy(Brewery b) {
