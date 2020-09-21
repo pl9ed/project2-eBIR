@@ -28,4 +28,14 @@
   	<servlet-name>DispatcherServlet</servlet-name>
   	<url-pattern>/</url-pattern>
   </servlet-mapping>
+  
+  	<filter>
+		<filter-name>Cors</filter-name>
+		<filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Cors</filter-name>
+		<url-pattern>/*</url-pattern>
+		<!-- All requests should go through our CORS filter -->
+	</filter-mapping>
 </web-app>

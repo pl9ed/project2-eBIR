@@ -1,5 +1,7 @@
 # Build folder
 target/
+#log folder
+logs/
 
 # Compiled class file
 *.class
