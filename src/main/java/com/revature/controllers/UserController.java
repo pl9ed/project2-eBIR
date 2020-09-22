@@ -76,6 +76,7 @@ public class UserController {
 		} catch (Exception e) {
 			log.error("exception encountered");
 			log.trace(e,e);
+			e.printStackTrace();
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}

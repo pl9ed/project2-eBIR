@@ -124,6 +124,7 @@ public class UserDAO implements IUserDAO {
 		}
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
+		
 		s.delete(u);
 		
 		tx.commit();

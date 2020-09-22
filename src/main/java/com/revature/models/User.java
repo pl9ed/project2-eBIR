@@ -3,9 +3,7 @@ package com.revature.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
-import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,12 +17,9 @@ import org.springframework.stereotype.Component;
 
 import com.sun.istack.NotNull;
 
-import lombok.EqualsAndHashCode;
-
 @Component
 @Entity
 @Table(name="Users")
-@EqualsAndHashCode
 public class User {
 	@Id
 	@NotNull
@@ -39,6 +34,7 @@ public class User {
 	@CollectionTable(name="favorites",
 		joinColumns=
 			@JoinColumn(name="username"))
+//	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<Integer> favorites = new ArrayList<Integer>();
 	
 	public User() {}
