@@ -51,6 +51,7 @@ public class BreweryControllerWACTest {
 
 	@After
 	public void tearDown() throws Exception {
+		HibernateUtil.closeSession();
 		TestUtilities.clearDB();
 	}
 	

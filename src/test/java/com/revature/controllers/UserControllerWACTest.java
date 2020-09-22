@@ -61,8 +61,8 @@ public class UserControllerWACTest {
 
 	@After
 	public void tearDown() throws Exception {
-		TestUtilities.clearDB();
 		HibernateUtil.closeSession();
+		TestUtilities.clearDB();
 	}
 
 	@Test
@@ -102,6 +102,7 @@ public class UserControllerWACTest {
 		.when()
 			.post("/user/register")
 		.then()
+			.log().ifValidationFails()
 			.statusCode(409);
 	}
 	

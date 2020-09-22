@@ -82,7 +82,10 @@ public class UserDAO implements IUserDAO {
 	}
 
 	public User findByUsername(String username) {
-		return findUser(username);
+		if (username != null) {
+			return findUser(username);
+		}
+		return null;
 	}
 
 	@Override

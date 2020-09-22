@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import org.apache.log4j.Logger;
+import org.hibernate.NonUniqueObjectException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -37,8 +38,9 @@ public class UserController {
 				return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
 			}
 			return ResponseEntity.status(HttpStatus.CREATED).body(user);
+		} catch (NonUniqueObjectException e) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
 		} catch (Exception e) {
-			
 			log.error("encountered an exception");
 			log.trace(e,e);
 		}
