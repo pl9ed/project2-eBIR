@@ -21,8 +21,6 @@ import com.revature.models.Review;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 
-//@ContextConfiguration(locations = "testContext.xml")
-//@WebAppConfiguration
 public class BreweryControllerUnitTest {
 	
 	private TestUtilities td;
@@ -36,8 +34,6 @@ public class BreweryControllerUnitTest {
 	@InjectMocks
 	private BreweryController bc;
 	
-//	private MockMvc mock;
-
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -48,8 +44,7 @@ public class BreweryControllerUnitTest {
 
 	@Before
 	public void setUp() throws Exception {
-//		mock = MockMvcBuilders.standaloneSetup(new BreweryController()).build(); 
-		RestAssuredMockMvc.standaloneSetup(bc); // Unit Test setup
+		RestAssuredMockMvc.standaloneSetup(bc);
 		
 		td = new TestUtilities();
 		

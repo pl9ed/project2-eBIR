@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestLoggingAspect {
 	
-	@Before("execution(* *.test*(..))")
+	@Before("execution(* test*(..))")
 	public void displayTestMethod(JoinPoint jp) {
 		System.out.println(jp.getTarget() + " running " + jp.getSignature());
 	}
