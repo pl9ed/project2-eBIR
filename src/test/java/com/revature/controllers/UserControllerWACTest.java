@@ -55,7 +55,7 @@ public class UserControllerWACTest {
 		RestAssuredMockMvc.webAppContextSetup(wac);
 		td = new TestUtilities();
 
-		td.u1.setPassword("pass");
+		td.u1.setPasswordPlain("pass");
 		ud.saveUser(td.u1);
 	}
 
@@ -180,7 +180,7 @@ public class UserControllerWACTest {
 			.body(om.writeValueAsString(td.u1))
 			.contentType("application/json")
 		.when()
-			.put("/user/update")
+			.put("/user")
 		.then()
 			.statusCode(200)
 			.assertThat()
@@ -193,7 +193,7 @@ public class UserControllerWACTest {
 			.body(om.writeValueAsString(null))
 			.contentType("application/json")
 		.when()
-			.put("/user/update")
+			.put("/user")
 		.then()
 			.statusCode(400);
 	}

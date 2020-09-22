@@ -70,38 +70,38 @@ public class UserTest {
 	@Test
 	public void testPassHash() {
 		String pass = "abc123";
-		u.setPassword(pass);
+		u.setPasswordPlain(pass);
 		assertFalse(u.getPassword().equals(pass));
 	}
 	
 	@Test
 	public void testPassHashEmpty() {
 		// needed since password defaults to empty string instead of null
-		u.setPassword("temp");
+		u.setPasswordPlain("temp");
 		
 		String pass = "";
-		u.setPassword(pass);
+		u.setPasswordPlain(pass);
 		assertFalse(u.getPassword().equals(""));
 	}
 	
 	@Test
 	public void testPassHashNull() {
-		u.setPassword("abc");
-		u.setPassword(null);
+		u.setPasswordPlain("abc");
+		u.setPasswordPlain(null);
 		assertFalse(u.getPassword() == null);
 	}
 	
 	@Test
 	public void testPassCheck() {
 		String pass = "abc";
-		u.setPassword(pass);
+		u.setPasswordPlain(pass);
 		assertTrue(u.checkPassword(pass));
 	}
 	
 	@Test
 	public void testPassCheckFail() {
 		String pass = "abc";
-		u.setPassword(pass);
+		u.setPasswordPlain(pass);
 		assertFalse(u.checkPassword("xyz"));
 	}
 	

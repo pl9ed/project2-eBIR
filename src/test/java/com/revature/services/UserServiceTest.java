@@ -45,7 +45,7 @@ public class UserServiceTest {
 	public void setUp() throws Exception {
 		td = new TestUtilities();
 		us = new UserService();
-		td.u1.setPassword("pass");
+		td.u1.setPasswordPlain("pass");
 		
 		MockitoAnnotations.initMocks(this);
 		when(ud.findByUsername("u1")).thenReturn(td.u1);

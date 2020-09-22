@@ -99,7 +99,7 @@ public class UserService {
 	*/
 	public String updatePassword(User user, String newPassword) {
 		try {
-			user.setPassword(newPassword);
+			user.setPasswordPlain(newPassword);
 			if (userDAO.updateUser(user)) {
 				log.info("password updated to " + user.getPassword());
 				return user.getPassword();

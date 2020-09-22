@@ -53,7 +53,7 @@ public class UserControllerUnitTest {
 		RestAssuredMockMvc.standaloneSetup(uc);
 		td = new TestUtilities();
 		MockitoAnnotations.initMocks(this);
-		td.u1.setPassword("pass");
+		td.u1.setPasswordPlain("pass");
 		
 		// td.u1 exists and will be able to login
 		// can't use getPassword, since the user object does the hashing
@@ -195,7 +195,7 @@ public class UserControllerUnitTest {
 			.body(om.writeValueAsString(td.u1))
 			.contentType("application/json")
 		.when()
-			.put("/user/update")
+			.put("/user")
 		.then()
 			.statusCode(200)
 			.assertThat()
@@ -209,7 +209,7 @@ public class UserControllerUnitTest {
 			.body(om.writeValueAsString(null))
 			.contentType("application/json")
 		.when()
-			.put("/user/update")
+			.put("/user")
 		.then()
 			.statusCode(400);
 	}

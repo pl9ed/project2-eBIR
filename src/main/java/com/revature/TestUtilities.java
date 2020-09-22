@@ -42,7 +42,7 @@ public class TestUtilities {
 		r1 = new Review();
 		
 		u1.setUsername("u1");
-		u1.setPassword("pass");
+		u1.setPasswordPlain("pass");
 		u1.setEmail("a@b.c");
 		u1.setFirstName("John");
 		u1.setLastName("Doe");
@@ -53,7 +53,7 @@ public class TestUtilities {
 		u1.setFavorites(u1f);
 		
 		u2.setUsername("u2");
-		u2.setPassword("password");
+		u2.setPasswordPlain("password");
 		u2.setEmail("a@a.a");
 		u2.setFirstName("Jane");
 		u2.setLastName("Doe");
@@ -112,7 +112,7 @@ public class TestUtilities {
 		// init users for front end
 		User u1 = new User();
 		u1.setUsername("cpbnj");
-		u1.setPassword("abc123");
+		u1.setPasswordPlain("abc123");
 		u1.setFirstName("Crunchy");
 		u1.setLastName("Peanut Butter & Jelly");
 		u1.setEmail("ilovecpbnj@yum.com");

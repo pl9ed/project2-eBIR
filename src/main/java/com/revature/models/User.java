@@ -61,13 +61,13 @@ public class User {
 	}
 
 	// hash password
-	public void setPassword(String password) {
+	public void setPasswordPlain(String password) {
 		if (password != null && password.length() > 0) {
 			this.password = BCrypt.hashpw(password, BCrypt.gensalt());
 		}
 	}
 	
-	public void setHashPass(String password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	

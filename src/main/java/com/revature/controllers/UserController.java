@@ -101,15 +101,10 @@ public class UserController {
 	
 	
 	
-	@PutMapping("user/{username}")
+	@PutMapping("user")
 	@ResponseBody
-	public ResponseEntity<User> updateUser(@PathVariable("username") String username, @RequestBody User u) {
+	public ResponseEntity<User> updateUser(@RequestBody User u) {
 		// this impl might mean it'd be possible to add a user that doesn't yet exist
-		User user = us.findByUsername(username);
-		System.out.println(u.getPassword());
-		if(user.getPassword().equals(u.getPassword())) {
-			u.setHashPass(u.getPassword());
-		}
 		if (us.updateUser(u)) {
 			return ResponseEntity.status(HttpStatus.OK).body(u);
 		}
