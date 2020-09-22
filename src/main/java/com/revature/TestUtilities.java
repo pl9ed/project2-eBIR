@@ -84,9 +84,16 @@ public class TestUtilities {
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
 		try {
-			Query query = s.createQuery("delete from User cascade");
+			Query query = s.createNativeQuery("DELETE FROM favorites CASCADE");
 			query.executeUpdate();
 			tx.commit();
+			
+			
+			tx = s.beginTransaction();
+			query = s.createQuery("delete from User cascade");
+			query.executeUpdate();
+			tx.commit();
+			
 			tx = s.beginTransaction();
 			query = s.createQuery("delete from Review cascade");
 			query.executeUpdate();
