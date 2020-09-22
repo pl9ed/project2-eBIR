@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
 import java.util.Random;
 
 import org.junit.After;
@@ -81,10 +82,14 @@ public class UserDAOTest {
 	}
 	
 	@Test
-	public void testDeleteNonExistant() {
+	public void testDeleteNonExistent() {
 		ud.saveUser(td.u1);
 		ud.deleteUser(td.u2);
-		assertTrue(ud.findAll().size() == 1);
+		List<User> all = ud.findAll();
+		for (User u : all) {
+			System.out.println(u);
+		}
+		assertTrue(all.size() == 1);
 	}
 	
 	@Test
@@ -121,7 +126,14 @@ public class UserDAOTest {
 			temp.setUsername("user" + i);
 			ud.saveUser(temp);
 		}
-		assertTrue(n == ud.findAll().size());
+		
+		List<User> all = ud.findAll();
+		
+		for (User u : all) {
+			System.out.println(u);
+		}
+		
+		assertTrue(n == all.size());
 	}
 	
 	@Test
