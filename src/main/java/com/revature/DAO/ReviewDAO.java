@@ -125,7 +125,11 @@ public class ReviewDAO implements IReviewDAO {
 		}
 		s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
-		s.delete(review);
+		try {
+			s.delete(review);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		tx.commit();
 		return true;
