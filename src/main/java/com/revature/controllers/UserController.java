@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -33,6 +34,7 @@ public class UserController {
 
 	@Autowired
 	private UserService us;
+	private boolean hasFavorite = true;
 	
 	private static ObjectMapper om = new ObjectMapper();
 	
@@ -113,10 +115,25 @@ public class UserController {
 	public ResponseEntity<int[]> updateUser(@PathParam("username") String username) {
 		User u = us.findByUsername(username);
 		System.out.println(u);
-		if (true) {
-			return ResponseEntity.status(HttpStatus.OK).body(new int[0]);
+		int[] array = new int[1];
+		array[0] = 1;
+		if (hasFavorite) {
+			return ResponseEntity.status(HttpStatus.OK).body(array);
 		}
+		hasFavorite = true;
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+	}
+	
+	@DeleteMapping("user/{username}/{id}")
+	@ResponseBody
+	public ResponseEntity<int[]> updateUser(@PathParam("username") String username, @PathParam("id") Integer id) {
+		User u = us.findByUsername(username);
+		System.out.println(u);
+		int[] array = new int[1];
+		array[0] = 1;
+		hasFavorite = false;
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+		
 	}
 	
 	/*
