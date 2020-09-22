@@ -7,6 +7,8 @@ import java.util.Set;
 
 import javax.persistence.Query;
 
+import org.apache.log4j.Logger;
+import org.hibernate.NonUniqueObjectException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
@@ -18,6 +20,8 @@ import com.revature.util.HibernateUtil;
 
 @Repository
 public class ReviewDAO implements IReviewDAO {
+	private static Logger log = Logger.getLogger(BreweryDAO.class);
+
 	private Session s;
 
 	public ReviewDAO() {
@@ -48,12 +52,13 @@ public class ReviewDAO implements IReviewDAO {
 			if (ret != null) {
 				t.commit();
 				return true;
-			} else {
-				t.rollback();
 			}
+		} catch (NonUniqueObjectException e) {
+			log.trace(e,e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.trace(e,e);
 		}
+		t.rollback();
 		return false;
 		
 	}

@@ -1,7 +1,7 @@
+package com.revature;
 
 import com.revature.models.User;
 import com.revature.services.UserService;
-
 
 public class Driver {
 
