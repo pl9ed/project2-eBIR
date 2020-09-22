@@ -73,7 +73,7 @@ public class ReviewDAO implements IReviewDAO {
 		if (review == null) {
 			return false;
 		}
-		
+		s = HibernateUtil.getSession();
 		Transaction t = s.beginTransaction();
 		
 		try {
@@ -99,9 +99,9 @@ public class ReviewDAO implements IReviewDAO {
 
 	@Override
 	public boolean updateReview(Review review) {
-		if (!(review instanceof Review)) {
+		if (!(review instanceof Review) || !(review.getBrewery() > 0)) {
 			return false;
-		}
+		} 
 		
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
