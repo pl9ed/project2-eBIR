@@ -27,13 +27,15 @@ public class Review {
 	private User submitter = new User();
 	
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="brewery", nullable=false)
-	private Brewery brewery = new Brewery();
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name="brewery", nullable=false)
+	private int brewery;
 	
 	private String reviewText = "";
 	
-	public Review() {}
+	public Review() {
+		super();
+	}
 	
 	public void setId(int id) {
 		this.id = id;
@@ -51,11 +53,11 @@ public class Review {
 		this.submitter = submitter;
 	}
 
-	public Brewery getBrewery() {
+	public int getBrewery() {
 		return brewery;
 	}
 
-	public void setBrewery(Brewery brewery) {
+	public void setBrewery(int brewery) {
 		this.brewery = brewery;
 	}
 
@@ -70,7 +72,7 @@ public class Review {
 	// default toString() changed to print out user's username brewery's id to prevent infinite loops
 	@Override
 	public String toString() {
-		return "Review [submitter=" + submitter.getUsername() + ", brewery=" + brewery.getId() + ", reviewText=" + reviewText + "]";
+		return "Review [submitter=" + submitter.getUsername() + ", brewery=" + this.brewery + ", reviewText=" + reviewText + "]";
 	}
 	
 	

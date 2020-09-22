@@ -14,7 +14,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.revature.TestUtilities;
-import com.revature.models.Brewery;
 import com.revature.models.Review;
 import com.revature.models.User;
 import com.revature.util.HibernateUtil;
@@ -23,7 +22,6 @@ public class ReviewDAOTest {
 	private TestUtilities td = new TestUtilities();
 	private ReviewDAO rd;
 	private UserDAO ud;
-	private BreweryDAO bd;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -39,11 +37,8 @@ public class ReviewDAOTest {
 	    TestUtilities.clearDB();
 		rd = new ReviewDAO();
 		ud = new UserDAO();
-		bd = new BreweryDAO();
 		
-	    ud.saveUser(td.u1); ud.saveUser(td.u2);
-	    bd.saveBrewery(td.b1); bd.saveBrewery(td.b2);
-	    
+	    ud.saveUser(td.u1); ud.saveUser(td.u2);	    
 	}
 
 	@After
@@ -126,7 +121,7 @@ public class ReviewDAOTest {
 		Review invalid2 = td.r1;
 		
 		// review for brewery that doesn't exist in DB
-		invalid.setBrewery(new Brewery());
+		invalid.setBrewery(-1);
 		invalid2.setSubmitter(new User());
 		
 		assertFalse(rd.updateReview(invalid));

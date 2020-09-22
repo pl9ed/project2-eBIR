@@ -2,10 +2,7 @@ package com.revature.DAO;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-
-import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 import org.hibernate.NonUniqueObjectException;
@@ -13,14 +10,13 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
-import com.revature.models.Brewery;
 import com.revature.models.Review;
 import com.revature.models.User;
 import com.revature.util.HibernateUtil;
 
 @Repository
 public class ReviewDAO implements IReviewDAO {
-	private static Logger log = Logger.getLogger(BreweryDAO.class);
+	private static Logger log = Logger.getLogger(ReviewDAO.class);
 
 	private Session s;
 
@@ -34,7 +30,13 @@ public class ReviewDAO implements IReviewDAO {
 	}
 	
 	@Override
-	public Set<Review> findBy(Brewery b) {
+	public Set<Review> findByBrewery(int b) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public Set<Review> findByUser(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -101,6 +103,14 @@ public class ReviewDAO implements IReviewDAO {
 		tx.commit();
 		return true;
 	}
+
+	@Override
+	public Set<Review> findByUser(User u) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 
 

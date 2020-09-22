@@ -12,12 +12,9 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.TestUtilities;
-import com.revature.DAO.IBreweryDAO;
 import com.revature.DAO.IReviewDAO;
 import com.revature.DAO.IUserDAO;
 import com.revature.models.Review;
@@ -31,8 +28,6 @@ public class BreweryControllerUnitTest {
 	private TestUtilities td;
 	private ObjectMapper om = new ObjectMapper();
 	
-	@Mock
-	private IBreweryDAO bDAO;
 	@Mock
 	private IReviewDAO rDAO;
 	@Mock

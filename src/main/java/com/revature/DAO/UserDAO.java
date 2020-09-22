@@ -19,7 +19,7 @@ import com.revature.util.HibernateUtil;
 @Repository
 public class UserDAO implements IUserDAO {
 
-	private static Logger log = Logger.getLogger(BreweryDAO.class);
+	private static Logger log = Logger.getLogger(UserDAO.class);
 	
 	public UserDAO() {
 		super();
@@ -46,7 +46,6 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-
 	public User findUser(String username) {
 		User ret = null;
 		try {

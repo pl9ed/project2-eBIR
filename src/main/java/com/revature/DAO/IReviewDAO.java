@@ -2,14 +2,15 @@ package com.revature.DAO;
 
 import java.util.Set;
 
-import com.revature.models.Brewery;
 import com.revature.models.Review;
 import com.revature.models.User;
 
 public interface IReviewDAO {
 
 	public Set<Review> findAll();
-	public Set<Review> findBy(Brewery b);
+	public Set<Review> findByBrewery(int id);
+	public Set<Review> findByUser(int id);
+	public Set<Review> findByUser(User u);
 	
 	public Review find(int id);
 	

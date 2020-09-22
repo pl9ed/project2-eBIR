@@ -26,7 +26,6 @@
 
 		<!-- Configuration for annotation based mapping -->
 		<mapping class="com.revature.models.User" />
-		<mapping class="com.revature.models.Brewery" />
 		<mapping class="com.revature.models.Review" />
 
 	</session-factory>
