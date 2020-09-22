@@ -5,7 +5,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.DAO.BreweryDAO;
 import com.revature.DAO.IUserDAO;
 import com.revature.exceptions.ResourceNotFoundException;
 import com.revature.models.User;
@@ -14,7 +13,7 @@ import com.revature.models.User;
 
 @Service
 public class UserService {
-	private static Logger log = Logger.getLogger(BreweryDAO.class);
+	private static Logger log = Logger.getLogger(UserService.class);
 
 	@Autowired
 	private IUserDAO userDAO;

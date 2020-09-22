@@ -2,6 +2,8 @@ package com.revature.controllers;
 
 import java.util.Set;
 
+import javax.websocket.server.PathParam;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.revature.DAO.BreweryDAO;
 import com.revature.DAO.IReviewDAO;
-import com.revature.models.Brewery;
 import com.revature.models.Review;
 
 @Controller
@@ -43,12 +43,12 @@ public class BreweryController {
 		return ResponseEntity.status(400).build();
 	}
 	
-	@PostMapping("review/get")
+	@GetMapping("brewery/{id}/reviews")
 	@ResponseBody
-	public ResponseEntity<Set<Review>> getReviews(@RequestBody Brewery brewery) {
-		if (brewery != null) {
+	public ResponseEntity<Set<Review>> getReviews(@PathParam("id") int id) {
+		if (id > 0) {
 			// return review set to front end
-			return ResponseEntity.status(201).body(dao.findBy(brewery));
+			return ResponseEntity.status(201).body(dao.findByBrewery(id));
 		} else {
 			// problem with brewery object
 			return ResponseEntity.status(400).build();
