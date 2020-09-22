@@ -129,6 +129,10 @@ public class UserService {
 		// logged in DAO
 		return userDAO.updateUser(u);
 	}
+	
+	public User findByUsername(String username) {
+		return userDAO.findUser(username);
+	}
 
 
 	

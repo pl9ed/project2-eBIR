@@ -48,16 +48,15 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	public User findUser(String username) {
-		User ret = null;
 		try {
-			ret = HibernateUtil.getSession().get(User.class, username);
+			return HibernateUtil.getSession().get(User.class, username);
 		} catch (IllegalArgumentException e) {
 			log.info("IllegalArgumentException encountered");
 
 		} catch (NullPointerException e) {
 			log.info("NullPointerException encountered");
 		}
-		return ret;
+		return null;
 	}
 	
 	@Override
@@ -89,7 +88,8 @@ public class UserDAO implements IUserDAO {
 		return false;
 		
 	}
-
+	
+	@Override
 	public User findByUsername(String username) {
 		if (username != null) {
 			return findUser(username);
