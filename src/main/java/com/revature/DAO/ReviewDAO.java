@@ -3,11 +3,17 @@ package com.revature.DAO;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.apache.log4j.Logger;
 import org.hibernate.NonUniqueObjectException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.revature.models.Review;
@@ -31,14 +37,35 @@ public class ReviewDAO implements IReviewDAO {
 	
 	@Override
 	public Set<Review> findByBrewery(int b) {
-		// TODO Auto-generated method stub
-		return null;
+		Set<Review> ret = new HashSet<>();
+		if (b > 0) {
+//			Transaction tx = s.beginTransaction();
+//			tx.begin();
+			Query<Review> q = s.createQuery("FROM Review r WHERE r.brewery = :id", Review.class);
+			q.setParameter("id", b);
+			ret = q.getResultStream().collect(Collectors.toSet());
+		}
+		
+		return ret;
 	}
 	
 	@Override
-	public Set<Review> findByUser(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<Review> findByUser(String username) {
+		Set<Review> ret = new HashSet<>();
+		if (username != null) {
+			Query<Review> q = s.createQuery("FROM Review r WHERE r.submitter.username = :username", Review.class);
+			q.setParameter("username", username);
+			ret = q.getResultStream().collect(Collectors.toSet());
+		}
+		return ret;
+	}
+	
+	@Override
+	public Set<Review> findByUser(User u) {
+		if (u != null) {
+			return findByUser(u.getUsername());
+		}
+		return new HashSet<Review>();
 	}
 
 	@Override
@@ -103,16 +130,5 @@ public class ReviewDAO implements IReviewDAO {
 		tx.commit();
 		return true;
 	}
-
-	@Override
-	public Set<Review> findByUser(User u) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-
-
 
 }
