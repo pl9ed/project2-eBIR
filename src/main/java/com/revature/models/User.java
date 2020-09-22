@@ -43,7 +43,7 @@ public class User {
 				@JoinColumn(name = "username"), 
 			inverseJoinColumns = 
 				@JoinColumn(name = "id"))
-	private List<Brewery> favorites = new ArrayList<Brewery>();
+	private List<Integer> favorites = new ArrayList<Integer>();
 	
 	public User() {}
 	
@@ -114,11 +114,11 @@ public class User {
 		return false;
 	}
 
-	public List<Brewery> getFavorites() {
+	public List<Integer> getFavorites() {
 		return favorites;
 	}
 
-	public void setFavorites(List<Brewery> favorites) {
+	public void setFavorites(List<Integer> favorites) {
 		this.favorites = favorites;
 	}
 
