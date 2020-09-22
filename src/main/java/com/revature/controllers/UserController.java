@@ -1,9 +1,5 @@
 package com.revature.controllers;
 
-import java.util.List;
-
-import javax.websocket.server.PathParam;
-
 import org.apache.log4j.Logger;
 import org.hibernate.NonUniqueObjectException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -101,48 +95,57 @@ public class UserController {
 //		 */
 //	}
 	
-	
-	
+
 	@PutMapping("user")
 	@ResponseBody
 	public ResponseEntity<User> updateUser(@RequestBody User u) {
-		// this impl might mean it'd be possible to add a user that doesn't yet exist
-		User user = us.findByUsername(username);
-		System.out.println(u);
-		System.out.println(user);
-		if(u.getPassword().isEmpty()) {
-			u.setHashPass(user.getPassword());
-		}
+		// update user, copy passhash directly
+		// u.password should be hashed 
 		if (us.updateUser(u)) {
-			return ResponseEntity.status(HttpStatus.OK).body(user);
+			return ResponseEntity.status(HttpStatus.OK).body(u);
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
 	
-	@GetMapping("user/{username}/favorites")
+	@PatchMapping("user")
 	@ResponseBody
-	public ResponseEntity<int[]> getFavorites(@PathVariable("username") String username) {
-		int[] array = new int[1];
-		array[0] = 1;
-		if (hasFavorite) {
-			return ResponseEntity.status(HttpStatus.OK).body(array);
-		}
-		hasFavorite = true;
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-	}
-	
-	@DeleteMapping("user/{username}/{id}")
-	@ResponseBody
-	public ResponseEntity<int[]> deleteFavorites(@PathVariable("username") String username, @PathVariable("id") Integer id) {
-		System.out.println(username + "is here");
-		User u = us.findByUsername(username);
-		System.out.println(u);
-		int[] array = new int[1];
-		array[0] = 1;
-		hasFavorite = false;
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+	public ResponseEntity<User> updateUserPass(@RequestBody User u) {
+		// Here, u.password should be plaintext
+		User temp = u;
+		temp.setPasswordPlain(u.getPassword());
 		
+		// rest should be the same as above
+		if (us.updateUser(temp)) {
+			return ResponseEntity.status(HttpStatus.OK).body(u);
+		}
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
+	
+	// can do favorites with updateuser actually
+//	@GetMapping("user/{username}/favorites")
+//	@ResponseBody
+//	public ResponseEntity<int[]> getFavorites(@PathVariable("username") String username) {
+//		int[] array = new int[1];
+//		array[0] = 1;
+//		if (hasFavorite) {
+//			return ResponseEntity.status(HttpStatus.OK).body(array);
+//		}
+//		hasFavorite = true;
+//		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+//	}
+//	
+//	@DeleteMapping("user/{username}/{id}")
+//	@ResponseBody
+//	public ResponseEntity<int[]> deleteFavorites(@PathVariable("username") String username, @PathVariable("id") Integer id) {
+//		System.out.println(username + "is here");
+//		User u = us.findByUsername(username);
+//		System.out.println(u);
+//		int[] array = new int[1];
+//		array[0] = 1;
+//		hasFavorite = false;
+//		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+//		
+//	}
 	
 	/*
 	// front end updates user all at once, might not need update method for each field
