@@ -16,6 +16,10 @@ public class HibernateUtil {
 		cfg.setProperty("hibernate.connection.url", System.getenv("db_url"));
 		cfg.setProperty("hibernate.connection.password", System.getenv("postgres_pw"));
 		cfg.setProperty("hibernate.connection.username", System.getenv("postgres_username"));
+		
+		// replaced so that we can use the same code for our deployed app
+		cfg.setProperty("hibernate.default_schema", System.getenv("project2_schema"));
+		System.out.println("Schema: " + System.getenv("project2_schema"));
 		try {
 			sf = cfg.buildSessionFactory();
 		} catch (Exception e) {
