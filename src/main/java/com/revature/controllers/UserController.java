@@ -35,6 +35,8 @@ public class UserController {
 
 	@Autowired
 	private UserService us;
+	
+	// To view fake favorites list deleted
 	private boolean hasFavorite = true;
 	
 	private static ObjectMapper om = new ObjectMapper();
@@ -105,8 +107,14 @@ public class UserController {
 	@ResponseBody
 	public ResponseEntity<User> updateUser(@RequestBody User u) {
 		// this impl might mean it'd be possible to add a user that doesn't yet exist
+		User user = us.findByUsername(username);
+		System.out.println(u);
+		System.out.println(user);
+		if(u.getPassword().isEmpty()) {
+			u.setHashPass(user.getPassword());
+		}
 		if (us.updateUser(u)) {
-			return ResponseEntity.status(HttpStatus.OK).body(u);
+			return ResponseEntity.status(HttpStatus.OK).body(user);
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
@@ -114,9 +122,6 @@ public class UserController {
 	@GetMapping("user/{username}/favorites")
 	@ResponseBody
 	public ResponseEntity<int[]> getFavorites(@PathVariable("username") String username) {
-		System.out.println(username + " is here");
-		User u = us.findByUsername(username);
-		System.out.println(u);
 		int[] array = new int[1];
 		array[0] = 1;
 		if (hasFavorite) {
