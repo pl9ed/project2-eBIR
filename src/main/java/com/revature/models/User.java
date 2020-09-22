@@ -24,7 +24,6 @@ import lombok.EqualsAndHashCode;
 @Component
 @Entity
 @Table(name="Users")
-@EqualsAndHashCode
 public class User {
 	@Id
 	@NotNull
@@ -39,6 +38,7 @@ public class User {
 	@CollectionTable(name="favorites",
 		joinColumns=
 			@JoinColumn(name="username"))
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<Integer> favorites = new ArrayList<Integer>();
 	
 	public User() {}

@@ -105,8 +105,8 @@ public class UserService {
 				return user.getPassword();
 			}
 		} catch(Exception e) {
-			e.printStackTrace();
 			log.error("exception encountered");
+			log.trace(e,e);
 		}
 		return null;
 	}
@@ -121,8 +121,8 @@ public class UserService {
 				}
 			}
 		} catch(Exception e) {
-			e.printStackTrace();
 			log.error("exception encountered");
+			log.trace(e,e);
 		}
 		return null;
 	}
