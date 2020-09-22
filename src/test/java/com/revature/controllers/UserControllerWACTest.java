@@ -20,6 +20,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.TestUtilities;
+import com.revature.DAO.IUserDAO;
 import com.revature.util.HibernateUtil;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
@@ -36,8 +37,12 @@ public class UserControllerWACTest {
 	@Autowired
 	private WebApplicationContext wac;
 	
+	@Autowired
+	private IUserDAO ud;
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		TestUtilities.clearDB();
 	}
 
 	@AfterClass
@@ -51,10 +56,13 @@ public class UserControllerWACTest {
 		td = new TestUtilities();
 
 		td.u1.setPassword("pass");
+		ud.saveUser(td.u1);
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		TestUtilities.clearDB();
+		HibernateUtil.closeSession();
 	}
 
 	@Test
@@ -99,6 +107,7 @@ public class UserControllerWACTest {
 	
 	@Test
 	public void testLogin() {
+		
 		String json = "{ \"username\" : \"u1\","
 				+ "\"password\" : \"pass\" }";
 		
