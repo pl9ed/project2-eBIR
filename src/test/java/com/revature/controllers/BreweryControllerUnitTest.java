@@ -64,7 +64,6 @@ public class BreweryControllerUnitTest {
 	@Test
 	public void testAddReview() throws Exception {
 		String json = om.writeValueAsString(td.r1);
-		System.out.println(json);
 		given()
 			.standaloneSetup(bc)
 			.body(json)
@@ -72,15 +71,12 @@ public class BreweryControllerUnitTest {
 		.when()
 			.post("/review")
 		.then()
-			//.log().all()
+			.log().ifValidationFails()
 			.statusCode(201);
 	}
 
 	@Test
 	public void testAddReviewNoBody() throws Exception {
-//		mock.perform(post("/review").content(""))
-//			.andDo(print());
-		
 		given()
 			.standaloneSetup(bc)
 			.body("")
@@ -88,6 +84,7 @@ public class BreweryControllerUnitTest {
 		.when()
 			.post("/review")
 		.then()
+			.log().ifValidationFails()
 			.statusCode(400);
 	}
 

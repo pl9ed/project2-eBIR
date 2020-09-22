@@ -61,7 +61,6 @@ public class ReviewDAOTest {
 	@Test
 	public void testSaveDuplicate() {
 		rd.saveReview(td.r1);
-		rd.saveReview(td.r1);
 		assertTrue(1 == rd.findAll().size());
 	}
 
