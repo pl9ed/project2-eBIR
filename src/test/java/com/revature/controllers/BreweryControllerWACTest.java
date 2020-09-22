@@ -32,11 +32,6 @@ public class BreweryControllerWACTest {
 	@Autowired
 	private WebApplicationContext wac;
 	
-	@InjectMocks
-	private BreweryController bc;
-	
-//	private MockMvc mock;
-
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		TestUtilities.clearDB();
@@ -50,20 +45,20 @@ public class BreweryControllerWACTest {
 	@Before
 	public void setUp() throws Exception {
 		RestAssuredMockMvc.webAppContextSetup(wac);
-		
 		td = new TestUtilities();
 		
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		HibernateUtil.closeSession();
 		TestUtilities.clearDB();
 	}
 	
 	@Test
 	public void testAddReview() throws Exception {
 		String json = om.writeValueAsString(td.r1);
-		System.out.println(json);
+//		System.out.println(json);
 		given()
 			.body(json)
 			.contentType("application/json")

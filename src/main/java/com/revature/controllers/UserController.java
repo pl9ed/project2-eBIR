@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import org.apache.log4j.Logger;
+import org.hibernate.NonUniqueObjectException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -37,9 +38,11 @@ public class UserController {
 				return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
 			}
 			return ResponseEntity.status(HttpStatus.CREATED).body(user);
+		} catch (NonUniqueObjectException e) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
 		} catch (Exception e) {
-			e.printStackTrace();
 			log.error("encountered an exception");
+			log.trace(e,e);
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
@@ -72,6 +75,7 @@ public class UserController {
 			log.error("encountered an exception: could not process json");
 		} catch (Exception e) {
 			log.error("exception encountered");
+			log.trace(e,e);
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}

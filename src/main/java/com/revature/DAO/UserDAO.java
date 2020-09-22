@@ -82,7 +82,10 @@ public class UserDAO implements IUserDAO {
 	}
 
 	public User findByUsername(String username) {
-		return findUser(username);
+		if (username != null) {
+			return findUser(username);
+		}
+		return null;
 	}
 
 	@Override
@@ -90,11 +93,11 @@ public class UserDAO implements IUserDAO {
 		// doubles as null check for both user and username
 		try {
 			if (u.getUsername().length() < 1) {
-				log.error("username is too short");
+				log.error("Username is empty string");
 				return false;
 			}
 		} catch (NullPointerException e) {
-			log.info("username is empty");
+			log.info("User object is null");
 			return false;
 		}
 		
@@ -106,11 +109,14 @@ public class UserDAO implements IUserDAO {
 			ret = (User) s.merge(u);
 			tx.commit();
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.trace(e,e);
 			tx.rollback();
 			log.error("encountered an exception, intiated rollback");
 		}
-		log.info("successfully updated " + u.getUsername());
+		System.out.println("Ret: " + ret);
+		System.out.println("U: " + u);
+		System.out.println(ret.getFavorites().equals(u.getFavorites()));
+		System.out.println(ret.equals(u));
 		return ret.equals(u);
 	}
 
