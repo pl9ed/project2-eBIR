@@ -1,5 +1,7 @@
 package com.revature.controllers;
 
+import javax.websocket.server.PathParam;
+
 import org.apache.log4j.Logger;
 import org.hibernate.NonUniqueObjectException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +60,6 @@ public class UserController {
 			node = om.readValue(login.getBody(), ObjectNode.class);
 			String username = node.get("username").textValue();
 			String pass = node.get("password").textValue();
-			
 			if (username != null && pass != null) {
 				User user = us.login(username, pass);
 				if (user == null) {
@@ -94,9 +95,9 @@ public class UserController {
 	
 	
 	
-	@PutMapping("user/update")
+	@PutMapping("user/{username}")
 	@ResponseBody
-	public ResponseEntity<User> updateUser(@RequestBody User u) {
+	public ResponseEntity<User> updateUser(@PathParam("username") String username, @RequestBody User u) {
 		// this impl might mean it'd be possible to add a user that doesn't yet exist
 		if (us.updateUser(u)) {
 			return ResponseEntity.status(HttpStatus.OK).body(u);

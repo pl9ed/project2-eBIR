@@ -45,9 +45,10 @@ public class BreweryController {
 		return ResponseEntity.status(400).build();
 	}
 	
-	@GetMapping("brewery/{id}/reviews")
+	@GetMapping("brewery/{b.id}/reviews")
 	@ResponseBody
-	public ResponseEntity<Set<Review>> getReviews(@PathParam("id") int id) {
+	public ResponseEntity<Set<Review>> getReviews(@PathParam("b.id") Integer id) {
+		System.out.println(id);
 		if (id > 0) {
 			// return review set to front end
 			return ResponseEntity.status(201).body(dao.findByBrewery(id));
