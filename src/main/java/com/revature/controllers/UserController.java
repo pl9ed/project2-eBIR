@@ -32,7 +32,7 @@ public class UserController {
 	@ResponseBody
 	public ResponseEntity<User> register(@RequestBody User u) {
 		try {
-			User user = us.register(u.getUsername(), u.getPassword(), u.getFirstName(), u.getLastName(), u.getEmail());
+			User user = us.register(u);
 			if (user == null) { // user already exists
 				return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
 			}
@@ -53,23 +53,24 @@ public class UserController {
 			node = om.readValue(login.getBody(), ObjectNode.class);
 			String username = node.get("username").textValue();
 			String pass = node.get("password").textValue();
-			User user = us.login(username, pass);
-			if (user == null) {
-				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+			
+			if (username != null && pass != null) {
+				User user = us.login(username, pass);
+				if (user == null) {
+					return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+				}
+				return ResponseEntity.status(HttpStatus.OK).body(user);
 			}
-			return ResponseEntity.status(HttpStatus.OK).body(user);
 		} catch (ResourceNotFoundException e) {
 			// no user with that username
 			log.error("could not find an user with that username");
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 		} catch (JsonMappingException e) {
 			// incorrect json format
-			e.printStackTrace();
 			log.error("encountered an exception: incorrect json format");
 		} catch (JsonProcessingException e) {
-			// TODO log
+			log.error("encountered an exception: could not process json");
 		} catch (Exception e) {
-			e.printStackTrace();
 			log.error("exception encountered");
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);

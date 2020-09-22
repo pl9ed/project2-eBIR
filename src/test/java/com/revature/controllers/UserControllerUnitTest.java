@@ -1,8 +1,7 @@
 package com.revature.controllers;
 
+import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
@@ -25,9 +24,6 @@ import com.revature.models.User;
 import com.revature.services.UserService;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
-import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
-
-
 
 public class UserControllerUnitTest {
 	
@@ -67,7 +63,7 @@ public class UserControllerUnitTest {
 
 	@Test
 	public void testRegister() throws JsonProcessingException {
-		when(us.register("u2", td.u2.getPassword(), "", "", "")).thenReturn(td.u2);
+		when(us.register(any(User.class))).thenReturn(td.u2);
 		String json = om.writeValueAsString(td.u2);
 		
 		given()
@@ -77,6 +73,7 @@ public class UserControllerUnitTest {
 		.when()
 			.post("/user/register")
 		.then()
+			.log().ifValidationFails()
 			.statusCode(HttpStatus.SC_CREATED)
 			.assertThat()
 				.body("username", equalTo(td.u2.getUsername()));

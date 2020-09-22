@@ -31,6 +31,13 @@ public class UserService {
 		return null;
 	}
 	
+	public User register(User u) {
+		if (userDAO.saveUser(u)) {
+			return u;
+		}
+		return null;
+	}
+	
 	//for user login, checks if account exists with get() to find username. Compares password input with actual password in DB.
 	/**
 	 * 
@@ -121,8 +128,10 @@ public class UserService {
 	}
 	
 	public boolean updateUser(User u) {
-		// log in DAO
+		// logged in DAO
 		return userDAO.updateUser(u);
 	}
+
+
 	
 }
