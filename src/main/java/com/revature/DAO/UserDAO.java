@@ -9,6 +9,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.apache.log4j.Logger;
+import org.hibernate.NonUniqueObjectException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
@@ -68,17 +69,25 @@ public class UserDAO implements IUserDAO {
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
 		
-		Serializable ret = s.save(u);
-		
-		if (ret == u.getUsername()) {
-			tx.commit();
-			log.info("saved " + u.getUsername() + " into database");
-			return true;
-		} else {
+		try {
+			Serializable ret = s.save(u);
+			if (ret == u.getUsername()) {
+				tx.commit();
+				log.info("saved " + u.getUsername() + " into database");
+				return true;
+			} else {
+				tx.rollback();
+				log.error("could not save user");
+			}
+		} catch (NonUniqueObjectException e) {
+			log.error(e,e);
+			System.out.println("Nonunique adding: " + u);
+		}catch (Exception e) {
+			log.error(e,e);
 			tx.rollback();
-			log.error("could not save user");
-			return false;
 		}
+		return false;
+		
 	}
 
 	public User findByUsername(String username) {

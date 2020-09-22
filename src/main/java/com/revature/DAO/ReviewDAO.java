@@ -84,8 +84,11 @@ public class ReviewDAO implements IReviewDAO {
 			}
 		} catch (NonUniqueObjectException e) {
 			log.trace(e,e);
+			System.out.println("Nonunique adding: " + review);
+			e.printStackTrace();
 		} catch (Exception e) {
 			log.trace(e,e);
+			e.printStackTrace();
 		}
 		t.rollback();
 		return false;
