@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
 import java.util.Set;
 
 import org.junit.After;
@@ -12,12 +11,14 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.revature.TestUtilities;
 import com.revature.models.Review;
 import com.revature.models.User;
 import com.revature.util.HibernateUtil;
 
+@SpringBootTest
 public class ReviewDAOTest {
 	private TestUtilities td = new TestUtilities();
 	private ReviewDAO rd;

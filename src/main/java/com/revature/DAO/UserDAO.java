@@ -113,10 +113,6 @@ public class UserDAO implements IUserDAO {
 			tx.rollback();
 			log.error("encountered an exception, intiated rollback");
 		}
-		System.out.println("Ret: " + ret);
-		System.out.println("U: " + u);
-		System.out.println(ret.getFavorites().equals(u.getFavorites()));
-		System.out.println(ret.equals(u));
 		return ret.equals(u);
 	}
 

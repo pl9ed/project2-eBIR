@@ -70,8 +70,8 @@ public class UserService {
 				return user.getFirstName();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			log.error("exception encountered");
+			log.trace(e,e);
 		}
 		return null;
 	}
@@ -86,8 +86,8 @@ public class UserService {
 			}
 				
 		} catch(Exception e) {
-			e.printStackTrace();
 			log.error("exception encountered");
+			log.trace(e,e);
 		}
 		return null;
 	}

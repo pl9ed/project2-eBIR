@@ -12,9 +12,10 @@ import org.hibernate.annotations.OnDeleteAction;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@EqualsAndHashCode @Getter @Setter
+@EqualsAndHashCode @Getter @Setter @ToString
 public class Review {
 	
 	@Id
@@ -31,50 +32,24 @@ public class Review {
 //	@JoinColumn(name="brewery", nullable=false)
 	private int brewery;
 	
+	private int rating;
+	
 	private String reviewText = "";
 	
 	public Review() {
 		super();
 	}
 	
-	public void setId(int id) {
-		this.id = id;
+	// override setters for validation
+	public void setRating(int rating) {
+		if (rating <= 10 && rating >= 1) {
+			this.rating = rating;
+		}
 	}
 	
-	public int getId() {
-		return id;
+	public void setReviewText(String text) {
+		if (text != null && text.length() > 0) {
+			this.reviewText = text;
+		}
 	}
-
-	public User getSubmitter() {
-		return submitter;
-	}
-
-	public void setSubmitter(User submitter) {
-		this.submitter = submitter;
-	}
-
-	public int getBrewery() {
-		return brewery;
-	}
-
-	public void setBrewery(int brewery) {
-		this.brewery = brewery;
-	}
-
-	public String getReviewText() {
-		return reviewText;
-	}
-
-	public void setReviewText(String reviewText) {
-		this.reviewText = reviewText;
-	}
-
-	// default toString() changed to print out user's username brewery's id to prevent infinite loops
-	@Override
-	public String toString() {
-		return "Review [submitter=" + submitter.getUsername() + ", brewery=" + this.brewery + ", reviewText=" + reviewText + "]";
-	}
-	
-	
-
 }
