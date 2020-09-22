@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -102,8 +103,13 @@ public class UserController {
 	
 	@PutMapping("user/{username}")
 	@ResponseBody
-	public ResponseEntity<User> updateUser(@PathParam("username") String username, @RequestBody User u) {
+	public ResponseEntity<User> updateUser(@PathVariable("username") String username, @RequestBody User u) {
 		// this impl might mean it'd be possible to add a user that doesn't yet exist
+		User user = us.findByUsername(username);
+		System.out.println(u.getPassword());
+		if(user.getPassword().equals(u.getPassword())) {
+			u.setHashPass(u.getPassword());
+		}
 		if (us.updateUser(u)) {
 			return ResponseEntity.status(HttpStatus.OK).body(u);
 		}
@@ -112,7 +118,8 @@ public class UserController {
 	
 	@GetMapping("user/{username}/favorites")
 	@ResponseBody
-	public ResponseEntity<int[]> updateUser(@PathParam("username") String username) {
+	public ResponseEntity<int[]> getFavorites(@PathVariable("username") String username) {
+		System.out.println(username + " is here");
 		User u = us.findByUsername(username);
 		System.out.println(u);
 		int[] array = new int[1];
@@ -126,7 +133,8 @@ public class UserController {
 	
 	@DeleteMapping("user/{username}/{id}")
 	@ResponseBody
-	public ResponseEntity<int[]> updateUser(@PathParam("username") String username, @PathParam("id") Integer id) {
+	public ResponseEntity<int[]> deleteFavorites(@PathVariable("username") String username, @PathVariable("id") Integer id) {
+		System.out.println(username + "is here");
 		User u = us.findByUsername(username);
 		System.out.println(u);
 		int[] array = new int[1];
@@ -136,4 +144,27 @@ public class UserController {
 		
 	}
 	
+	/*
+	// front end updates user all at once, might not need update method for each field
+	@PutMapping("user/update_first_name")
+	@ResponseBody
+	public String updateFirstName(@RequestBody User u) {
+		String nFN = us.updateFirstName(u, u.getFirstName());
+		return nFN;
+	}
+	@PutMapping("user/update_last_name")
+	@ResponseBody
+	public String updateLastName(@RequestBody User u) {
+		String nLN = us.updateLastName(u, u.getLastName());
+		return nLN;
+		
+	}
+	
+	@PutMapping("user/change_password")
+	@ResponseBody
+	public String updatePassword(@RequestBody User u) {
+		String nPw = us.updatePassword(u, u.getPassword());
+		return nPw;
+	}
+	*/
 }

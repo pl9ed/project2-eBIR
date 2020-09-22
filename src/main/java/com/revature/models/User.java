@@ -67,6 +67,10 @@ public class User {
 		}
 	}
 	
+	public void setHashPass(String password) {
+		this.password = password;
+	}
+	
 	// check password
 	public boolean checkPassword(String password) {
 		if (password != null && password.length() > 0) {
