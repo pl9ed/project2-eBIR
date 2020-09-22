@@ -136,27 +136,4 @@ public class UserController {
 		
 	}
 	
-	/*
-	// front end updates user all at once, might not need update method for each field
-	@PutMapping("user/update_first_name")
-	@ResponseBody
-	public String updateFirstName(@RequestBody User u) {
-		String nFN = us.updateFirstName(u, u.getFirstName());
-		return nFN;
-	}
-	@PutMapping("user/update_last_name")
-	@ResponseBody
-	public String updateLastName(@RequestBody User u) {
-		String nLN = us.updateLastName(u, u.getLastName());
-		return nLN;
-		
-	}
-	
-	@PutMapping("user/change_password")
-	@ResponseBody
-	public String updatePassword(@RequestBody User u) {
-		String nPw = us.updatePassword(u, u.getPassword());
-		return nPw;
-	}
-	*/
 }

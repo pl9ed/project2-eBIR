@@ -22,18 +22,6 @@ public class Driver {
 //		us.updateLastName(user2,"Stando");
 //		us.updateEmail(user2, "ZaWorld@gmail.com");
 		
-		// init users for front end
-		User u1 = new User();
-		u1.setUsername("cpbnj");
-		u1.setPassword("abc123");
-		u1.setFirstName("Crunchy");
-		u1.setLastName("Peanut Butter & Jelly");
-		u1.setEmail("ilovecpbnj@yum.com");
-		u1.getFavorites().add(100);
-		u1.getFavorites().add(1);
-		
-		UserDAO dao = new UserDAO();
-		dao.saveUser(u1);
-		
+		TestUtilities.initDB();
 	}
 }

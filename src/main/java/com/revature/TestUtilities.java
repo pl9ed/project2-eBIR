@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.DAO.UserDAO;
 import com.revature.models.Review;
 import com.revature.models.User;
 import com.revature.services.ReviewService;
@@ -102,5 +103,23 @@ public class TestUtilities {
 			e.printStackTrace();
 			tx.rollback();
 		}
+	}
+	
+	/**
+	 * Populates 
+	 */
+	public static void initDB() {
+		// init users for front end
+		User u1 = new User();
+		u1.setUsername("cpbnj");
+		u1.setPassword("abc123");
+		u1.setFirstName("Crunchy");
+		u1.setLastName("Peanut Butter & Jelly");
+		u1.setEmail("ilovecpbnj@yum.com");
+		u1.getFavorites().add(100);
+		u1.getFavorites().add(1);
+		
+		UserDAO dao = new UserDAO();
+		dao.saveUser(u1);
 	}
 }

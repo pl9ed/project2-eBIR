@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,8 +48,8 @@ public class BreweryController {
 	
 	@GetMapping("brewery/{id}/reviews")
 	@ResponseBody
-	public ResponseEntity<Set<Review>> getReviews(@PathParam("id") Integer id) {
-		System.out.print(id);
+	public ResponseEntity<Set<Review>> getReviews(@PathVariable("id") int id) {
+		//System.out.print(id);
 		if (id > 0) {
 			// return review set to front end
 			return ResponseEntity.status(201).body(dao.findByBrewery(id));
