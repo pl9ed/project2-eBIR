@@ -144,5 +144,49 @@ public class ReviewDAOTest {
 		assertTrue(0 == rd.findAll().size());
 	}
 	
+	@Test
+	public void testFindByUser() {
+		rd.saveReview(td.r1);
+		
+		assertTrue(rd.findByUser(td.u1).contains(td.r1));
+		assertTrue(rd.findByUser(td.u2).size() == 0);
+	}
+	
+	@Test
+	public void testFindByUserNull() {
+		assertTrue(rd.findByUser((User) null).size() == 0);
+	}
+	
+	@Test
+	public void testFindByUsername() {
+		rd.saveReview(td.r1);
+		assertTrue(rd.findByUser(td.u1.getUsername()).contains(td.r1));
+		assertTrue(rd.findByUser(td.u2.getUsername()).size() == 0);
+	}
+	
+	@Test
+	public void testFindByUsernameNull() {
+		assertTrue(rd.findByUser((String) null).size() == 0);
+	}
+	
+	@Test
+	public void testFindByUsernameNonExistent() {
+		assertTrue(rd.findByUser("adsfasfqgfw34gfw34fg3").size() == 0);
+	}
+	
+	@Test
+	public void testFindByBrewery() {
+		rd.saveReview(td.r1);
+		Set<Review> ret = rd.findByBrewery(td.r1.getBrewery());
+		assertTrue(ret.size() == 1);
+		assertTrue(rd.findByBrewery(1).contains(td.r1));
+	}
+	
+	@Test
+	public void testFindByBreweryInvalid() {
+		assertTrue(rd.findByBrewery(99999).size()==0);
+		assertTrue(rd.findByBrewery(-1).size() == 0);
+	}
+	
 	
 }
