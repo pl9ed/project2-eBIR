@@ -1,9 +1,5 @@
 package com.revature;
 
-import com.revature.DAO.UserDAO;
-import com.revature.models.User;
-import com.revature.services.UserService;
-
 public class Driver {
 
 	public static void main(String[] arg) {

@@ -23,13 +23,13 @@ public class UserService {
 	}
 	
 	//creates a new user object with given details and inserts user into DB
-	public User register(String username, String password, String firstName, String lastName, String email) {
-		User user = new User(username, password, firstName, lastName, email);
-		if (userDAO.saveUser(user)) {
-			return user;
-		}
-		return null;
-	}
+//	public User register(String username, String password, String firstName, String lastName, String email) {
+//		User user = new User(username, password, firstName, lastName, email);
+//		if (userDAO.saveUser(user)) {
+//			return user;
+//		}
+//		return null;
+//	}
 	
 	public User register(User u) {
 		if (userDAO.saveUser(u)) {

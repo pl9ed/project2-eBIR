@@ -11,13 +11,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -85,7 +81,7 @@ public class UserControllerUnitTest {
 	
 	@Test
 	public void testRegisterInvalidUser() {
-		when(us.register(null, null, null, null, null)).thenReturn(null);
+		when(us.register(null)).thenReturn(null);
 		
 		given()
 			.standaloneSetup(uc)
@@ -99,7 +95,7 @@ public class UserControllerUnitTest {
 	
 	@Test
 	public void testRegisterDuplicate() throws JsonProcessingException {
-		when(us.register("u1", "pass", "", "", "")).thenReturn(null);
+		when(us.register(td.u1)).thenReturn(null);
 		String json = om.writeValueAsString(td.u1);
 		
 		given()

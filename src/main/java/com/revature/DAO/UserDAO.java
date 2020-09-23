@@ -72,7 +72,8 @@ public class UserDAO implements IUserDAO {
 			Serializable ret = s.save(u);
 			if (ret == u.getUsername()) {
 				tx.commit();
-				log.info("saved " + u.getUsername() + " into database");
+				String logstr = u.getUsername().replaceAll("[\n|\r|\t]", "_");
+				log.info("saved " + logstr + " into database");
 				return true;
 			} else {
 				tx.rollback();

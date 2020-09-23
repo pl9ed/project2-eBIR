@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 
@@ -34,19 +32,9 @@ public class User {
 	@CollectionTable(name="favorites",
 		joinColumns=
 			@JoinColumn(name="username"))
-//	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<Integer> favorites = new ArrayList<Integer>();
 	
 	public User() {}
-	
-	public User(String username, String password, String firstName, String lastName, String email) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.firstName= firstName;
-		this.lastName = lastName;
-		this.email = email;
-	}
 
 	public String getUsername() {
 		return username;
@@ -144,12 +132,12 @@ public class User {
 				return false;
 		} else if (favorites.size() != other.favorites.size()) {
 			return false;
-		}
-		
-		// compare each element I guess? I have no idea why arraylist.equals isn't working
-		for (int i = 0; i < favorites.size(); i++) {
-			if (!favorites.get(i).equals(other.favorites.get(i))) {
-				return false;
+		} else {
+			// compare each element I guess? I have no idea why arraylist.equals isn't working
+			for (int i = 0; i < favorites.size(); i++) {
+				if (!favorites.get(i).equals(other.favorites.get(i))) {
+					return false;
+				}
 			}
 		}
 		
