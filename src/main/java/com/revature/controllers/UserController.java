@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -22,7 +24,7 @@ import com.revature.exceptions.ResourceNotFoundException;
 import com.revature.models.User;
 import com.revature.services.UserService;
 
-@CrossOrigin(origins = "*", allowedHeaders="*")
+@CrossOrigin(origins="*", allowedHeaders="*")
 @Controller
 public class UserController {
 	private static Logger log = Logger.getLogger(UserController.class);
@@ -36,6 +38,7 @@ public class UserController {
 	@ResponseBody
 	public ResponseEntity<User> register(@RequestBody User u) {
 		try {
+			u.setPasswordPlain(u.getPassword());
 			User user = us.register(u);
 			if (user == null) { // user already exists
 				return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
@@ -93,7 +96,7 @@ public class UserController {
 //	}
 	
 
-	@PutMapping("user")
+	@PostMapping("user")
 	@ResponseBody
 	public ResponseEntity<User> updateUser(@RequestBody User u) {
 		// update user, copy passhash directly
@@ -104,15 +107,15 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
 	
-	@PatchMapping("user")
+	@PutMapping("user")
 	@ResponseBody
 	public ResponseEntity<User> updateUserPass(@RequestBody User u) {
 		// Here, u.password should be plaintext
-		User temp = u;
-		temp.setPasswordPlain(u.getPassword());
+		// Hash password before update
+		u.setPasswordPlain(u.getPassword());
 		
 		// rest should be the same as above
-		if (us.updateUser(temp)) {
+		if (us.updateUser(u)) {
 			return ResponseEntity.status(HttpStatus.OK).body(u);
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);

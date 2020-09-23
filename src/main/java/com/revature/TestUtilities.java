@@ -11,6 +11,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.revature.DAO.ReviewDAO;
 import com.revature.DAO.UserDAO;
 import com.revature.models.Review;
 import com.revature.models.User;
@@ -84,12 +85,12 @@ public class TestUtilities {
 			tx.commit();
 			
 			tx = s.beginTransaction();
-			query = s.createNativeQuery("delete from review cascade");
+			query = s.createQuery("delete from Review cascade");
 			query.executeUpdate();
 			tx.commit();
 			
 			tx = s.beginTransaction();
-			query = s.createNativeQuery("delete from users cascade");
+			query = s.createQuery("delete from User cascade");
 			query.executeUpdate();
 			tx.commit();
 		} catch (Exception e) {
@@ -102,6 +103,8 @@ public class TestUtilities {
 	 * Populates 
 	 */
 	public static void initDB() {
+		clearDB();
+		
 		// init users for front end
 		User u1 = new User();
 		u1.setUsername("cpbnj");
@@ -114,6 +117,14 @@ public class TestUtilities {
 		
 		UserDAO dao = new UserDAO();
 		dao.saveUser(u1);
-		dao.saveUser(u1);
+		
+		ReviewDAO rDAO = new ReviewDAO();
+		Review rev = new Review();
+		rev.setSubmitter(u1);
+		rev.setId(1);
+		rev.setBrewery(1);
+		rev.setReviewText("WOW GREAT BEER");
+		rDAO.saveReview(rev);
+		
 	}
 }

@@ -111,19 +111,25 @@ public class UserDAO implements IUserDAO {
 			return false;
 		}
 		
-		Session s = HibernateUtil.getSession();
-		User ret = new User();
-		Transaction tx = s.beginTransaction();
+		// check email
+		// setter has regex check that returns false if not valid format
+		if (u.setEmail(u.getEmail())) {
+			Session s = HibernateUtil.getSession();
+			User ret = new User();
+			Transaction tx = s.beginTransaction();
 
-		try {
-			ret = (User) s.merge(u);
-			tx.commit();
-		} catch (Exception e) {
-			log.trace(e,e);
-			tx.rollback();
-			log.error("encountered an exception, intiated rollback");
+			try {
+				ret = (User) s.merge(u);
+				tx.commit();
+			} catch (Exception e) {
+				log.trace(e,e);
+				tx.rollback();
+				log.error("encountered an exception, intiated rollback");
+			}
+			return ret.equals(u);
 		}
-		return ret.equals(u);
+		
+		return false;
 	}
 
 	@Override
