@@ -83,14 +83,13 @@ public class TestUtilities {
 			query.executeUpdate();
 			tx.commit();
 			
-			
 			tx = s.beginTransaction();
-			query = s.createQuery("delete from User cascade");
+			query = s.createQuery("delete from Review cascade");
 			query.executeUpdate();
 			tx.commit();
 			
 			tx = s.beginTransaction();
-			query = s.createQuery("delete from Review cascade");
+			query = s.createQuery("delete from User cascade");
 			query.executeUpdate();
 			tx.commit();
 		} catch (Exception e) {
