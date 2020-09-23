@@ -15,6 +15,9 @@
 
 		<!-- check this if you can't connect to your DB or if HibernateUtil isn't 
 			working -->
+		
+		<property name="hibernate.connection.url">jdbc:postgresql://nova-pl-revature.ctyzbcb7ljba.us-east-1.rds.amazonaws.com:5432/jwa200810</property>
+		
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 		<property name="hibernate.connection.pool_size">10</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
