@@ -10,13 +10,16 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import com.revature.TestUtilities;
 import com.revature.models.Review;
 import com.revature.models.User;
 import com.revature.util.HibernateUtil;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ReviewDAOTest {
 	private TestUtilities td = new TestUtilities();
 	private ReviewDAO rd;
