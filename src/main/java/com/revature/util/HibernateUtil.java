@@ -19,7 +19,7 @@ public class HibernateUtil {
 		
 		// replaced so that we can use the same code for our deployed app
 		cfg.setProperty("hibernate.default_schema", System.getenv("project2_schema"));
-		System.out.println("Schema: " + System.getenv("project2_schema"));
+
 		try {
 			sf = cfg.buildSessionFactory();
 		} catch (Exception e) {

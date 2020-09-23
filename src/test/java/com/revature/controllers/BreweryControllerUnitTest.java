@@ -4,6 +4,9 @@ import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,6 +16,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.TestUtilities;
 import com.revature.DAO.IReviewDAO;
@@ -69,6 +73,36 @@ public class BreweryControllerUnitTest {
 			.log().ifValidationFails()
 			.statusCode(201);
 	}
+	
+	@Test
+	public void testAddReviewNull() {
+		String json = null;
+		given()
+			.standaloneSetup(bc)
+			.body(json)
+			.contentType("application/json")
+		.when()
+			.post("/review")
+		.then()
+			.log().ifValidationFails()
+			.statusCode(400);
+	}
+	
+	@Test
+	public void testAddReviewDuplicate() throws JsonProcessingException {
+		when(rDAO.saveReview(any(Review.class))).thenReturn(false);
+		String json = om.writeValueAsString(td.r1);
+		
+		given()
+			.standaloneSetup(bc)
+			.body(json)
+			.contentType("application/json")
+		.when()
+			.post("/review")
+		.then()
+			.log().ifValidationFails()
+			.statusCode(409);
+	}
 
 	@Test
 	public void testAddReviewNoBody() throws Exception {
@@ -78,6 +112,36 @@ public class BreweryControllerUnitTest {
 			.contentType("application/json")
 		.when()
 			.post("/review")
+		.then()
+			.log().ifValidationFails()
+			.statusCode(400);
+	}
+	
+	@Test
+	public void testGetReview() {
+		int id = 1;
+		Set<Review> reviews = new HashSet<>();
+		reviews.add(new Review());
+		when(rDAO.findByBrewery(id)).thenReturn(reviews);
+		
+		given()
+			.standaloneSetup(bc)
+		.when()
+			.get("/brewery/" + id + "/reviews")
+		.then()
+			.log().ifValidationFails()
+			.statusCode(201);
+//			.body(arguments, responseAwareMatcher)
+	}
+	
+	@Test
+	public void testGetReviewInvalid() {
+		int id = -1;
+		
+		given()
+			.standaloneSetup(bc)
+		.when()
+			.get("/brewery/" + id + "/reviews")
 		.then()
 			.log().ifValidationFails()
 			.statusCode(400);

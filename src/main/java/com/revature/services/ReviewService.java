@@ -17,6 +17,7 @@ public class ReviewService {
 	public ReviewService() {
 		super();
 	}
+	
 	public Review insertReview(Review r) {
 		boolean nR = reviewDAO.saveReview(r);
 		if(nR) {
@@ -26,11 +27,12 @@ public class ReviewService {
 		
 	}
 	
-	public BodyBuilder deleteReview(Review r) {
-		
+	// want it to return review object if it deletes successfully
+	// null if it fails
+	public Review deleteReview(Review r) {
 		if(reviewDAO.deleteReview(r)) {
-			return ResponseEntity.ok();
+			return r;
 		}
-		return ResponseEntity.badRequest();
+		return null;
 	}
 }
