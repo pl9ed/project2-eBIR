@@ -13,6 +13,8 @@ public class HibernateUtil {
 	// check this if you can't connect to your DB or if HibernateUtil isn't working
 	static {
 		Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
+		System.out.println(cfg);
+		System.out.println(System.getenv("db_url"));
 		cfg.setProperty("hibernate.connection.url", System.getenv("db_url"));
 		cfg.setProperty("hibernate.connection.password", System.getenv("postgres_pw"));
 		cfg.setProperty("hibernate.connection.username", System.getenv("postgres_username"));
