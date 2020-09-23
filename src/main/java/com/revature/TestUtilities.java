@@ -9,15 +9,11 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.DAO.UserDAO;
 import com.revature.models.Review;
 import com.revature.models.User;
-import com.revature.services.ReviewService;
 import com.revature.services.UserService;
 import com.revature.util.HibernateUtil;
 
@@ -26,10 +22,8 @@ public class TestUtilities {
 	
 	@Autowired
 	private static UserService us;
-	@Autowired
-	private static ReviewService rs;
-	
-	private static ObjectMapper om = new ObjectMapper();
+//	@Autowired
+//	private static ReviewService rs;
 	
 	public User u1 = new User();
 	public User u2 = new User();
@@ -120,6 +114,7 @@ public class TestUtilities {
 		u1.getFavorites().add(1);
 		
 		UserDAO dao = new UserDAO();
+		dao.saveUser(u1);
 		dao.saveUser(u1);
 	}
 }

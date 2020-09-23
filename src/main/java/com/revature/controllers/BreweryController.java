@@ -2,8 +2,6 @@ package com.revature.controllers;
 
 import java.util.Set;
 
-import javax.websocket.server.PathParam;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

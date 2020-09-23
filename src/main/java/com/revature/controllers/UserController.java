@@ -30,9 +30,6 @@ public class UserController {
 	@Autowired
 	private UserService us;
 	
-	// To view fake favorites list deleted
-	private boolean hasFavorite = true;
-	
 	private static ObjectMapper om = new ObjectMapper();
 	
 	@PostMapping("user/register")
