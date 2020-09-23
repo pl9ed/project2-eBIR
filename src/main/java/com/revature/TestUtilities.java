@@ -100,7 +100,7 @@ public class TestUtilities {
 	}
 	
 	/**
-	 * Populates 
+	 * Populates database with starter data
 	 */
 	public static void initDB() {
 		clearDB();
@@ -123,6 +123,7 @@ public class TestUtilities {
 		rev.setSubmitter(u1);
 		rev.setId(1);
 		rev.setBrewery(1);
+		rev.setRating(9);;
 		rev.setReviewText("WOW GREAT BEER");
 		rDAO.saveReview(rev);
 		
