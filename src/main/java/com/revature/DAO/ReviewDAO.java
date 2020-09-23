@@ -70,9 +70,9 @@ public class ReviewDAO implements IReviewDAO {
 
 	@Override
 	public boolean saveReview(Review review) {
-		if (review == null) {
-			return false;
-		}
+//		if (review == null) {
+//			return false;
+//		}
 		s = HibernateUtil.getSession();
 		Transaction t = s.beginTransaction();
 		
@@ -85,10 +85,8 @@ public class ReviewDAO implements IReviewDAO {
 		} catch (NonUniqueObjectException e) {
 			log.trace(e,e);
 			System.out.println("Nonunique adding: " + review);
-			e.printStackTrace();
 		} catch (Exception e) {
 			log.trace(e,e);
-			e.printStackTrace();
 		}
 		t.rollback();
 		return false;
