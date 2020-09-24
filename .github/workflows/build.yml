@@ -31,6 +31,10 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Build and analyze
         env:
+          db_url: ${{ secrets.DB_URL }}
+          postgres_username: ${{ secrets.POSTGRES_USERNAME}}
+          postgres_pw: ${{ secrets.POSTGRES_PW }}
+          project2_schema: ${{ secrets.project2_schema}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar

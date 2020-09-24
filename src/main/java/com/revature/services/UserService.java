@@ -1,90 +1,139 @@
 package com.revature.services;
 
+import org.apache.log4j.Logger;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.revature.DAO.IUserDAO;
-import com.revature.DAO.UserDAO;
+import com.revature.exceptions.ResourceNotFoundException;
 import com.revature.models.User;
 
+
+
+@Service
 public class UserService {
-	
+	private static Logger log = Logger.getLogger(UserService.class);
+
+	@Autowired
 	private IUserDAO userDAO;
 	
 	public UserService() {
 		super();
-		this.userDAO = new UserDAO();
 	}
 	
 	//creates a new user object with given details and inserts user into DB
-	public User register(String username, String password, String firstName, String lastName, String email) {
-		User user = new User(username, password, firstName, lastName, email);
-		boolean value = userDAO.insert(user);
-		if (value==false) {
-			return null;
+//	public User register(String username, String password, String firstName, String lastName, String email) {
+//		User user = new User(username, password, firstName, lastName, email);
+//		if (userDAO.saveUser(user)) {
+//			return user;
+//		}
+//		return null;
+//	}
+	
+	public User register(User u) {
+		if (userDAO.saveUser(u)) {
+			return u;
 		}
-		return user;
+		return null;
 	}
 	
 	//for user login, checks if account exists with get() to find username. Compares password input with actual password in DB.
-	public User login(String username, String password) {
-		User user= null;
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return User object on successful login, null otherwise
+	 */
+	public User login(String username, String password) throws ResourceNotFoundException {
+		User user = null;
 		try {
-			user = userDAO.findByUsername(username);
-
-		}catch(NullPointerException e) {
-			e.printStackTrace();
-			return null;
+			User temp = userDAO.findByUsername(username);
+			
+			if (temp.checkPassword(password)) {
+				user = temp;
+				log.info("logged in successfully as " + user.getUsername());
+			} 
+		} catch(NullPointerException e) {
+			log.error("login failed");
+			throw new ResourceNotFoundException("User with username: " + username + " not found!");
 		}
-		
-		if (password.equals(user.getPassword())) {
-			return user;
-		} else {
-			System.out.println("Wrong password");
-		}
-		return null;
+		return user;
 	}
 	
 	//update user first name
 	public String updateFirstName(User user, String newFirstname) {
 		try{
-			userDAO.updateFirstName(user, newFirstname);
-		}catch(Exception e) {
-			e.printStackTrace();
-			System.out.println("update failed");
-			return null;
+			user.setFirstName(newFirstname);
+			if (userDAO.updateUser(user)) {
+				log.info("first name updated to " + user.getFirstName());
+				return user.getFirstName();
+			}
+		} catch (Exception e) {
+			log.error("exception encountered");
+			log.trace(e,e);
 		}
-		return newFirstname;
+		return null;
 	}
 	
 	//update user last name
 	public String updateLastName(User user, String newLastName) {
 		try {
-			userDAO.updateLastName(user, newLastName);
+			user.setLastName(newLastName);
+			if (userDAO.updateUser(user)) {
+				log.info("last name updated to "+ user.getLastName());
+				return user.getLastName();
+			}
+				
 		} catch(Exception e) {
-			e.printStackTrace();
-			return null;
+			log.error("exception encountered");
+			log.trace(e,e);
 		}
-		return newLastName;
+		return null;
 	}
 	
 	//update password
+	/**
+	 * Returns the hashed password
+	 * null for exceptions
+	*/
 	public String updatePassword(User user, String newPassword) {
 		try {
-			userDAO.updatePassword(user, newPassword);
+			user.setPasswordPlain(newPassword);
+			if (userDAO.updateUser(user)) {
+				log.info("password updated to " + user.getPassword());
+				return user.getPassword();
+			}
 		} catch(Exception e) {
-			e.printStackTrace();
-			return null;
+			log.trace(e,e);
 		}
-		return newPassword;
+		return null;
 	}
 	
 	//update email
 	public String updateEmail(User user, String newEmail) {
 		try {
-			userDAO.updateEmail(user, newEmail);
+			if (user.setEmail(newEmail)) {
+				if (userDAO.updateUser(user)) {
+					log.info("updated email to " +user.getEmail());
+					return user.getEmail();
+				}
+			}
 		} catch(Exception e) {
-			e.printStackTrace();
-			return null;
+			log.trace(e,e);
 		}
-		return newEmail;
+		return null;
 	}
+	
+	public boolean updateUser(User u) {
+		// logged in DAO
+		return userDAO.updateUser(u);
+	}
+	
+	public User findByUsername(String username) {
+		return userDAO.findUser(username);
+	}
+
+
 	
 }

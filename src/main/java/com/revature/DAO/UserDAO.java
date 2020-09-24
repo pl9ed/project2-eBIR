@@ -1,30 +1,26 @@
 package com.revature.DAO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import org.apache.log4j.Logger;
+import org.hibernate.NonUniqueObjectException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
-import com.revature.models.Brewery;
 import com.revature.models.User;
 import com.revature.util.HibernateUtil;
 
 @Repository
-public class UserDAO implements IUserDAO{
+public class UserDAO implements IUserDAO {
 
-	private IUserDAO userDAO;
-	
-	//for JUnit testing
-	public UserDAO(IUserDAO userDAO) {
-		super();
-		this.userDAO = userDAO;
-	}
+	private static Logger log = Logger.getLogger(UserDAO.class);
 	
 	public UserDAO() {
 		super();
@@ -33,7 +29,8 @@ public class UserDAO implements IUserDAO{
 	//handles user info and the database
 	@Override
 	public List<User> findAll(){
-		List<User> list = null; 
+		// init to empty list instead than null
+		List<User> list = new ArrayList<User>(); 
 		
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
@@ -50,139 +47,104 @@ public class UserDAO implements IUserDAO{
 	}
 
 	@Override
-
 	public User findUser(String username) {
-		return HibernateUtil.getSession().get(User.class, username);
+		try {
+			return HibernateUtil.getSession().get(User.class, username);
+		} catch (IllegalArgumentException e) {
+			log.info("IllegalArgumentException encountered");
+
+		} catch (NullPointerException e) {
+			log.info("NullPointerException encountered");
+		}
+		return null;
 	}
 	
 	@Override
 	public boolean saveUser(User u) {
-		if (u == null) {
+		// also need to check empty id
+		if (u == null || u.getUsername().length() < 1) {
 			return false;
 		}
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
 		
-		Serializable ret = s.save(u);
-		
-		if (ret == u.getUsername()) {
-			tx.commit();
-			return true;
-		} else {
+		try {
+			Serializable ret = s.save(u);
+			if (ret == u.getUsername()) {
+				tx.commit();
+				String logstr = u.getUsername().replaceAll("[\n|\r|\t]", "_");
+				log.info("saved " + logstr + " into database");
+				return true;
+			} else {
+				tx.rollback();
+				log.error("could not save user");
+			}
+		} catch (NonUniqueObjectException e) {
+			log.error(e,e);
+			System.out.println("Nonunique adding: " + u);
+		}catch (Exception e) {
+			log.error(e,e);
 			tx.rollback();
-			return false;
 		}
+		return false;
+		
 	}
-
+	
+	@Override
 	public User findByUsername(String username) {
-		User user=null;
-
-		try {
-			Session s = HibernateUtil.getSession();
-			Transaction tx = s.beginTransaction();
-			
-			user = s.get(User.class,new String(username));
-			tx.commit();
-		}catch (Exception e)  {
-			e.printStackTrace();
-			return null;
+		if (username != null) {
+			return findUser(username);
 		}
-		
-		return user;
-	}
-
-	@Override
-	public boolean insert(User user) {
-		try {
-			Session s = HibernateUtil.getSession();
-			Transaction tx = s.beginTransaction();
-			
-			//User user = new User(username, password, firstName, lastName, email);		
-			
-			s.save(user);
-			tx.commit();
-		}catch (Exception e)  {
-			e.printStackTrace();
-			return false;
-		}
-		
-		return true;
-	}
-	@Override
-	public void updateFav(List<Brewery> favorite) {
-		
-	}
-
-	@Override
-	public void updateFirstName(User user, String newFirstname) {
-		Session s = HibernateUtil.getSession();
-		Transaction tx = s.beginTransaction();
-		
-		user = s.load(User.class, user.getUsername());
-		user.setFirstName(newFirstname);
-		s.merge(user);
-		tx.commit();
-		
-	}
-
-	@Override
-	public void updateLastName(User user, String newLastname) {
-		Session s = HibernateUtil.getSession();
-		Transaction tx = s.beginTransaction();
-		
-		user = s.load(User.class, user.getUsername());
-		user.setLastName(newLastname);
-		s.merge(user);
-		tx.commit();
-		
-	}
-
-	@Override
-	public void updatePassword(User user, String newPassword) {
-		Session s = HibernateUtil.getSession();
-		Transaction tx = s.beginTransaction();
-		
-		user = s.load(User.class, user.getUsername());
-		user.setPassword(newPassword);
-		s.merge(user);
-		tx.commit();
-		
-	}
-
-	@Override
-	public void updateEmail(User user, String email) {
-		Session s = HibernateUtil.getSession();
-		Transaction tx = s.beginTransaction();
-		
-		user = s.load(User.class, user.getUsername());
-		user.setEmail(email);
-		s.merge(user);
-		tx.commit();
-		
+		return null;
 	}
 
 	@Override
 	public boolean updateUser(User u) {
-		// TODO Auto-generated method stub
+		// doubles as null check for both user and username
+		try {
+			if (u.getUsername().length() < 1) {
+				log.error("Username is empty string");
+				return false;
+			}
+		} catch (NullPointerException e) {
+			log.info("User object is null");
+			return false;
+		}
+		
+		// check email
+		// setter has regex check that returns false if not valid format
+		if (u.setEmail(u.getEmail())) {
+			Session s = HibernateUtil.getSession();
+			User ret = new User();
+			Transaction tx = s.beginTransaction();
+
+			try {
+				ret = (User) s.merge(u);
+				tx.commit();
+			} catch (Exception e) {
+				log.trace(e,e);
+				tx.rollback();
+				log.error("encountered an exception, intiated rollback");
+			}
+			return ret.equals(u);
+		}
+		
 		return false;
 	}
 
 	@Override
 	public boolean deleteUser(User u) {
 		if (u == null) {
+			log.info("delete failed, no user specified");
 			return false;
 		}
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
+		
 		s.delete(u);
 		
 		tx.commit();
+		log.info("user deleted");
 		return true;
-	}
-
-	@Override
-	public void setUser(String username, String password, String firstname, String lastname, String email) {
-		// TODO Auto-generated method stub
-		
 	}
 }
