@@ -81,7 +81,7 @@ public class TestUtilities {
 		Transaction tx = s.beginTransaction();
 		try {
 			int n;
-			Query query = s.createNativeQuery("TRUNCATE favorites CASCADE");
+			Query query = s.createNativeQuery("TRUNCATE " + System.getenv("project2_schema") + ".favorites CASCADE");
 			n = query.executeUpdate();
 			System.out.println("DELETE FAVORITES: " + n);
 			tx.commit();
