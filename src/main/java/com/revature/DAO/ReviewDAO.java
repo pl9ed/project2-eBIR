@@ -30,7 +30,7 @@ public class ReviewDAO implements IReviewDAO {
 	public Set<Review> findAll() {
 		return new HashSet<Review>(s.createQuery("FROM Review r", Review.class).getResultList());
 	}
-	
+
 	@Override
 	public Set<Review> findByBrewery(int b) {
 		Set<Review> ret = new HashSet<>();
@@ -41,10 +41,10 @@ public class ReviewDAO implements IReviewDAO {
 			q.setParameter("id", b);
 			ret = q.getResultStream().collect(Collectors.toSet());
 		}
-		
+
 		return ret;
 	}
-	
+
 	@Override
 	public Set<Review> findByUser(String username) {
 		Set<Review> ret = new HashSet<>();
@@ -55,7 +55,7 @@ public class ReviewDAO implements IReviewDAO {
 		}
 		return ret;
 	}
-	
+
 	@Override
 	public Set<Review> findByUser(User u) {
 		if (u != null) {
@@ -71,22 +71,20 @@ public class ReviewDAO implements IReviewDAO {
 //		}
 		s = HibernateUtil.getSession();
 		Transaction t = s.beginTransaction();
-		
+
 		try {
 			Serializable ret = s.save(review);
-			if (ret != null) {
-				t.commit();
-				return true;
-			}
+			t.commit();
+			return (ret.equals(review.getId()));
 		} catch (NonUniqueObjectException e) {
-			log.trace(e,e);
+			log.trace(e, e);
 			System.out.println("Nonunique adding: " + review);
 		} catch (Exception e) {
-			log.trace(e,e);
+			log.trace(e, e);
 		}
 		t.rollback();
 		return false;
-		
+
 	}
 
 	@Override
@@ -98,21 +96,23 @@ public class ReviewDAO implements IReviewDAO {
 	public boolean updateReview(Review review) {
 		if (!(review instanceof Review) || !(review.getBrewery() > 0)) {
 			return false;
-		} 
-		
-		Session s = HibernateUtil.getSession();
-		Transaction tx = s.beginTransaction();
-
-		try {
-			Review ret = (Review) s.merge(review);
-			tx.commit();
-			return ret.equals(review);
-		} catch (Exception e) {
-			e.printStackTrace();
-			tx.rollback();
 		}
-		
-		return false;
+		try {
+			Session s = HibernateUtil.getSession();
+			Transaction tx = s.beginTransaction();
+
+			Review ret = (Review) s.merge(review);
+			if (ret.equals(review)) {
+				tx.commit();
+				return true;
+			} else {
+				tx.rollback();
+				return false;
+			}
+		} catch (Exception e) {
+			log.trace(e, e);
+			return false;
+		}
 	}
 
 	@Override
@@ -125,9 +125,9 @@ public class ReviewDAO implements IReviewDAO {
 		try {
 			s.delete(review);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.trace(e, e);
 		}
-		
+
 		tx.commit();
 		return true;
 	}

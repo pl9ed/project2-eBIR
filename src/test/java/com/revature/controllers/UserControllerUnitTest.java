@@ -153,6 +153,33 @@ public class UserControllerUnitTest {
 	}
 	
 	@Test
+	public void testLoginInvalidJSON() {
+		String json = "abc123";
+		
+		given()
+			.standaloneSetup(uc)
+			.body(json)
+			.contentType("application/json")
+		.when()
+			.post("/user/login")
+		.then()
+			.statusCode(400);
+	}
+	
+	@Test
+	public void testLoginIncorrectObject() {
+		String json = "{ \"notusername\": \"abc\", \"notpassword\": \"123\"}";
+		given()
+			.standaloneSetup(uc)
+			.body(json)
+			.contentType("application/json")
+		.when()
+			.post("/user/login")
+		.then()
+			.statusCode(400);
+	}
+	
+	@Test
 	public void testLoginNoUser() {
 		String json = "{\"username\" : \"u2\", \"password\" : \"pass\"}";
 		when(us.login("u2", "pass")).thenReturn(null);
@@ -191,7 +218,7 @@ public class UserControllerUnitTest {
 			.body(om.writeValueAsString(td.u1))
 			.contentType("application/json")
 		.when()
-			.put("/user")
+			.post("/user")
 		.then()
 			.statusCode(200)
 			.assertThat()
@@ -199,7 +226,38 @@ public class UserControllerUnitTest {
 	}
 	
 	@Test
-	public void testUpdateUserInvalid() throws JsonMappingException, JsonProcessingException {		
+	public void testUpdateUserInvalid() throws JsonMappingException, JsonProcessingException {	
+		when(us.updateUser(any(User.class))).thenReturn(false);
+
+		given()
+			.standaloneSetup(uc)
+			.body(om.writeValueAsString(null))
+			.contentType("application/json")
+		.when()
+			.post("/user")
+		.then()
+			.statusCode(400);
+	}
+	
+	@Test
+	public void testUpdateUserPass() throws JsonProcessingException {
+		when(us.updateUser(any(User.class))).thenReturn(true);
+		
+		given()
+			.standaloneSetup(uc)
+			.body(om.writeValueAsString(td.u1))
+			.contentType("application/json")
+		.when()
+			.put("/user")
+		.then()
+			.statusCode(200)
+			.body("username", equalTo(td.u1.getUsername()));
+	}
+	
+	@Test
+	public void testUpdateUserPassInvalid() throws JsonMappingException, JsonProcessingException {	
+		when(us.updateUser(any(User.class))).thenReturn(false);
+
 		given()
 			.standaloneSetup(uc)
 			.body(om.writeValueAsString(null))
@@ -210,50 +268,7 @@ public class UserControllerUnitTest {
 			.statusCode(400);
 	}
 	
-	/*
-	@Test
-	public void testUpdateFN() {
-		
-	}
 	
-	@Test
-	public void testUpdateFNNull() {
-		
-	}
 	
-	@Test
-	public void testUpdateFNInvalid() {
-		
-	}
-	
-	@Test
-	public void testUpdateLN() {
-		
-	}
-	
-	@Test
-	public void testUpdateLNNull() {
-		
-	}
-	
-	@Test
-	public void testUpdateLNInvalid() {
-		
-	}
-	
-	@Test
-	public void testChangePW() {
-		
-	}
-	
-	@Test
-	public void testChangePWNull() {
-		
-	}
-	
-	@Test
-	public void testChangePWInvalid() {
-		
-	}
-	*/
+
 }

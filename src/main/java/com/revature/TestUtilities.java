@@ -21,8 +21,8 @@ import com.revature.util.HibernateUtil;
 @Repository
 public class TestUtilities {
 	
-	@Autowired
-	private static UserService us;
+//	@Autowired
+//	private static UserService us;
 //	@Autowired
 //	private static ReviewService rs;
 	
@@ -61,41 +61,31 @@ public class TestUtilities {
 		r2.setId(2);
 		r2.setBrewery(2); r2.setSubmitter(u2); r2.setReviewText("r2");
 	}
-	
-	public void setupDB() {
-		try {
-			us.updateUser(u1);
-			us.updateUser(u2);
-			
-//			rs.insertReview(r1);
-//			rs.insertReview(r2);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Error during setupDB");
-		}
-	}
 
 	public static void clearDB() {
 		Session s = HibernateUtil.getSession();
-		Transaction tx = s.beginTransaction();
+		Transaction tx = s.getTransaction();
+		if (tx.isActive()) {
+			tx.rollback();
+		}
+		tx.begin();
 		try {
 			int n;
 			Query query = s.createNativeQuery("TRUNCATE " + System.getenv("project2_schema") + ".favorites CASCADE");
 			n = query.executeUpdate();
-			System.out.println("DELETE FAVORITES: " + n);
+//			System.out.println("DELETE FAVORITES: " + n);
 			tx.commit();
 			
 			tx = s.beginTransaction();
 			query = s.createQuery("delete from Review cascade");
 			n = query.executeUpdate();
-			System.out.println("DELETE REVIEW: " + n);
+//			System.out.println("DELETE REVIEW: " + n);
 			tx.commit();
 			
 			tx = s.beginTransaction();
 			query = s.createQuery("delete from User cascade");
 			n = query.executeUpdate();
-			System.out.println("DELETE USER: " + n);
+//			System.out.println("DELETE USER: " + n);
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();

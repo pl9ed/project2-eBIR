@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Set;
 
+import org.hibernate.Transaction;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -36,7 +37,6 @@ public class ReviewDAOTest {
 
 	@Before
 	public void setUp() throws Exception {
-	    TestUtilities.clearDB();
 		rd = new ReviewDAO();
 		ud = new UserDAO();
 		
@@ -61,6 +61,8 @@ public class ReviewDAOTest {
 	
 	@Test
 	public void testSaveDuplicate() {
+		rd.saveReview(td.r1);
+		assertTrue(1 == rd.findAll().size());
 		rd.saveReview(td.r1);
 		assertTrue(1 == rd.findAll().size());
 	}
@@ -131,6 +133,14 @@ public class ReviewDAOTest {
 		
 		assertFalse(rd.updateReview(invalid));
 		assertFalse(rd.updateReview(invalid2));
+	}
+	
+	@Test
+	public void testUpdateTransOpen() {
+		Transaction tx = HibernateUtil.getSession().getTransaction();
+		tx.begin();
+		
+		assertFalse(rd.updateReview(td.r1));
 	}
 	
 	@Test

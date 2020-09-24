@@ -44,8 +44,6 @@ public class UserController {
 				return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
 			}
 			return ResponseEntity.status(HttpStatus.CREATED).body(user);
-		} catch (NonUniqueObjectException e) {
-			return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
 		} catch (Exception e) {
 			log.error("encountered an exception");
 			log.trace(e,e);
@@ -81,11 +79,10 @@ public class UserController {
 		} catch (Exception e) {
 			log.error("exception encountered");
 			log.trace(e,e);
-			e.printStackTrace();
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
-//	
+	
 //	@GetMapping("logout")
 //	@ResponseBody
 ////	public User logout() {
@@ -121,53 +118,6 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
 	
-	// can do favorites with updateuser actually
-//	@GetMapping("user/{username}/favorites")
-//	@ResponseBody
-//	public ResponseEntity<int[]> getFavorites(@PathVariable("username") String username) {
-//		int[] array = new int[1];
-//		array[0] = 1;
-//		if (hasFavorite) {
-//			return ResponseEntity.status(HttpStatus.OK).body(array);
-//		}
-//		hasFavorite = true;
-//		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-//	}
-//	
-//	@DeleteMapping("user/{username}/{id}")
-//	@ResponseBody
-//	public ResponseEntity<int[]> deleteFavorites(@PathVariable("username") String username, @PathVariable("id") Integer id) {
-//		System.out.println(username + "is here");
-//		User u = us.findByUsername(username);
-//		System.out.println(u);
-//		int[] array = new int[1];
-//		array[0] = 1;
-//		hasFavorite = false;
-//		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-//		
-//	}
 	
-	/*
-	// front end updates user all at once, might not need update method for each field
-	@PutMapping("user/update_first_name")
-	@ResponseBody
-	public String updateFirstName(@RequestBody User u) {
-		String nFN = us.updateFirstName(u, u.getFirstName());
-		return nFN;
-	}
-	@PutMapping("user/update_last_name")
-	@ResponseBody
-	public String updateLastName(@RequestBody User u) {
-		String nLN = us.updateLastName(u, u.getLastName());
-		return nLN;
-		
-	}
-	
-	@PutMapping("user/change_password")
-	@ResponseBody
-	public String updatePassword(@RequestBody User u) {
-		String nPw = us.updatePassword(u, u.getPassword());
-		return nPw;
-	}
-	*/
+
 }
