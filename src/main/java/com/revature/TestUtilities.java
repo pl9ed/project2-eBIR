@@ -80,18 +80,22 @@ public class TestUtilities {
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();
 		try {
-			Query query = s.createNativeQuery("DELETE FROM favorites CASCADE");
-			query.executeUpdate();
+			int n;
+			Query query = s.createNativeQuery("TRUNCATE " + System.getenv("project2_schema") + ".favorites CASCADE");
+			n = query.executeUpdate();
+			System.out.println("DELETE FAVORITES: " + n);
 			tx.commit();
 			
 			tx = s.beginTransaction();
 			query = s.createQuery("delete from Review cascade");
-			query.executeUpdate();
+			n = query.executeUpdate();
+			System.out.println("DELETE REVIEW: " + n);
 			tx.commit();
 			
 			tx = s.beginTransaction();
 			query = s.createQuery("delete from User cascade");
-			query.executeUpdate();
+			n = query.executeUpdate();
+			System.out.println("DELETE USER: " + n);
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
