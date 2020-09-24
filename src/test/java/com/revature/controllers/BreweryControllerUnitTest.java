@@ -42,7 +42,6 @@ public class BreweryControllerUnitTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		HibernateUtil.reconfigureSchema("public");
-
 	}
 
 	@AfterClass
