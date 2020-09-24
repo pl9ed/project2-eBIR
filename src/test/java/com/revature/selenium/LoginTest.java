@@ -15,6 +15,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 class LoginTest {
 	private static WebDriver driver;
+	
+	// in case we need to set env var
+	private static final String base_url = "http://52.205.93.132:8006/eBIRProject"; // = System.getenv("base_url");
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {

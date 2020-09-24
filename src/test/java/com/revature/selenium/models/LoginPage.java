@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage {
-	private static final String base_url = "http://52.205.93.132:8006/eBIRProject";
+	private static String base_url = "http://52.205.93.132:8006/eBIRProject/";
 	private WebDriver webdriver;
 	
 	private WebElement usernameInput;
@@ -14,7 +14,19 @@ public class LoginPage {
 	
 	public LoginPage(WebDriver wd) {
 		this.webdriver = wd;
-		wd.get(base_url);
+		this.navTo();
+	}
+	
+	// second constructor in case we do need to set env var
+	public LoginPage(WebDriver wd, String base_url) {
+		this.webdriver = wd;
+		LoginPage.base_url = base_url;
+		this.navTo();
+	}
+	
+	// just nav to base since it redirects to login page anyways
+	public void navTo() {
+		webdriver.get(base_url);
 	}
 
 }
