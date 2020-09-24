@@ -10,15 +10,19 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.revature.util.HibernateUtil;
+
 public class UserTest {
 	User u;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		HibernateUtil.reconfigureSchema("public");
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
 	}
 
 	@Before
