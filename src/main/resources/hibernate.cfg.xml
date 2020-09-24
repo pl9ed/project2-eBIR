@@ -5,22 +5,14 @@
 <hibernate-configuration>
 	<session-factory>
 
-		<!--  <property name="hibernate.connection.username">root</property> <property 
-			name="hibernate.connection.password">churknam</property> <property name="hibernate.connection.url">jdbc:postgresql://training.cyrobrynznqt.us-east-2.rds.amazonaws.com:5432/postgres</property> --> 
-
-		<!-- <property name="hibernate.connection.username">jwa200810</property> 
-			<property name="hibernate.connection.password">password</property> <property 
-			name="hibernate.connection.url">jdbc:postgresql://training.c91rkjn9djk0.us-east-2.rds.amazonaws.com/training</property> -->
-
-
 		<!-- check this if you can't connect to your DB or if HibernateUtil isn't 
 			working -->
 		
-		<!--  testing -->
+		<!--  testing 
 		<property name="hibernate.connection.url">jdbc:postgresql://nova-pl-revature.ctyzbcb7ljba.us-east-1.rds.amazonaws.com:5432/jwa200810</property>
 		<property name="hibernate.connection.username">postgres</property>
 		<property name="hibernate.connection.password">r3vaTURE</property>
-		<property name="hibernate.default_schema">public</property>
+		<property name="hibernate.default_schema">public</property> -->
 		
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 		<property name="hibernate.connection.pool_size">10</property>
@@ -32,7 +24,7 @@
 		This is now done in cfg in HibernateUtil
 		<property name="hibernate.default_schema">public</property>
 		 -->
-		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.hbm2ddl.auto">create</property>
 
 		<!-- Configuration for annotation based mapping -->
 		<mapping class="com.revature.models.User" />
