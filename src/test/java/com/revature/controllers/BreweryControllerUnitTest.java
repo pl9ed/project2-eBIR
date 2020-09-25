@@ -61,6 +61,7 @@ public class BreweryControllerUnitTest {
 
 	@After
 	public void tearDown() throws Exception {
+		TestUtilities.clearDB();
 	}
 	
 	@Test
