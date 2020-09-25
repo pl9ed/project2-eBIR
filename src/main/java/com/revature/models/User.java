@@ -175,5 +175,16 @@ public class User {
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
+	
+	public static User parseUser(User u) {
+		User ret = new User();
+		ret.email = u.email;
+		ret.favorites = u.favorites;
+		ret.firstName = u.firstName;
+		ret.lastName = u.lastName;
+		ret.password = u.password;
+		ret.username = u.password;
+		return ret;
+	}
 
 }

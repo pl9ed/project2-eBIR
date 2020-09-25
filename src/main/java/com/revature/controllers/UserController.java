@@ -36,7 +36,8 @@ public class UserController {
 	
 	@PostMapping("user/register")
 	@ResponseBody
-	public ResponseEntity<User> register(@RequestBody User u) {
+	public ResponseEntity<User> register(@RequestBody User input) {
+		User u = User.parseUser(input);
 		try {
 			u.setPasswordPlain(u.getPassword());
 			User user = us.register(u);
@@ -95,7 +96,8 @@ public class UserController {
 
 	@PostMapping("user")
 	@ResponseBody
-	public ResponseEntity<User> updateUser(@RequestBody User u) {
+	public ResponseEntity<User> updateUser(@RequestBody User input) {
+		User u = User.parseUser(input);
 		// update user, copy passhash directly
 		// u.password should be hashed 
 		if (us.updateUser(u)) {
@@ -106,7 +108,8 @@ public class UserController {
 	
 	@PutMapping("user")
 	@ResponseBody
-	public ResponseEntity<User> updateUserPass(@RequestBody User u) {
+	public ResponseEntity<User> updateUserPass(@RequestBody User input) {
+		User u = User.parseUser(input);
 		// Here, u.password should be plaintext
 		// Hash password before update
 		u.setPasswordPlain(u.getPassword());

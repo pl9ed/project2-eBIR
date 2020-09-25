@@ -54,4 +54,16 @@ public class Review {
 			this.reviewText = text;
 		}
 	}
+	
+	public static Review parseReview(Review r) {
+		Review ret = new Review();
+		ret.id = r.id;
+		ret.submitter = r.submitter;
+		ret.brewery = r.brewery;
+		ret.rating = r.rating;
+		ret.reviewText = r.reviewText;
+
+		return ret;
+		
+	}
 }

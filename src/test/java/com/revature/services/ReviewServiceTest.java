@@ -27,7 +27,7 @@ class ReviewServiceTest {
 	private IReviewDAO rd;
 	
 	@InjectMocks
-	private ReviewService rs;
+	private ReviewService rs = new ReviewService();;
 	
 	private Review invalid;
 
@@ -44,8 +44,7 @@ class ReviewServiceTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		td = new TestUtilities();
-		rs = new ReviewService();
-		
+
 		MockitoAnnotations.initMocks(this);
 		
 		// td.r1 doesn't exist
@@ -66,18 +65,21 @@ class ReviewServiceTest {
 
 	@Test
 	public void testInsertReview() {
-		assertEquals(td.r1, rs.insertReview(td.r1));
+		Review ret = rs.insertReview(td.r1);
+		assertEquals(td.r1, ret);
 	}
 	
 	@Test
 	public void testInsertReviewNull() {
-		assertTrue(null == rs.insertReview(null));
+		Review ret = rs.insertReview(null);
+		assertTrue(null == ret);
 	}
 	
 	@Test
 	public void testInsertReviewInvalid() {
 		invalid = new Review();
-		assertTrue(null == rs.insertReview(invalid));
+		Review ret = rs.insertReview(invalid);
+		assertTrue(null == ret);
 	}
 	
 	@Test
