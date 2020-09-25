@@ -21,7 +21,7 @@ import lombok.ToString;
 public class Review {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 	
 	// user who submitted review
