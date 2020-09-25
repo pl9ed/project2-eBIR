@@ -51,6 +51,11 @@ public class HibernateUtil {
 	
 	public static void reconfigureSchema(String s) {
 		cfg.setProperty("hibernate.default_schema", s);
+		try {
+			sf = cfg.buildSessionFactory();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 }
