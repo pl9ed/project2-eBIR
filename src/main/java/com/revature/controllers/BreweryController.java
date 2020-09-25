@@ -28,7 +28,6 @@ public class BreweryController {
 	@PostMapping("review")
 	@ResponseBody
 	public ResponseEntity<Review> addReview(@RequestBody Review review) {
-		System.out.println("addReview invoked");
 		if (review != null) {
 			if (dao.saveReview(review)) {
 				// return same review object for validation in front end
@@ -37,7 +36,7 @@ public class BreweryController {
 			}
 			
 			// problem with saving to DB
-			log.error("encountered an error with saving to database");
+			log.error("encountered an error with saving to database. Object: " + review);
 			return ResponseEntity.status(409).body(review);
 			
 		}

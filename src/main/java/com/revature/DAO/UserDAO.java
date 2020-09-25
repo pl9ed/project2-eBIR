@@ -81,7 +81,7 @@ public class UserDAO implements IUserDAO {
 			}
 		} catch (NonUniqueObjectException e) {
 			log.error(e,e);
-			System.out.println("Nonunique adding: " + u);
+			//System.out.println("Nonunique adding: " + u);
 		}catch (Exception e) {
 			log.error(e,e);
 			tx.rollback();

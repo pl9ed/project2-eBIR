@@ -8,14 +8,12 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.revature.DAO.ReviewDAO;
 import com.revature.DAO.UserDAO;
 import com.revature.models.Review;
 import com.revature.models.User;
-import com.revature.services.UserService;
 import com.revature.util.HibernateUtil;
 
 @Repository

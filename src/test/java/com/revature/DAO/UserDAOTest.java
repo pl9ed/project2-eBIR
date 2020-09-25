@@ -91,9 +91,6 @@ public class UserDAOTest {
 		ud.saveUser(td.u1);
 		ud.deleteUser(td.u2);
 		List<User> all = ud.findAll();
-		for (User u : all) {
-			System.out.println(u);
-		}
 		assertTrue(all.size() == 1);
 	}
 	
@@ -133,11 +130,6 @@ public class UserDAOTest {
 		}
 		
 		List<User> all = ud.findAll();
-		
-		for (User u : all) {
-			System.out.println(u);
-		}
-		
 		assertTrue(n == all.size());
 	}
 	

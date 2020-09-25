@@ -106,10 +106,7 @@ public class ReviewDAOTest {
 		String newText = "updated";
 		temp.setReviewText(newText);
 		assertTrue(rd.updateReview(temp));
-		System.out.println("updateReview returned true");
 		Review r = rd.find(td.r1.getId());
-		System.out.println("From DB: " + r.getReviewText());
-		System.out.println("Original: " + newText);
 		assertEquals(newText, r.getReviewText());
 	}
 	
