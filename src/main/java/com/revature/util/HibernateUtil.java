@@ -9,6 +9,7 @@ public class HibernateUtil {
 	private static Session session;
 	private static SessionFactory sf;
 	private static Configuration cfg;
+	private static String currentSchema;
 	
 	
 	// check this if you can't connect to your DB or if HibernateUtil isn't working
@@ -25,6 +26,7 @@ public class HibernateUtil {
 		cfg.setProperty("hibernate.connection.password", System.getenv("postgres_pw"));
 		cfg.setProperty("hibernate.connection.username", System.getenv("postgres_username"));
 		cfg.setProperty("hibernate.default_schema", System.getenv("project2_schema"));
+		currentSchema = System.getenv("project2_schema");
 
 		try {
 			sf = cfg.buildSessionFactory();
@@ -51,11 +53,15 @@ public class HibernateUtil {
 	
 	public static void reconfigureSchema(String s) {
 		cfg.setProperty("hibernate.default_schema", s);
+		currentSchema = s;
 		try {
 			sf = cfg.buildSessionFactory();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+	}
+	
+	public static String getCurrentSchema() {
+		return currentSchema;
 	}
 }

@@ -71,7 +71,7 @@ public class TestUtilities {
 		tx.begin();
 		try {
 			int n;
-			Query query = s.createNativeQuery("TRUNCATE " + System.getenv("project2_schema") + ".favorites CASCADE");
+			Query query = s.createNativeQuery("TRUNCATE " + HibernateUtil.getCurrentSchema() + ".favorites CASCADE");
 			n = query.executeUpdate();
 //			System.out.println("DELETE FAVORITES: " + n);
 			tx.commit();
