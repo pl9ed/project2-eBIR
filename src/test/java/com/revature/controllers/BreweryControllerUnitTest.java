@@ -61,6 +61,7 @@ public class BreweryControllerUnitTest {
 
 	@After
 	public void tearDown() throws Exception {
+		TestUtilities.clearDB();
 	}
 	
 	@Test
@@ -133,7 +134,7 @@ public class BreweryControllerUnitTest {
 			.get("/brewery/" + id + "/reviews")
 		.then()
 			.log().ifValidationFails()
-			.statusCode(201);
+			.statusCode(200);
 //			.body(arguments, responseAwareMatcher)
 	}
 	

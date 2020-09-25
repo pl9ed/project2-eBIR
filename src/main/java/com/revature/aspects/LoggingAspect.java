@@ -24,4 +24,12 @@ public class LoggingAspect {
 		log.info(jp.getSignature() + " RETURNED: " + ret);
 	}
 	
+	@Before("within(com.revature.controllers.*)")
+	public void logControllers(JoinPoint jp) {
+		log.info(jp.getTarget() + " INVOKED " + jp.getSignature() + " | PARAMS: ");
+		for (Object o : jp.getArgs()) {
+			log.info(o);
+		}
+ 	}
+	
 }
