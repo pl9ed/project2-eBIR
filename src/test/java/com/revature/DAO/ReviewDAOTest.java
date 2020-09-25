@@ -150,6 +150,9 @@ public class ReviewDAOTest {
 		rd.saveReview(td.r2);
 		Set<Review> all = rd.findAll();
 		assertTrue(2 == all.size());
+		System.out.println(all);
+		System.out.println(td.r1);
+		System.out.println(td.r2);
 		assertTrue(all.contains(td.r1) && all.contains(td.r2));
 	}
 	

@@ -22,8 +22,9 @@ import lombok.ToString;
 public class Review {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reviews_seq_gen")
-	@SequenceGenerator(name = "reviews_seq_gen", sequenceName = "reviews_id_seq")
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reviews_seq_gen")
+//	@SequenceGenerator(name = "reviews_seq_gen", sequenceName = "reviews_id_seq")
+	@GeneratedValue
 	private int id;
 	
 	// user who submitted review
@@ -66,6 +67,5 @@ public class Review {
 		ret.reviewText = r.reviewText.replace(";", ",");
 
 		return ret;
-		
 	}
 }
