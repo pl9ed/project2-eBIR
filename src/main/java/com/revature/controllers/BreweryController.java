@@ -36,7 +36,7 @@ public class BreweryController {
 			}
 			
 			// problem with saving to DB
-			log.error("encountered an error with saving to database");
+			log.error("encountered an error with saving to database. Object: " + review);
 			return ResponseEntity.status(409).body(review);
 			
 		}
