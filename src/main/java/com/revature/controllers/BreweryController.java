@@ -27,8 +27,7 @@ public class BreweryController {
 	
 	@PostMapping("review")
 	@ResponseBody
-	public ResponseEntity<Review> addReview(@RequestBody Review input) {
-		Review review = Review.parseReview(input);
+	public ResponseEntity<Review> addReview(@RequestBody Review review) {
 		if (review != null) {
 			if (dao.saveReview(review)) {
 				// return same review object for validation in front end
