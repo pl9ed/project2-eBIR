@@ -183,7 +183,7 @@ public class User {
 		ret.firstName = u.firstName;
 		ret.lastName = u.lastName;
 		ret.password = u.password;
-		ret.username = u.password;
+		ret.username = u.username;
 		return ret;
 	}
 
