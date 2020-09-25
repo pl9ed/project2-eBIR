@@ -17,6 +17,7 @@ import org.mockito.MockitoAnnotations;
 import com.revature.TestUtilities;
 import com.revature.DAO.IReviewDAO;
 import com.revature.models.Review;
+import com.revature.util.HibernateUtil;
 
 class ReviewServiceTest {
 	
@@ -32,10 +33,12 @@ class ReviewServiceTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
+		HibernateUtil.reconfigureSchema("public");
 	}
 
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
+		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
 	}
 
 	@BeforeEach

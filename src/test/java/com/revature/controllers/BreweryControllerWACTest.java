@@ -33,12 +33,14 @@ public class BreweryControllerWACTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		HibernateUtil.reconfigureSchema("public");
 		TestUtilities.clearDB();
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		HibernateUtil.closeSession();
+		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
 	}
 
 	@Before

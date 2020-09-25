@@ -22,6 +22,7 @@ import com.revature.TestUtilities;
 import com.revature.exceptions.ResourceNotFoundException;
 import com.revature.models.User;
 import com.revature.services.UserService;
+import com.revature.util.HibernateUtil;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 
@@ -38,10 +39,12 @@ public class UserControllerUnitTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		HibernateUtil.reconfigureSchema("public");
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
 	}
 
 	@Before

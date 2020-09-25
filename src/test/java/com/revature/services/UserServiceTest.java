@@ -20,6 +20,7 @@ import com.revature.TestUtilities;
 import com.revature.DAO.IUserDAO;
 import com.revature.exceptions.ResourceNotFoundException;
 import com.revature.models.User;
+import com.revature.util.HibernateUtil;
 
 public class UserServiceTest {
 	
@@ -34,10 +35,12 @@ public class UserServiceTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		HibernateUtil.reconfigureSchema("public");
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
 	}
 
 	@Before

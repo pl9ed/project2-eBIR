@@ -1,7 +1,6 @@
 package com.revature.selenium;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
 
@@ -9,51 +8,57 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import java.io.File;
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.revature.pages.LoginPage;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-class LoginTest {
-
-	private LoginPage page;
+public class LoginTest {
 	private static WebDriver driver;
 	
+	// in case we need to set env var
+	private static final String base_url = "http://52.205.93.132:8006/eBIRProject"; // = System.getenv("base_url");
+	
+	private LoginPage page;
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		File file = new File("src/test/resources/chromedriver.exe");
-		System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
+		String os = System.getProperty("os.name").toLowerCase();
+		
+		// use windows
+		if (os.contains("win")) {
+			File f = new File("src/test/resources/chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
+			System.out.println("Using Windows Driver");
+			
+		// use linux
+		} else {
+			File f = new File("src/test/resources/chromedriver");
+			System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
+		}
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		driver.quit();
 	}
 
 	@Before
 	public void setUp() throws Exception {
-		this.page = new LoginPage(driver);
-		this.page.navigateTo();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		this.page = null;
 	}
 
 	@Test
-	void testLoginHeader() {
-		assertEquals(this.page.getHeader(), "Login");
-	}
-	
-	@Test
-	void testSuccessfulLogin() {
+	public void testSuccessfulLogin() {
 		this.page.setUsername("jandrew");
 		this.page.setPassword("qwerty");
 		this.page.submit();
@@ -61,7 +66,7 @@ class LoginTest {
 	}
 	
 	@Test
-	void testFailedLogin() {
+	public void testFailedLogin() {
 		this.page.setUsername("jandrew");
 		this.page.setPassword("notqwerty");
 		this.page.submit();
@@ -70,5 +75,4 @@ class LoginTest {
 			
 		}
 	}
-
 }

@@ -22,6 +22,7 @@ import com.revature.TestUtilities;
 import com.revature.DAO.IReviewDAO;
 import com.revature.DAO.IUserDAO;
 import com.revature.models.Review;
+import com.revature.util.HibernateUtil;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 
@@ -40,10 +41,12 @@ public class BreweryControllerUnitTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		HibernateUtil.reconfigureSchema("public");
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
 	}
 
 	@Before
