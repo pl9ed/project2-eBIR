@@ -130,11 +130,6 @@ public class UserDAOTest {
 		}
 		
 		List<User> all = ud.findAll();
-		
-		for (User u : all) {
-			System.out.println(u);
-		}
-		
 		assertTrue(n == all.size());
 	}
 	

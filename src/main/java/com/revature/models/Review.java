@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -21,7 +22,8 @@ import lombok.ToString;
 public class Review {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reviews_seq_gen")
+	@SequenceGenerator(name = "reviews_seq_gen", sequenceName = "reviews_id_seq")
 	private int id;
 	
 	// user who submitted review
