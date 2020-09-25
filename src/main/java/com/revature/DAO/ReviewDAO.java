@@ -72,6 +72,7 @@ public class ReviewDAO implements IReviewDAO {
 //			return false;
 //		}
 		s = HibernateUtil.getSession();
+		//s.clear();
 		Transaction t = s.beginTransaction();
 
 		try {
@@ -101,6 +102,7 @@ public class ReviewDAO implements IReviewDAO {
 		}
 		try {
 			Session s = HibernateUtil.getSession();
+			//s.clear();
 			Transaction tx = s.beginTransaction();
 
 			Review ret = (Review) s.merge(review);
@@ -123,6 +125,7 @@ public class ReviewDAO implements IReviewDAO {
 			return false;
 		}
 		s = HibernateUtil.getSession();
+		//s.clear();
 		Transaction tx = s.beginTransaction();
 		try {
 			s.delete(review);

@@ -54,9 +54,7 @@ public class TestUtilities {
 		u2f.add(2);
 		u2.setFavorites(u2f);
 		
-		r1.setId(1);
 		r1.setBrewery(1); r1.setSubmitter(u1); r1.setReviewText("r1");
-		r2.setId(2);
 		r2.setBrewery(2); r2.setSubmitter(u2); r2.setReviewText("r2");
 	}
 
