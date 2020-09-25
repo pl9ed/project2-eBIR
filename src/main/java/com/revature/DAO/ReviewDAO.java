@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.OptimisticLockException;
+
 import org.apache.log4j.Logger;
 import org.hibernate.NonUniqueObjectException;
 import org.hibernate.Session;
@@ -124,11 +126,14 @@ public class ReviewDAO implements IReviewDAO {
 		Transaction tx = s.beginTransaction();
 		try {
 			s.delete(review);
+			tx.commit();
+		} catch (OptimisticLockException e) {
+			// this exception gets thrown when we try to delete a nonexistent entity
+			// can just ignore
 		} catch (Exception e) {
 			log.trace(e, e);
+			return false;
 		}
-
-		tx.commit();
 		return true;
 	}
 
