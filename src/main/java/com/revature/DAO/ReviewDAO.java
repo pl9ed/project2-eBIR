@@ -2,6 +2,7 @@ package com.revature.DAO;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,8 +30,8 @@ public class ReviewDAO implements IReviewDAO {
 	}
 
 	@Override
-	public Set<Review> findAll() {
-		return new HashSet<Review>(s.createQuery("FROM Review r", Review.class).getResultList());
+	public List<Review> findAll() {
+		return s.createQuery("FROM Review r", Review.class).getResultList();
 	}
 
 	@Override
@@ -72,13 +73,13 @@ public class ReviewDAO implements IReviewDAO {
 //			return false;
 //		}
 		s = HibernateUtil.getSession();
-		//s.clear();
+		s.clear();
 		Transaction t = s.beginTransaction();
 
 		try {
-			Serializable ret = s.save(review);
+			s.save(review);
 			t.commit();
-			return (ret.equals(review.getId()));
+			return true;
 		} catch (NonUniqueObjectException e) {
 			log.trace(e, e);
 			//System.out.println("Nonunique adding: " + review);

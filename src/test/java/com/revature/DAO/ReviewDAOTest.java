@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Transaction;
@@ -59,14 +61,6 @@ public class ReviewDAOTest {
 	@Test
 	public void testSaveReview() {   
 	    assertTrue(rd.saveReview(td.r1));
-	}
-	
-	@Test
-	public void testSaveDuplicate() {
-		rd.saveReview(td.r1);
-		assertTrue(1 == rd.findAll().size());
-		rd.saveReview(td.r1);
-		assertTrue(1 == rd.findAll().size());
 	}
 
 	@Test
@@ -148,12 +142,17 @@ public class ReviewDAOTest {
 		assertTrue(1 == rd.findAll().size());
 		
 		rd.saveReview(td.r2);
-		Set<Review> all = rd.findAll();
+		// this works
+//		List<Review> all = new ArrayList<>(rd.findAll());
+		// this doesn't work???????
+		// Set<Review all = rd.findAll();
+		List<Review> all = rd.findAll();
 		assertTrue(2 == all.size());
 		System.out.println(all);
 		System.out.println(td.r1);
 		System.out.println(td.r2);
-		assertTrue(all.contains(td.r1) && all.contains(td.r2));
+		assertTrue(all.contains(td.r1));
+		assertTrue(all.contains(td.r2));
 	}
 	
 	@Test
