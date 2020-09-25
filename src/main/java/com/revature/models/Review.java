@@ -2,6 +2,8 @@ package com.revature.models;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,6 +21,7 @@ import lombok.ToString;
 public class Review {
 	
 	@Id
+	@GeneratedValue
 	private int id;
 	
 	// user who submitted review
@@ -33,8 +36,7 @@ public class Review {
 	private int brewery;
 	
 	private int rating;
-	
-	private String reviewText = "";
+	private String reviewText;
 	
 	public Review() {
 		super();
