@@ -178,12 +178,12 @@ public class User {
 	
 	public static User parseUser(User u) {
 		User ret = new User();
-		ret.email = u.email;
+		ret.email = u.email.replace(";", "");
 		ret.favorites = u.favorites;
-		ret.firstName = u.firstName;
-		ret.lastName = u.lastName;
-		ret.password = u.password;
-		ret.username = u.username;
+		ret.firstName = u.firstName.replace(";", "");
+		ret.lastName = u.lastName.replace(";", "");
+		ret.password = u.password.replace(";", "");
+		ret.username = u.username.replace(";", "");
 		return ret;
 	}
 

@@ -58,10 +58,10 @@ public class Review {
 	public static Review parseReview(Review r) {
 		Review ret = new Review();
 		ret.id = r.id;
-		ret.submitter = r.submitter;
+		ret.submitter = User.parseUser(r.submitter);
 		ret.brewery = r.brewery;
 		ret.rating = r.rating;
-		ret.reviewText = r.reviewText;
+		ret.reviewText = r.reviewText.replace(";", ",");
 
 		return ret;
 		
