@@ -26,11 +26,23 @@ class UpdateTest {
 
 	@BeforeAll
 	static void beforeClass() {
-		//log in as b:b
-		File file = new File("src/test/resources/chromedriver.exe");
-		System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
-		driver = new ChromeDriver();
+		String os = System.getProperty("os.name").toLowerCase();
 		
+		// use windows
+		if (os.contains("win")) {
+			File f = new File("src/test/resources/chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
+			System.out.println("Using Windows Driver");
+			
+		// use linux
+		} else {
+			File f = new File("src/test/resources/chromedriver");
+			System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
+		}
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		
+		//log in as b:b
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get("http://52.205.93.132:8006/eBIRProject/#/login");
 		

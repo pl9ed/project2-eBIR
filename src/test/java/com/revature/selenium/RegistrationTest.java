@@ -1,6 +1,6 @@
 package com.revature.selenium;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -16,9 +16,26 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 class RegistrationTest {
+	
+	private static WebDriver driver;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
+		String os = System.getProperty("os.name").toLowerCase();
+		
+		// use windows
+		if (os.contains("win")) {
+			File f = new File("src/test/resources/chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
+			System.out.println("Using Windows Driver");
+			
+		// use linux
+		} else {
+			File f = new File("src/test/resources/chromedriver");
+			System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
+		}
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 
 	@AfterAll
@@ -35,11 +52,8 @@ class RegistrationTest {
 
 	@Test
 	void registerTest() {
-		File file = new File("src/test/resources/chromedriver.exe");
-		System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
-	
-		//registering a new user with Hot wheels as username and password
-		WebDriver driver = new ChromeDriver();
+		
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get("http://52.205.93.132:8006/eBIRProject/#/login");
 		WebElement toRegisterBtn = driver.findElement(By.name("toRegister"));
 		toRegisterBtn.click();
@@ -60,7 +74,14 @@ class RegistrationTest {
 		
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
 		WebElement registerBtn = driver.findElement(By.id("register"));
+		
+		boolean test = registerBtn.isEnabled();
+		assertEquals(test,true);
 		registerBtn.click(); 
+		
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
+		String url = driver.getCurrentUrl();
+		assertEquals("http://52.205.93.132:8006/eBIRProject/#/home",url);
 	}
 
 }
