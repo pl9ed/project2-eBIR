@@ -15,6 +15,8 @@ import org.springframework.stereotype.Component;
 
 import com.sun.istack.NotNull;
 
+import lombok.EqualsAndHashCode;
+
 @Component
 @Entity
 @Table(name="Users")
@@ -112,6 +114,21 @@ public class User {
 				+ lastName + ", email=" + email + ", favorites=" + favorites + "]";
 	}
 
+	
+	
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+//		result = prime * result + ((email == null) ? 0 : email.hashCode());
+//		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+//		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -163,19 +180,6 @@ public class User {
 		return true;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((favorites == null) ? 0 : favorites.hashCode());
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
-		return result;
-	}
-	
 	public static User parseUser(User u) {
 		User ret = new User();
 		ret.email = u.email.replace(";", "");

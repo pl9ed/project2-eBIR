@@ -142,15 +142,9 @@ public class ReviewDAOTest {
 		assertTrue(1 == rd.findAll().size());
 		
 		rd.saveReview(td.r2);
-		// this works
-//		List<Review> all = new ArrayList<>(rd.findAll());
-		// this doesn't work???????
-		// Set<Review all = rd.findAll();
-		List<Review> all = rd.findAll();
+		Set<Review> all = rd.findAll();
+		//List<Review> all = rd.findAll();
 		assertTrue(2 == all.size());
-		System.out.println(all);
-		System.out.println(td.r1);
-		System.out.println(td.r2);
 		assertTrue(all.contains(td.r1));
 		assertTrue(all.contains(td.r2));
 	}

@@ -8,7 +8,7 @@ import com.revature.models.User;
 
 public interface IReviewDAO {
 
-	public List<Review> findAll();
+	public Set<Review> findAll();
 	public Set<Review> findByBrewery(int id);
 	public Set<Review> findByUser(String username);
 	public Set<Review> findByUser(User u);

@@ -30,8 +30,8 @@ public class ReviewDAO implements IReviewDAO {
 	}
 
 	@Override
-	public List<Review> findAll() {
-		return s.createQuery("FROM Review r", Review.class).getResultList();
+	public Set<Review> findAll() {
+		return s.createQuery("FROM Review r", Review.class).getResultStream().collect(Collectors.toSet()); //.getResultList();
 	}
 
 	@Override
