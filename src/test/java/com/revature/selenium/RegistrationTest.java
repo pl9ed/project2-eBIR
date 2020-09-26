@@ -15,6 +15,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 class RegistrationTest {
 	
@@ -35,7 +37,6 @@ class RegistrationTest {
 			File f = new File("src/test/resources/chromedriver");
 			System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
 		}
-		
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless", "--disable-gpu", "--disable-extensions");
 		driver = new ChromeDriver(options);
@@ -58,7 +59,7 @@ class RegistrationTest {
 	void registerTestPass() {
 		
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.get("http://52.205.93.132:8006/eBIRProject/#/login");
+		driver.get("http://localhost:4200/eBIRProject/#/login");
 		WebElement toRegisterBtn = driver.findElement(By.name("toRegister"));
 		toRegisterBtn.click();
 		
@@ -84,15 +85,19 @@ class RegistrationTest {
 		registerBtn.click(); 
 		
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
+		
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"homeDiv\"]")));
+		
 		String url = driver.getCurrentUrl();
-		assertEquals("http://52.205.93.132:8006/eBIRProject/#/home",url);
+		assertEquals("http://localhost:4200/eBIRProject#/home",url);
 	}
 	
 	@Test
 	void registerTestNoUsername() {
 		//fail if user does not include username
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.get("http://52.205.93.132:8006/eBIRProject/#/login");
+		driver.get("http://localhost:4200/eBIRProject/#/login");
 		WebElement toRegisterBtn = driver.findElement(By.name("toRegister"));
 		toRegisterBtn.click();
 		
@@ -118,7 +123,7 @@ class RegistrationTest {
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
 		String url = driver.getCurrentUrl();
 		//if register fails, user will still be in the register page
-		assertEquals("http://52.205.93.132:8006/eBIRProject/#/register",url);
+		assertEquals("http://localhost:4200/eBIRProject#/register", url);
 	}
 
 }

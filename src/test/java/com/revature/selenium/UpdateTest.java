@@ -41,9 +41,9 @@ class UpdateTest {
 			File f = new File("src/test/resources/chromedriver");
 			System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
 		}
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--headless", "--disable-gpu", "--disable-extensions");
-		driver = new ChromeDriver(options);
+/*		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--headless", "--disable-gpu", "--disable-extensions"); */
+		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		
 		//log in as b:b
@@ -52,8 +52,8 @@ class UpdateTest {
 		
 		WebElement username = driver.findElement(By.id("username"));
 		WebElement password = driver.findElement(By.id("password"));
-		username.sendKeys("b");
-		password.sendKeys("b");
+		username.sendKeys("Hot");
+		password.sendKeys("Wheels");
 	
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
 		WebElement loginBtn = driver.findElement(By.name("login"));
@@ -91,25 +91,29 @@ class UpdateTest {
 	
 	@Ignore
 	void updateFirstName(String value) {
-		WebElement firstname = driver.findElement(By.id("uFirstname"));	
+		WebElement firstname = driver.findElement(By.id("uFirstname"));
+		firstname.clear();
 		firstname.sendKeys(value);
 	}
 	
 	@Ignore
 	void updateLastName(String value) {
 		WebElement lastname = driver.findElement(By.id("uLastname"));
+		lastname.clear();
 		lastname.sendKeys(value);
 	}
 	
 	@Ignore
 	void updatePassword(String value) {
 		WebElement password = driver.findElement(By.id("uPassword"));
+		password.clear();
 		password.sendKeys(value);
 	}
 	
 	@Ignore
 	void updateEmail(String value) {
 		WebElement email = driver.findElement(By.id("uEmail"));
+		email.clear();
 		email.sendKeys(value);
 	}
 	
@@ -124,7 +128,10 @@ class UpdateTest {
 		WebElement updateBtn = driver.findElement(By.id("updatBtn"));
 		updateBtn.click(); //button doesn't work, do I need to use pageFactory???
 		
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		
+		driver.switchTo().alert().accept();
+		
 		String fullname = driver.findElement(By.id("fullname")).getText();
 		String email = driver.findElement(By.id("email")).getText();
 		
@@ -148,6 +155,9 @@ class UpdateTest {
 		updateBtn.click(); //button doesn't work, do I need to use pageFactory???
 		
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
+		
+		driver.switchTo().alert().accept();
+		
 		String fullname = driver.findElement(By.id("fullname")).getText();
 		String email = driver.findElement(By.id("email")).getText();
 		
