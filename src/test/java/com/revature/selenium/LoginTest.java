@@ -70,6 +70,9 @@ public class LoginTest {
 		password.sendKeys("Wheels");
 		loginBtn.click();
 		
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"homeDiv\"]")));
+		
 		assertEquals(base_url + "home", driver.getCurrentUrl());
 	}
 	
