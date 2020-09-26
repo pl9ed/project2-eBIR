@@ -9,7 +9,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.revature.pages.LoginPage;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class LoginTest {
 	private static WebDriver driver;
@@ -41,8 +41,12 @@ public class LoginTest {
 			File f = new File("src/test/resources/chromedriver");
 			System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
 		}
-		driver = new ChromeDriver();
+		
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--headless", "--disable-gpu", "--disable-extensions");
+		driver = new ChromeDriver(options);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
 	}
 
 	@AfterClass
@@ -51,12 +55,21 @@ public class LoginTest {
 
 	@Before
 	public void setUp() throws Exception {
+		this.page = new LoginPage(driver);
+		this.page.navigateTo();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		this.page = null;
 	}
-
+	
+	@Test
+	public void testDriver() {
+		driver.get(base_url);
+	}
+	
+	/*
 	@Test
 	public void testSuccessfulLogin() {
 		this.page.setUsername("jandrew");
@@ -74,5 +87,5 @@ public class LoginTest {
 		if(wait.until(ExpectedConditions.alertIsPresent()) == null) {
 			
 		}
-	}
+	} */
 }
