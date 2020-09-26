@@ -51,7 +51,7 @@ class RegistrationTest {
 	}
 
 	@Test
-	void registerTest() {
+	void registerTestPass() {
 		
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get("http://52.205.93.132:8006/eBIRProject/#/login");
@@ -82,6 +82,39 @@ class RegistrationTest {
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
 		String url = driver.getCurrentUrl();
 		assertEquals("http://52.205.93.132:8006/eBIRProject/#/home",url);
+	}
+	
+	@Test
+	void registerTestNoUsername() {
+		//fail if user does not include username
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.get("http://52.205.93.132:8006/eBIRProject/#/login");
+		WebElement toRegisterBtn = driver.findElement(By.name("toRegister"));
+		toRegisterBtn.click();
+		
+		WebElement password = driver.findElement(By.id("password"));
+		WebElement passwordConfirm = driver.findElement(By.id("confirmpassword"));
+		WebElement firstname = driver.findElement(By.id("firstname"));
+		WebElement lastname = driver.findElement(By.id("lastname"));
+		WebElement email = driver.findElement(By.id("email"));
+		
+		password.sendKeys("Wheels");
+		passwordConfirm.sendKeys("Wheels");
+		firstname.sendKeys("Mario");
+		lastname.sendKeys("Mario");
+		email.sendKeys("nintendo@gmail.com");
+		
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
+		WebElement registerBtn = driver.findElement(By.id("register"));
+		
+		boolean test = registerBtn.isEnabled();
+		assertEquals(test,true);
+		registerBtn.click(); 
+		
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
+		String url = driver.getCurrentUrl();
+		//if register fails, user will still be in the register page
+		assertEquals("http://52.205.93.132:8006/eBIRProject/#/register",url);
 	}
 
 }

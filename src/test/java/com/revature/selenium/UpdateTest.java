@@ -1,6 +1,7 @@
 package com.revature.selenium;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -122,8 +123,35 @@ class UpdateTest {
 		
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
 		String fullname = driver.findElement(By.id("fullname")).getText();
-
+		String email = driver.findElement(By.id("email")).getText();
+		
 		assertEquals(newFirstName+" "+newLastName, fullname);
+		assertEquals(newEmail,email);
+		//need to check password 
+	}
+	
+	@Test
+	void updateAllFieldsButFirstName() {
+		String ln = "Killi";
+		String em = "Kk@gmail.com";
+		String ps = "LOTR";
+		
+		updateEmail(em);
+		updateLastName(ln);
+		updatePassword(ps);
+		
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
+		WebElement updateBtn = driver.findElement(By.id("updatBtn"));
+		updateBtn.click(); //button doesn't work, do I need to use pageFactory???
+		
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
+		String fullname = driver.findElement(By.id("fullname")).getText();
+		String email = driver.findElement(By.id("email")).getText();
+		
+		assertTrue(fullname.contains(ln));
+		assertEquals(em,email);
+		//need to check password change
+		
 	}
 
 }
