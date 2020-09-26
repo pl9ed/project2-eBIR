@@ -18,7 +18,7 @@ private WebDriver driver;
 	public LoginPage(WebDriver driver) {
 		super();
 		this.driver= driver;
-		WebElement appLogin = driver.findElement(By.xpath("//div[@class=\"loginDiv\"]"));
+		//WebElement appLogin = driver.findElement(By.xpath("//div[@class=\"loginDiv\"]"));
 		this.header = driver.findElement(By.tagName("h1"));
 		this.usernameField = driver.findElement(By.id("username"));
 		this.passwordField = driver.findElement(By.id("password"));

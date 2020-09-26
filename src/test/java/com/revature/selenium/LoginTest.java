@@ -63,13 +63,8 @@ public class LoginTest {
 	public void tearDown() throws Exception {
 		this.page = null;
 	}
-	
-	@Test
-	public void testDriver() {
-		driver.get(base_url);
-	}
-	
-	/*
+
+
 	@Test
 	public void testSuccessfulLogin() {
 		this.page.setUsername("jandrew");
@@ -87,5 +82,5 @@ public class LoginTest {
 		if(wait.until(ExpectedConditions.alertIsPresent()) == null) {
 			
 		}
-	} */
+	} 
 }

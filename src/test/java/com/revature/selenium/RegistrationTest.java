@@ -14,6 +14,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 class RegistrationTest {
 	
@@ -34,7 +35,10 @@ class RegistrationTest {
 			File f = new File("src/test/resources/chromedriver");
 			System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
 		}
-		driver = new ChromeDriver();
+		
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--headless", "--disable-gpu", "--disable-extensions");
+		driver = new ChromeDriver(options);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 
