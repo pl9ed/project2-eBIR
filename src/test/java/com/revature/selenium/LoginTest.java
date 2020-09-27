@@ -71,7 +71,6 @@ public class LoginTest {
 	public void tearDown() throws Exception {
 		System.out.println("After");
 		TestUtilities.clearDB();
-		
 		try {
 			driver.switchTo().alert().accept();
 
@@ -86,7 +85,7 @@ public class LoginTest {
 			pass.clear();
 			pass.sendKeys("");
 		}
-		
+	
 	}
 
 	@Test
