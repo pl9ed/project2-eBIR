@@ -32,7 +32,9 @@ public class LoginTest {
 	private static ChromeOptions options;
 	
 	private static UserDAO ud;
-	private static User u = new User();
+	private static User u;
+	private static final String user = "LOGINTEST";
+	private static final String pass = "Wheels";
 	
 	// in case we need to set env var
 	private static final String base_url = System.getenv("base_url"); // = System.getenv("base_url");
@@ -72,8 +74,8 @@ public class LoginTest {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		wait = new WebDriverWait(driver, 2);
 		ud = new UserDAO();
-		u.setUsername("LOGINTESTUSER");
-		u.setPasswordPlain("Wheels");
+		u.setUsername(user);
+		u.setPasswordPlain(pass);
 		ud.saveUser(u);
 		
 		driver.get(base_url + "login");
@@ -94,8 +96,8 @@ public class LoginTest {
 		WebElement password = driver.findElement(By.id("password"));
 		WebElement loginBtn = driver.findElement(By.name("login"));
 		
-		username.sendKeys("LOGINTESTUSER");
-		password.sendKeys("Wheels");
+		username.sendKeys(user);
+		password.sendKeys(pass);
 		loginBtn.click();
 		
 		wait.until(driver -> driver.findElement(By.id("logout_btn")));
@@ -110,7 +112,7 @@ public class LoginTest {
 		WebElement loginBtn = driver.findElement(By.name("login"));
 		
 		username.sendKeys("NotHot");
-		password.sendKeys("Wheels");
+		password.sendKeys(pass);
 		loginBtn.click();
 		
 		wait.until(ExpectedConditions.alertIsPresent());
@@ -131,7 +133,7 @@ public class LoginTest {
 		WebElement password = driver.findElement(By.id("password"));
 		WebElement loginBtn = driver.findElement(By.name("login"));
 		
-		username.sendKeys("LOGINTESTUSER");
+		username.sendKeys(user);
 		password.sendKeys("NotWheels");
 		loginBtn.click();
 		
