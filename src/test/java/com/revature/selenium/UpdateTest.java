@@ -25,6 +25,8 @@ class UpdateTest {
 	private static String newLastName;
 	private static String newPassword;
 	private static String newEmail;
+	
+	private static final String base_url = System.getenv("base_url"); // Structure example: http://localhost:4200/eBIRProject#/
 
 	@BeforeAll
 	static void beforeClass() {
@@ -48,7 +50,7 @@ class UpdateTest {
 		
 		//log in as b:b
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.get("http://52.205.93.132:8006/eBIRProject/#/login");
+		driver.get(base_url + "login");
 		
 		WebElement username = driver.findElement(By.id("username"));
 		WebElement password = driver.findElement(By.id("password"));
@@ -130,6 +132,13 @@ class UpdateTest {
 		
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		driver.switchTo().alert().accept();
 		
 		String fullname = driver.findElement(By.id("fullname")).getText();
@@ -155,6 +164,13 @@ class UpdateTest {
 		updateBtn.click(); //button doesn't work, do I need to use pageFactory???
 		
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		driver.switchTo().alert().accept();
 		
