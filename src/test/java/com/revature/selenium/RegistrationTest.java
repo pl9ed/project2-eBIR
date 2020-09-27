@@ -19,6 +19,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.revature.TestUtilities;
+import com.revature.util.HibernateUtil;
 
 public class RegistrationTest {
 	
@@ -59,6 +60,8 @@ public class RegistrationTest {
 
 	@After
 	public void tearDown() throws Exception {
+		TestUtilities.clearDB();
+		HibernateUtil.closeSession();
 	}
 
 	@Test
@@ -89,7 +92,7 @@ public class RegistrationTest {
 		registerBtn.click(); 
 		
 		WebDriverWait wait = new WebDriverWait(driver,5);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"homeDiv\"]")));
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("logout_btn"))));
 		
 		String url = driver.getCurrentUrl();
 		assertEquals(base_url + "home",url);
