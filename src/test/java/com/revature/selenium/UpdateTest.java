@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -254,7 +253,6 @@ public class UpdateTest {
 		driver.switchTo().alert().accept();
 		
 		String fullname = driver.findElement(By.id("fullname")).getText();
-		String email = driver.findElement(By.id("email")).getText();
 		
 		assertTrue(fullname.contains(fn));
 		//need to check password change

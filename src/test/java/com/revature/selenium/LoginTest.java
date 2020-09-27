@@ -67,7 +67,11 @@ public class LoginTest {
 		u.setUsername("Hot");
 		u.setPasswordPlain("Wheels");
 		ud.saveUser(u);
+<<<<<<< HEAD
 		System.out.println(ud.findUser("Hot"));
+=======
+		
+>>>>>>> 82d4abfd0b64574b2395135a4859abdde7438f68
 	}
 
 	@After
