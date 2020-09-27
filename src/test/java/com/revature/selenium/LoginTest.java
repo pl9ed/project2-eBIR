@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -25,21 +24,13 @@ import com.revature.models.User;
 
 public class LoginTest {
 	private static WebDriver driver;
-	private static UserDAO dao;
+	private static UserDAO dao = new UserDAO();
 	
 	// in case we need to set env var
 	private static final String base_url = System.getenv("base_url"); // = System.getenv("base_url");
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		User u = new User();
-		u.setUsername("Hot");
-		u.setPassword("Wheels");
-		u.setFirstName("Mario");
-		u.setLastName("Mario");
-		u.setEmail("Kk@email.com");
-		System.out.println(u);
-		dao.saveUser(u);
 		
 		String os = System.getProperty("os.name").toLowerCase();
 		
@@ -87,7 +78,6 @@ public class LoginTest {
 		driver.get(base_url + "login");
 		
 		WebElement username = driver.findElement(By.id("username"));
-		username.sendKeys(Keys.BACK_SPACE);
 		
 		try {
 			Thread.sleep(2000);
@@ -97,7 +87,6 @@ public class LoginTest {
 		}
 		
 		WebElement password = driver.findElement(By.id("password"));
-		password.sendKeys(Keys.BACK_SPACE);
 		
 		WebElement loginBtn = driver.findElement(By.name("login"));
 		
