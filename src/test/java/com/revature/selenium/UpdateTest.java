@@ -34,6 +34,8 @@ public class UpdateTest {
 	
 	private static UserDAO ud;
 	private static User u = new User();
+	private static String user = "UPDATETESTUSER";
+	private static String pass = "Wheels";
 	
 	private static final String base_url = System.getenv("base_url"); // Structure example: http://localhost:4200/eBIRProject#/
 
@@ -61,9 +63,9 @@ public class UpdateTest {
 		//log in as Hot: Wheels
 		driver.get(base_url + "login");
 		ud = new UserDAO();
-		
-		u.setUsername("UPDATETESTUSER");
-		u.setPasswordPlain("Wheels");
+
+		u.setUsername(user);
+		u.setPasswordPlain(pass);
 		ud.saveUser(u);
 		
 		wait.until(driver -> driver.findElement(By.id("username")));
@@ -71,8 +73,8 @@ public class UpdateTest {
 		
 		WebElement username = driver.findElement(By.id("username"));
 		WebElement password = driver.findElement(By.id("password"));
-		username.sendKeys("UPDATETESTUSER");
-		password.sendKeys("Wheels");
+		username.sendKeys(user);
+		password.sendKeys(pass);
 
 		WebElement loginBtn = driver.findElement(By.name("login"));
 		wait.until(ExpectedConditions.elementToBeClickable(loginBtn));
@@ -144,6 +146,8 @@ public class UpdateTest {
 	
 	@Test
 	public void updateAllFields() {
+		System.out.println("running update all");
+
 		updateEmail(newEmail);
 		updateFirstName(newFirstName);
 		updateLastName(newLastName);
@@ -166,6 +170,8 @@ public class UpdateTest {
 	
 	@Test
 	public void updateAllFieldsButFirstName() {
+		System.out.println("running update all but fn");
+
 		String ln = "Killi";
 		String em = "Kk@gmail.com";
 		String ps = "Wheels";
@@ -193,6 +199,8 @@ public class UpdateTest {
 	
 	@Test
 	public void updateAllFieldsButLastName() {
+		System.out.println("running update all but ln");
+
 		String fn = "Maria";
 		String em = "Kk@gmail.com";
 		String ps = "Wheels";
@@ -219,6 +227,7 @@ public class UpdateTest {
 	
 	@Test
 	public void updateAllFieldsButEmail() {
+		System.out.println("running update all but email");
 		String fn = "Luigi";
 		String ln = "Daisy";
 		String ps = "Wheels";

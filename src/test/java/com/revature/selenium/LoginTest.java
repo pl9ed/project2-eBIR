@@ -32,7 +32,7 @@ public class LoginTest {
 	private static ChromeOptions options;
 	
 	private static UserDAO ud;
-	private User u = new User();
+	private static User u = new User();
 	
 	// in case we need to set env var
 	private static final String base_url = System.getenv("base_url"); // = System.getenv("base_url");
@@ -61,6 +61,7 @@ public class LoginTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		ud.deleteUser(u);
 		TestUtilities.clearDB();
 		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
 	} 	
@@ -81,7 +82,6 @@ public class LoginTest {
 
 	@After
 	public void tearDown() throws Exception {
-		ud.deleteUser(u);
 		TestUtilities.clearDB();
 		HibernateUtil.closeSession();
 		Thread.sleep(1500);
