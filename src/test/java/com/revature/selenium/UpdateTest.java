@@ -56,9 +56,13 @@ public class UpdateTest {
 		driver = new ChromeDriver(options);
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 
-		System.out.println(base_url + "login");
 		//log in as Hot: Wheels
 		driver.get(base_url + "login");
+		UserDAO ud = new UserDAO();
+		User u = new User();
+		u.setUsername("Hot");
+		u.setPasswordPlain("Wheels");
+		ud.saveUser(u);
 		
 		wait.until(driver -> driver.findElement(By.id("username")));
 		System.out.println("At login page");
