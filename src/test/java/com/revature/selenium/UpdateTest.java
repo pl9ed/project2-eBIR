@@ -60,7 +60,7 @@ public class UpdateTest {
 		driver.get(base_url + "login");
 		UserDAO ud = new UserDAO();
 		User u = new User();
-		u.setUsername("Hot");
+		u.setUsername("Hot_updatetest");
 		u.setPasswordPlain("Wheels");
 		ud.saveUser(u);
 		
@@ -69,7 +69,7 @@ public class UpdateTest {
 		
 		WebElement username = driver.findElement(By.id("username"));
 		WebElement password = driver.findElement(By.id("password"));
-		username.sendKeys("Hot");
+		username.sendKeys("Hot_updatetest");
 		password.sendKeys("Wheels");
 
 		WebElement loginBtn = driver.findElement(By.name("login"));
