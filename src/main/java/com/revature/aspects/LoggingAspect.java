@@ -16,7 +16,12 @@ public class LoggingAspect {
 	
 	@Before("within(com.revature.DAO.*)")
 	public void logDAOArgs(JoinPoint jp) {
-		log.info(jp.getTarget() + " INVOKED " + jp.getSignature() + " | PARAMS: " + jp.getArgs());
+		String appStr = "";
+		for (Object o : jp.getArgs()) {
+			appStr += o.toString();
+		}
+		log.info(jp.getTarget() + " INVOKED " + jp.getSignature() + " | PARAMS: \n" + appStr);
+		
 	}
 	
 	@AfterReturning(pointcut = "within(com.revature.DAO.*)", returning = "ret")
@@ -26,10 +31,11 @@ public class LoggingAspect {
 	
 	@Before("within(com.revature.controllers.*)")
 	public void logControllers(JoinPoint jp) {
-		log.info(jp.getTarget() + " INVOKED " + jp.getSignature() + " | PARAMS: ");
+		String appStr = "";
 		for (Object o : jp.getArgs()) {
-			log.info(o);
+			appStr += o.toString();
 		}
+		log.info(jp.getTarget() + " INVOKED " + jp.getSignature() + " | PARAMS: \n" + appStr);
  	}
 	
 }
