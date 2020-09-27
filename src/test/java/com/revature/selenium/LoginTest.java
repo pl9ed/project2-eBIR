@@ -34,6 +34,7 @@ public class LoginTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		HibernateUtil.reconfigureSchema("public");
 		TestUtilities.clearDB();
 		String os = System.getProperty("os.name").toLowerCase();
 		
@@ -56,6 +57,7 @@ public class LoginTest {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		TestUtilities.clearDB();
+		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
 		driver.quit();
 	} 	
 	
@@ -85,6 +87,7 @@ public class LoginTest {
 		//driver.switchTo().alert().accept();
 
 		driver.get(base_url + "login");
+		
 		WebElement username = driver.findElement(By.id("username"));
 		
 		try {

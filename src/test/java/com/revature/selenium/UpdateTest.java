@@ -22,6 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.revature.TestUtilities;
 import com.revature.DAO.UserDAO;
 import com.revature.models.User;
+import com.revature.util.HibernateUtil;
 
 public class UpdateTest {
 
@@ -35,6 +36,7 @@ public class UpdateTest {
 
 	@BeforeClass
 	public static void beforeClass() {
+		HibernateUtil.reconfigureSchema("public");
 		String os = System.getProperty("os.name").toLowerCase();
 		
 		// use windows
@@ -94,6 +96,7 @@ public class UpdateTest {
 	@AfterClass
 	public static void afterClass() {
 		TestUtilities.clearDB();
+		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
 		driver.quit();
 	}
 	

@@ -32,6 +32,7 @@ public class RegistrationTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		HibernateUtil.reconfigureSchema("public");
 		TestUtilities.clearDB();
 		String os = System.getProperty("os.name").toLowerCase();
 		
@@ -55,6 +56,7 @@ public class RegistrationTest {
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		TestUtilities.clearDB();
+		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
 		driver.quit();
 	}
 	
