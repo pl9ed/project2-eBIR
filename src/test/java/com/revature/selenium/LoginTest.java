@@ -55,7 +55,8 @@ public class LoginTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		System.out.println("After Class");
+		TestUtilities.clearDB();
+		driver.quit();
 	} 	
 	
 	@Before

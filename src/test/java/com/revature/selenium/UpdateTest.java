@@ -93,8 +93,8 @@ public class UpdateTest {
 	
 	@AfterClass
 	public static void afterClass() {
-
-		//driver.quit();
+		TestUtilities.clearDB();
+		driver.quit();
 	}
 	
 	@Before

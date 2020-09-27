@@ -54,6 +54,8 @@ public class RegistrationTest {
 	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		TestUtilities.clearDB();
+		driver.quit();
 	}
 	
 	@Before
