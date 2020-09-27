@@ -28,6 +28,7 @@ public class RegistrationTest {
 	
 	private static final String base_url = System.getenv("base_url"); // Structure example: http://localhost:4200/eBIRProject#/
 	private static WebDriver driver;
+	private WebDriverWait wait;
 	private static ChromeOptions options;
 	
 	@BeforeClass
@@ -57,13 +58,15 @@ public class RegistrationTest {
 	public static void tearDownAfterClass() throws Exception {
 		TestUtilities.clearDB();
 		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
-		driver.quit();
 	}
 	
 	@Before
 	public void setUp() throws Exception {
 		driver = new ChromeDriver(options);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		wait = new WebDriverWait(driver, 2);
+		driver.get(base_url + "login");
+		wait.until(driver -> driver.findElement(By.name("toRegister")));
 	}
 
 	@After
@@ -78,9 +81,12 @@ public class RegistrationTest {
 	@Test
 
 	public void registerTestPass() {
-		driver.get(base_url + "login");
 		WebElement toRegisterBtn = driver.findElement(By.name("toRegister"));
+		wait.until(ExpectedConditions.elementToBeClickable(toRegisterBtn));
+		
 		toRegisterBtn.click();
+		
+		wait.until(driver -> driver.findElement(By.id("username")));
 		
 		WebElement username = driver.findElement(By.id("username"));
 		WebElement password = driver.findElement(By.id("password"));
@@ -100,7 +106,7 @@ public class RegistrationTest {
 		
 		registerBtn.click(); 
 		
-		WebDriverWait wait = new WebDriverWait(driver,5);
+		wait = new WebDriverWait(driver,5);
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("logout_btn"))));
 		
 		String url = driver.getCurrentUrl();
@@ -109,9 +115,9 @@ public class RegistrationTest {
 	
 	@Test
 	public void registerTestNoUsername() {
-		//fail if user does not include username
-		driver.get(base_url+"login");
 		WebElement toRegisterBtn = driver.findElement(By.name("toRegister"));
+		
+		wait.until(ExpectedConditions.elementToBeClickable(toRegisterBtn));
 		toRegisterBtn.click();
 		
 		WebElement password = driver.findElement(By.id("password"));
@@ -130,7 +136,6 @@ public class RegistrationTest {
 				
 		registerBtn.click(); 
 		
-		WebDriverWait wait = new WebDriverWait(driver, 2);
 		wait.until(ExpectedConditions.alertIsPresent());
 		
 		try {

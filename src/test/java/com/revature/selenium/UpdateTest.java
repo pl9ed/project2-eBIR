@@ -53,35 +53,31 @@ public class UpdateTest {
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("headless", "disable-gpu", "disable-extensions"); 
 		driver = new ChromeDriver(options);
-		
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+
 		System.out.println(base_url + "login");
 		//log in as Hot: Wheels
 		driver.get(base_url + "login");
+		
+		wait.until(driver -> driver.findElement(By.id("username")));
 		
 		WebElement username = driver.findElement(By.id("username"));
 		WebElement password = driver.findElement(By.id("password"));
 		username.sendKeys("Hot");
 		password.sendKeys("Wheels");
-		WebDriverWait wait = new WebDriverWait(driver, 2);
 
 		WebElement loginBtn = driver.findElement(By.name("login"));
 		wait.until(ExpectedConditions.elementToBeClickable(loginBtn));
 
 		loginBtn.click();
 		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
+		wait.until(driver -> driver.findElement(By.id("ProfileBtn")));
 		WebElement profileBtn = driver.findElement(By.id("ProfileBtn"));
 		wait.until(ExpectedConditions.elementToBeClickable(profileBtn));
 
 		profileBtn.click();
 		
+		wait.until(driver -> driver.findElement(By.name("update")));
 		WebElement updateBtn = driver.findElement(By.name("update"));
 		wait.until(ExpectedConditions.elementToBeClickable(updateBtn));
 
@@ -97,7 +93,6 @@ public class UpdateTest {
 	public static void afterClass() {
 		TestUtilities.clearDB();
 		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
-		driver.quit();
 	}
 	
 	@Before
@@ -109,7 +104,6 @@ public class UpdateTest {
 		u.setFirstName("Mario");
 		u.setLastName("Mario");
 		u.setEmail("Kk@email.com");
-		System.out.println(u);
 		ud.saveUser(u);
 	}
 	

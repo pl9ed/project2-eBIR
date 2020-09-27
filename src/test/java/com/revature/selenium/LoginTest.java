@@ -27,6 +27,7 @@ import com.revature.util.HibernateUtil;
 
 public class LoginTest {
 	private static WebDriver driver;
+	private WebDriverWait wait;
 	private static ChromeOptions options;
 	
 	// in case we need to set env var
@@ -51,25 +52,28 @@ public class LoginTest {
 		}
 		options = new ChromeOptions();
 		options.addArguments("headless", "disable-gpu", "disable-extensions");
-		System.out.println("Before Class");
+		
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		TestUtilities.clearDB();
 		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
-		driver.quit();
 	} 	
 	
 	@Before
 	public void setUp() throws Exception {
 		driver = new ChromeDriver(options);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		wait = new WebDriverWait(driver, 2);
 		UserDAO ud = new UserDAO();
 		User u = new User();
 		u.setUsername("Hot");
 		u.setPasswordPlain("Wheels");
 		ud.saveUser(u);
+		
+		driver.get(base_url + "login");
+		wait.until(driver -> driver.findElement(By.id("username")));
 	}
 
 	@After
@@ -79,23 +83,11 @@ public class LoginTest {
 		Thread.sleep(1500);
 		driver.close();
 		driver = null;
-	
 	}
 
 	@Test
 	public void testSuccessfulLogin() {
-		//driver.switchTo().alert().accept();
-
-		driver.get(base_url + "login");
-		
 		WebElement username = driver.findElement(By.id("username"));
-		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
 		WebElement password = driver.findElement(By.id("password"));
 		WebElement loginBtn = driver.findElement(By.name("login"));
 		
@@ -103,7 +95,6 @@ public class LoginTest {
 		password.sendKeys("Wheels");
 		loginBtn.click();
 		
-		WebDriverWait wait = new WebDriverWait(driver, 2);
 		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("logout_btn"))));
 		
 		assertEquals(base_url + "home", driver.getCurrentUrl());
@@ -111,24 +102,14 @@ public class LoginTest {
 	
 	@Test
 	public void testFailedLoginWrongUsername() {
-		driver.get(base_url + "login");
-		
 		WebElement username = driver.findElement(By.id("username"));
 		WebElement password = driver.findElement(By.id("password"));
 		WebElement loginBtn = driver.findElement(By.name("login"));
-		
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		username.sendKeys("NotHot");
 		password.sendKeys("Wheels");
 		loginBtn.click();
 		
-		WebDriverWait wait = new WebDriverWait(driver,5);
 		wait.until(ExpectedConditions.alertIsPresent());
 
 		try {
@@ -143,24 +124,14 @@ public class LoginTest {
 	
 	@Test
 	public void testFailedLoginWrongPassword() {
-		driver.get(base_url + "login");
-		
 		WebElement username = driver.findElement(By.id("username"));
 		WebElement password = driver.findElement(By.id("password"));
 		WebElement loginBtn = driver.findElement(By.name("login"));
-		
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		username.sendKeys("Hot");
 		password.sendKeys("NotWheels");
 		loginBtn.click();
 		
-		WebDriverWait wait = new WebDriverWait(driver,5);
 		wait.until(ExpectedConditions.alertIsPresent());
 
 		try {
