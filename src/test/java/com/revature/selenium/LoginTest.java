@@ -20,6 +20,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.revature.DAO.UserDAO;
+import com.revature.models.User;
 
 public class LoginTest {
 	private static WebDriver driver;
@@ -30,6 +31,14 @@ public class LoginTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		User u = new User();
+		u.setUsername("Hot");
+		u.setPassword("Wheels");
+		u.setFirstName("Mario");
+		u.setLastName("Mario");
+		u.setEmail("Kk@email.com");
+		System.out.println(u);
+		dao.saveUser(u);
 		
 		String os = System.getProperty("os.name").toLowerCase();
 		

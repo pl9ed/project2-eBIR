@@ -18,6 +18,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.revature.TestUtilities;
+
 public class RegistrationTest {
 	
 	private static final String base_url = System.getenv("base_url"); // Structure example: http://localhost:4200/eBIRProject#/
@@ -40,13 +42,12 @@ public class RegistrationTest {
 		}
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless", "--disable-gpu", "--disable-extensions");
-		driver = new ChromeDriver(options);
+		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		
 	}
 	
 	@Before
@@ -55,6 +56,7 @@ public class RegistrationTest {
 
 	@After
 	public void tearDown() throws Exception {
+		TestUtilities.clearDB();
 	}
 
 	@Test
