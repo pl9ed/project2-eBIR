@@ -64,18 +64,36 @@ public class LoginTest {
 		u.setUsername("Hot");
 		u.setPasswordPlain("Wheels");
 		ud.saveUser(u);
+		
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		System.out.println("After");
 		TestUtilities.clearDB();
+		
+		try {
+			driver.switchTo().alert().accept();
+
+		}catch(Exception e) {
+			
+		}finally {
+			driver.get(base_url + "login");
+			WebElement usr = driver.findElement(By.id("username"));
+			WebElement pass = driver.findElement(By.id("password"));
+			usr.clear();
+			usr.sendKeys("");
+			pass.clear();
+			pass.sendKeys("");
+		}
+		
 	}
 
 	@Test
 	public void testSuccessfulLogin() {
+		//driver.switchTo().alert().accept();
+
 		driver.get(base_url + "login");
-		
 		WebElement username = driver.findElement(By.id("username"));
 		
 		try {
