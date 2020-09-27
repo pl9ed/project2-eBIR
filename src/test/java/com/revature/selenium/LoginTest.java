@@ -1,6 +1,7 @@
 package com.revature.selenium;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -11,7 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,25 +23,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.revature.TestUtilities;
 import com.revature.DAO.UserDAO;
 import com.revature.models.User;
+import com.revature.util.HibernateUtil;
 
 public class LoginTest {
 	private static WebDriver driver;
-	private static UserDAO dao;
 	
 	// in case we need to set env var
 	private static final String base_url = System.getenv("base_url"); // = System.getenv("base_url");
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		User u = new User();
-		u.setUsername("Hot");
-		u.setPassword("Wheels");
-		u.setFirstName("Mario");
-		u.setLastName("Mario");
-		u.setEmail("Kk@email.com");
-		System.out.println(u);
-		dao.saveUser(u);
-		
+		TestUtilities.clearDB();
 		String os = System.getProperty("os.name").toLowerCase();
 		
 		// use windows
@@ -56,9 +49,6 @@ public class LoginTest {
 		}
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless", "--disable-gpu", "--disable-extensions");
-		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		
 		System.out.println("Before Class");
 	}
 
@@ -69,6 +59,8 @@ public class LoginTest {
 	
 	@Before
 	public void setUp() throws Exception {
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		UserDAO ud = new UserDAO();
 		User u = new User();
 		u.setUsername("Hot");
@@ -80,6 +72,10 @@ public class LoginTest {
 	public void tearDown() throws Exception {
 		System.out.println("After");
 		TestUtilities.clearDB();
+		HibernateUtil.closeSession();
+		Thread.sleep(1500);
+		driver.close();
+		driver = null;
 	}
 
 	@Test
@@ -87,18 +83,14 @@ public class LoginTest {
 		driver.get(base_url + "login");
 		
 		WebElement username = driver.findElement(By.id("username"));
-		username.sendKeys(Keys.BACK_SPACE);
 		
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		WebElement password = driver.findElement(By.id("password"));
-		password.sendKeys(Keys.BACK_SPACE);
-		
 		WebElement loginBtn = driver.findElement(By.name("login"));
 		
 		username.sendKeys("Hot");
@@ -106,7 +98,7 @@ public class LoginTest {
 		loginBtn.click();
 		
 		WebDriverWait wait = new WebDriverWait(driver,5);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"homeDiv\"]")));
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("logout_btn"))));
 		
 		assertEquals(base_url + "home", driver.getCurrentUrl());
 	}
@@ -131,7 +123,13 @@ public class LoginTest {
 		loginBtn.click();
 		
 		WebDriverWait wait = new WebDriverWait(driver,5);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"loginDiv\"]")));
+		wait.until(ExpectedConditions.alertIsPresent());
+
+		try {
+			driver.switchTo().alert().dismiss();
+		} catch (NoAlertPresentException e) {
+			fail("No alert");
+		}
 		
 		String url = driver.getCurrentUrl();
 		assertEquals(base_url + "login",url);
@@ -157,7 +155,13 @@ public class LoginTest {
 		loginBtn.click();
 		
 		WebDriverWait wait = new WebDriverWait(driver,5);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"loginDiv\"]")));
+		wait.until(ExpectedConditions.alertIsPresent());
+
+		try {
+			driver.switchTo().alert().dismiss();
+		} catch (NoAlertPresentException e) {
+			fail("No alert");
+		}
 		
 		String url = driver.getCurrentUrl();
 		assertEquals(base_url + "login",url);
