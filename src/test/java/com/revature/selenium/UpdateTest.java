@@ -128,7 +128,7 @@ public class UpdateTest {
 		
 		WebElement updateBtn = driver.findElement(By.id("updatBtn"));
 		updateBtn.click(); 
-		
+
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {

@@ -46,8 +46,9 @@ public class RegistrationTest {
 	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		
 	}
-
+	
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -57,6 +58,7 @@ public class RegistrationTest {
 	}
 
 	@Test
+
 	public void registerTestPass() {
 		driver.get(base_url + "login");
 		WebElement toRegisterBtn = driver.findElement(By.name("toRegister"));
@@ -81,6 +83,7 @@ public class RegistrationTest {
 		boolean test = registerBtn.isEnabled();
 		assertEquals(test,true);
 		registerBtn.click(); 
+		
 		WebDriverWait wait = new WebDriverWait(driver,5);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"homeDiv\"]")));
 		
@@ -112,6 +115,7 @@ public class RegistrationTest {
 		boolean test = registerBtn.isEnabled();
 		assertEquals(test,true);
 		registerBtn.click(); 
+		
 		String url = driver.getCurrentUrl();
 		//if register fails, user will still be in the register page
 		assertEquals(base_url + "register", url);
