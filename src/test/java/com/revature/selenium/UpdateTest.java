@@ -33,6 +33,9 @@ public class UpdateTest {
 	private static String newPassword;
 	private static String newEmail;
 	
+	private static UserDAO ud;
+	private static User u = new User();
+	
 	private static final String base_url = System.getenv("base_url"); // Structure example: http://localhost:4200/eBIRProject#/
 
 	@BeforeClass
@@ -58,8 +61,8 @@ public class UpdateTest {
 
 		//log in as Hot: Wheels
 		driver.get(base_url + "login");
-		UserDAO ud = new UserDAO();
-		User u = new User();
+		ud = new UserDAO();
+		
 		u.setUsername("Hot_updatetest");
 		u.setPasswordPlain("Wheels");
 		ud.saveUser(u);
@@ -100,8 +103,7 @@ public class UpdateTest {
 	
 	@AfterClass
 	public static void afterClass() {
-		TestUtilities.clearDB();
-		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
+		ud.deleteUser(u);
 		driver.quit();
 	}
 	
