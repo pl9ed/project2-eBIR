@@ -24,7 +24,7 @@
 		This is now done in cfg in HibernateUtil
 		<property name="hibernate.default_schema">public</property>
 		 -->
-		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.hbm2ddl.auto">create</property>
 
 		<!-- Configuration for annotation based mapping -->
 		<mapping class="com.revature.models.User" />

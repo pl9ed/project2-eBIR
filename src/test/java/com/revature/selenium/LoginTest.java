@@ -3,30 +3,28 @@ package com.revature.selenium;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import java.util.concurrent.TimeUnit;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.revature.pages.LoginPage;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginTest {
 	private static WebDriver driver;
 	
 	// in case we need to set env var
-	private static final String base_url = "http://52.205.93.132:8006/eBIRProject"; // = System.getenv("base_url");
+	private static final String base_url = System.getenv("base_url"); // = System.getenv("base_url");
 	
-	private LoginPage page;
-
-	@BeforeClass
+	@BeforeAll
 	public static void setUpBeforeClass() throws Exception {
 		String os = System.getProperty("os.name").toLowerCase();
 		
@@ -41,46 +39,104 @@ public class LoginTest {
 			File f = new File("src/test/resources/chromedriver");
 			System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
 		}
-		
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless", "--disable-gpu", "--disable-extensions");
-		driver = new ChromeDriver(options);
+		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
 	}
 
-	@AfterClass
+	@AfterAll
 	public static void tearDownAfterClass() throws Exception {
 	}
 
 	@Before
 	public void setUp() throws Exception {
-		this.page = new LoginPage(driver);
-		this.page.navigateTo();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		this.page = null;
 	}
-
 
 	@Test
 	public void testSuccessfulLogin() {
-		this.page.setUsername("jandrew");
-		this.page.setPassword("qwerty");
-		this.page.submit();
-		assertEquals("http://localhost:4200/eBIRProject#/home", driver.getCurrentUrl());
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.get(base_url + "login");
+		
+		WebElement username = driver.findElement(By.id("username"));
+		driver.findElement(By.id("username")).clear();
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		WebElement password = driver.findElement(By.id("password"));
+		WebElement loginBtn = driver.findElement(By.name("login"));
+		
+		username.sendKeys("Hot");
+		password.sendKeys("Wheels");
+		loginBtn.click();
+		
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"homeDiv\"]")));
+		
+		assertEquals(base_url + "home", driver.getCurrentUrl());
 	}
 	
 	@Test
-	public void testFailedLogin() {
-		this.page.setUsername("jandrew");
-		this.page.setPassword("notqwerty");
-		this.page.submit();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
-		if(wait.until(ExpectedConditions.alertIsPresent()) == null) {
-			
+	public void testFailedLoginWrongUsername() {
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.get(base_url + "login");
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	} 
+		
+		WebElement username = driver.findElement(By.id("username"));
+		WebElement password = driver.findElement(By.id("password"));
+		WebElement loginBtn = driver.findElement(By.name("login"));
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		username.sendKeys("NotHot");
+		password.sendKeys("Wheels");
+		loginBtn.click();
+		
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"loginDiv\"]")));
+		
+		String url = driver.getCurrentUrl();
+		assertEquals(base_url + "login",url);
+	}
+	
+	@Test
+	public void testFailedLoginWrongPassword() {
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.get(base_url + "login");
+		
+		WebElement username = driver.findElement(By.id("username"));
+		WebElement password = driver.findElement(By.id("password"));
+		WebElement loginBtn = driver.findElement(By.name("login"));
+		
+		username.sendKeys("Hot");
+		password.sendKeys("NotWheels");
+		loginBtn.click();
+		
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"loginDiv\"]")));
+		
+		String url = driver.getCurrentUrl();
+		assertEquals(base_url + "login",url);
+	}
 }
