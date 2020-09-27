@@ -5,11 +5,11 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -19,7 +19,8 @@ import com.revature.DAO.IReviewDAO;
 import com.revature.models.Review;
 import com.revature.util.HibernateUtil;
 
-class ReviewServiceTest {
+
+public class ReviewServiceTest {
 	
 	private TestUtilities td;
 	
@@ -31,18 +32,18 @@ class ReviewServiceTest {
 	
 	private Review invalid;
 
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
 		HibernateUtil.reconfigureSchema("public");
 	}
 
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
 		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
 	}
 
-	@BeforeEach
-	void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		td = new TestUtilities();
 
 		MockitoAnnotations.initMocks(this);
@@ -59,8 +60,8 @@ class ReviewServiceTest {
 
 	}
 
-	@AfterEach
-	void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 	}
 
 	@Test
