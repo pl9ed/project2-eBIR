@@ -111,8 +111,8 @@ public class RegistrationTest {
 			String url = driver.getCurrentUrl();
 			assertEquals(base_url + "home",url);
 		} catch (UnhandledAlertException e) {
-			fail("Couldn't register");
 			System.out.println(new UserDAO().findUser("Hot"));
+			fail("Couldn't register");
 		}
 	}
 	

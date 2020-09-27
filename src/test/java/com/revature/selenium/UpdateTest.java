@@ -61,6 +61,7 @@ public class UpdateTest {
 		driver.get(base_url + "login");
 		
 		wait.until(driver -> driver.findElement(By.id("username")));
+		System.out.println("At login page");
 		
 		WebElement username = driver.findElement(By.id("username"));
 		WebElement password = driver.findElement(By.id("password"));
@@ -73,12 +74,14 @@ public class UpdateTest {
 		loginBtn.click();
 		
 		wait.until(driver -> driver.findElement(By.id("ProfileBtn")));
+		System.out.println("At home page");
 		WebElement profileBtn = driver.findElement(By.id("ProfileBtn"));
 		wait.until(ExpectedConditions.elementToBeClickable(profileBtn));
 
 		profileBtn.click();
 		
 		wait.until(driver -> driver.findElement(By.name("update")));
+		System.out.println("At profile page");
 		WebElement updateBtn = driver.findElement(By.name("update"));
 		wait.until(ExpectedConditions.elementToBeClickable(updateBtn));
 
@@ -99,19 +102,10 @@ public class UpdateTest {
 	
 	@Before
 	public void before() {
-		UserDAO ud = new UserDAO();
-		User u = new User();
-		u.setUsername("Hot");
-		u.setPasswordPlain("Wheels");
-		u.setFirstName("Mario");
-		u.setLastName("Mario");
-		u.setEmail("Kk@email.com");
-		ud.saveUser(u);
 	}
 	
 	@After
 	public void after() {
-		TestUtilities.clearDB();
 	}
 	
 	@Ignore
