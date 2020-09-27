@@ -98,12 +98,7 @@ public class LoginTest {
 		password.sendKeys("Wheels");
 		loginBtn.click();
 		
-		try {
-			wait.until(driver -> driver.findElement(By.id("logout_btn")));
-		} catch (UnhandledAlertException e) {
-			driver.switchTo().alert().dismiss();
-			fail("Couldn't login");
-		}
+		wait.until(driver -> driver.findElement(By.id("logout_btn")));
 		
 		assertEquals(base_url + "home", driver.getCurrentUrl());
 	}

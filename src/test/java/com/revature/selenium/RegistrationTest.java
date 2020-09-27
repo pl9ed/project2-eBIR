@@ -1,5 +1,6 @@
 package com.revature.selenium;
 
+import static org.assertj.core.api.Assertions.useDefaultDateFormatsOnly;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -23,6 +24,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.revature.TestUtilities;
 import com.revature.DAO.UserDAO;
+import com.revature.models.User;
 import com.revature.util.HibernateUtil;
 
 public class RegistrationTest {
@@ -31,6 +33,8 @@ public class RegistrationTest {
 	private static WebDriver driver;
 	private WebDriverWait wait;
 	private static ChromeOptions options;
+	
+	private static User u = new User();
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -52,11 +56,18 @@ public class RegistrationTest {
 
 		options = new ChromeOptions();
 		options.addArguments("headless", "disable-gpu", "disable-extensions");
+		
+		u.setUsername("REGTESTUSER");
+		u.setPasswordPlain("Wheels");
+		u.setFirstName("Mario");
+		u.setLastName("Mario");
+		u.setEmail("nintendo@gmail.com");
 
 	}
 	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		new UserDAO().deleteUser(u);
 		TestUtilities.clearDB();
 		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
 	}
