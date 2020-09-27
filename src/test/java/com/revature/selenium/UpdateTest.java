@@ -128,7 +128,7 @@ class UpdateTest {
 		
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
 		WebElement updateBtn = driver.findElement(By.id("updatBtn"));
-		updateBtn.click(); //button doesn't work, do I need to use pageFactory???
+		updateBtn.click(); 
 		
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		
@@ -146,7 +146,6 @@ class UpdateTest {
 		
 		assertEquals(newFirstName+" "+newLastName, fullname);
 		assertEquals(newEmail,email);
-		//need to check password 
 	}
 	
 	@Test

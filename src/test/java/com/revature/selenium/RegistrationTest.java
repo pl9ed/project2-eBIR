@@ -20,6 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 class RegistrationTest {
 	
+	private static final String base_url = System.getenv("base_url"); // Structure example: http://localhost:4200/eBIRProject#/
 	private static WebDriver driver;
 
 	@BeforeAll
@@ -45,6 +46,7 @@ class RegistrationTest {
 
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
+		driver.close();
 	}
 
 	@BeforeEach
@@ -59,7 +61,7 @@ class RegistrationTest {
 	void registerTestPass() {
 		
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.get("http://localhost:4200/eBIRProject/#/login");
+		driver.get(base_url + "login");
 		WebElement toRegisterBtn = driver.findElement(By.name("toRegister"));
 		toRegisterBtn.click();
 		
@@ -90,14 +92,14 @@ class RegistrationTest {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"homeDiv\"]")));
 		
 		String url = driver.getCurrentUrl();
-		assertEquals("http://localhost:4200/eBIRProject#/home",url);
+		assertEquals(base_url+"home",url);
 	}
 	
 	@Test
 	void registerTestNoUsername() {
 		//fail if user does not include username
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.get("http://localhost:4200/eBIRProject/#/login");
+		driver.get(base_url+"login");
 		WebElement toRegisterBtn = driver.findElement(By.name("toRegister"));
 		toRegisterBtn.click();
 		
@@ -123,7 +125,7 @@ class RegistrationTest {
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
 		String url = driver.getCurrentUrl();
 		//if register fails, user will still be in the register page
-		assertEquals("http://localhost:4200/eBIRProject#/register", url);
+		assertEquals(base_url+"register", url);
 	}
 
 }
