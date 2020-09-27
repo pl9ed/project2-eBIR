@@ -13,6 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -95,7 +96,12 @@ public class LoginTest {
 		password.sendKeys("Wheels");
 		loginBtn.click();
 		
-		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("logout_btn"))));
+		try {
+			wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("logout_btn"))));
+		} catch (UnhandledAlertException e) {
+			driver.switchTo().alert().dismiss();
+			fail("Couldn't login");
+		}
 		
 		assertEquals(base_url + "home", driver.getCurrentUrl());
 	}
