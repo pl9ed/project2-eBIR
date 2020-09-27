@@ -1,7 +1,6 @@
 package com.revature.selenium;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -107,7 +106,7 @@ public class RegistrationTest {
 		
 		registerBtn.click(); 
 		try {
-			wait = new WebDriverWait(driver,5);
+			wait = new WebDriverWait(driver,10);
 			wait.until(driver -> driver.findElement(By.id("logout_btn")));
 			String url = driver.getCurrentUrl();
 			assertEquals(base_url + "home",url);
