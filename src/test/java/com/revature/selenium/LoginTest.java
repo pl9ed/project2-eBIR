@@ -72,13 +72,6 @@ public class LoginTest {
 
 	@After
 	public void tearDown() throws Exception {
-		try {
-			driver.switchTo().alert().accept();
-
-		}catch(Exception e) {
-			
-		}
-
 		TestUtilities.clearDB();
 		HibernateUtil.closeSession();
 		Thread.sleep(1500);
@@ -106,6 +99,9 @@ public class LoginTest {
 		username.sendKeys("Hot");
 		password.sendKeys("Wheels");
 		loginBtn.click();
+		
+		WebDriverWait wait = new WebDriverWait(driver, 2);
+		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("logout_btn"))));
 		
 		assertEquals(base_url + "home", driver.getCurrentUrl());
 	}
