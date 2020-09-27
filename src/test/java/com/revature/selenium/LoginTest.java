@@ -59,6 +59,12 @@ public class LoginTest {
 		options = new ChromeOptions();
 		options.addArguments("headless", "disable-gpu", "disable-extensions");
 		
+		ud = new UserDAO();
+		u = new User();
+		u.setUsername(user);
+		u.setPasswordPlain(pass);
+		ud.saveUser(u);
+		
 	}
 
 	@AfterClass
@@ -73,12 +79,7 @@ public class LoginTest {
 		driver = new ChromeDriver(options);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		wait = new WebDriverWait(driver, 2);
-		ud = new UserDAO();
-		u = new User();
-		u.setUsername(user);
-		u.setPasswordPlain(pass);
-		ud.saveUser(u);
-		
+
 		driver.get(base_url + "login");
 		wait.until(driver -> driver.findElement(By.id("username")));
 	}

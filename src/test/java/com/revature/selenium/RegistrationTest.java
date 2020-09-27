@@ -85,7 +85,6 @@ public class RegistrationTest {
 	public void tearDown() throws Exception {
 		TestUtilities.clearDB();
 		HibernateUtil.closeSession();
-		Thread.sleep(1000);
 		driver.quit();
 	}
 
