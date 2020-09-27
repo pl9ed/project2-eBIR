@@ -69,10 +69,10 @@ class UpdateTest {
 		WebElement updateBtn = driver.findElement(By.name("update"));
 		updateBtn.click();
 		
-		newFirstName = "newFirtName";
+		newFirstName = "newFirstName";
 		newLastName = "newLastName";
-		newPassword = "newPassword";
-		newEmail = "newEmail";
+		newPassword = "Wheels";
+		newEmail = "newEmail@gmail.com";
 	}
 	
 	@AfterAll
