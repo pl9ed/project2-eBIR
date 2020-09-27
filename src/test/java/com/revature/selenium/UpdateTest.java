@@ -7,18 +7,18 @@ import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-class UpdateTest {
+public class UpdateTest {
 
 	private static WebDriver driver;
 	private static String newFirstName;
@@ -28,8 +28,8 @@ class UpdateTest {
 	
 	private static final String base_url = System.getenv("base_url"); // Structure example: http://localhost:4200/eBIRProject#/
 
-	@BeforeAll
-	static void beforeClass() {
+	@BeforeClass
+	public static void beforeClass() {
 		String os = System.getProperty("os.name").toLowerCase();
 		
 		// use windows
@@ -43,12 +43,12 @@ class UpdateTest {
 			File f = new File("src/test/resources/chromedriver");
 			System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
 		}
-/*		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--headless", "--disable-gpu", "--disable-extensions"); */
-		driver = new ChromeDriver();
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--headless", "--disable-gpu", "--disable-extensions"); 
+		driver = new ChromeDriver(options);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		
-		//log in as b:b
+		//log in as Hot: Wheels
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get(base_url + "login");
 		
@@ -72,19 +72,19 @@ class UpdateTest {
 		newEmail = "newEmail@gmail.com";
 	}
 	
-	@AfterAll
-	static void afterClass() {
+	@AfterClass
+	public static void afterClass() {
 
 		//driver.quit();
 	}
 	
 	@Before
-	void before() {
+	public void before() {
 		
 	}
 	
 	@After
-	void after() {
+	public void after() {
 		
 	}
 	
@@ -117,18 +117,15 @@ class UpdateTest {
 	}
 	
 	@Test
-	void updateAllFields() {
+	public void updateAllFields() {
 		updateEmail(newEmail);
 		updateFirstName(newFirstName);
 		updateLastName(newLastName);
 		updatePassword(newPassword);
 		
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
 		WebElement updateBtn = driver.findElement(By.id("updatBtn"));
-		updateBtn.click(); //button doesn't work, do I need to use pageFactory???
-		
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-		
+		updateBtn.click(); 
+
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
@@ -143,24 +140,20 @@ class UpdateTest {
 		
 		assertEquals(newFirstName+" "+newLastName, fullname);
 		assertEquals(newEmail,email);
-		//need to check password 
 	}
 	
 	@Test
-	void updateAllFieldsButFirstName() {
+	public void updateAllFieldsButFirstName() {
 		String ln = "Killi";
 		String em = "Kk@gmail.com";
-		String ps = "LOTR";
+		String ps = "Wheels";
 		
 		updateEmail(em);
 		updateLastName(ln);
 		updatePassword(ps);
-		
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
+			
 		WebElement updateBtn = driver.findElement(By.id("updatBtn"));
 		updateBtn.click(); //button doesn't work, do I need to use pageFactory???
-		
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
 		
 		try {
 			Thread.sleep(500);
