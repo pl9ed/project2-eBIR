@@ -27,6 +27,7 @@ import com.revature.util.HibernateUtil;
 public class UpdateTest {
 
 	private static WebDriver driver;
+	private WebDriverWait wait;
 	private static String newFirstName;
 	private static String newLastName;
 	private static String newPassword;
@@ -149,13 +150,9 @@ public class UpdateTest {
 		
 		WebElement updateBtn = driver.findElement(By.id("updatBtn"));
 		updateBtn.click(); 
-
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		wait = new WebDriverWait(driver, 2);
+		wait.until(ExpectedConditions.alertIsPresent());
 		
 		driver.switchTo().alert().accept();
 		
@@ -179,12 +176,8 @@ public class UpdateTest {
 		WebElement updateBtn = driver.findElement(By.id("updatBtn"));
 		updateBtn.click(); //button doesn't work, do I need to use pageFactory???
 		
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		wait = new WebDriverWait(driver, 2);
+		wait.until(ExpectedConditions.alertIsPresent());
 		
 		driver.switchTo().alert().accept();
 		
@@ -210,12 +203,8 @@ public class UpdateTest {
 		WebElement updateBtn = driver.findElement(By.id("updatBtn"));
 		updateBtn.click(); 
 		
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		wait = new WebDriverWait(driver, 2);
+		wait.until(ExpectedConditions.alertIsPresent());
 		
 		driver.switchTo().alert().accept();
 		
@@ -240,13 +229,8 @@ public class UpdateTest {
 		WebElement updateBtn = driver.findElement(By.id("updatBtn"));
 		updateBtn.click(); //button doesn't work, do I need to use pageFactory???
 		
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		wait = new WebDriverWait(driver, 2);
+		wait.until(ExpectedConditions.alertIsPresent());
 		driver.switchTo().alert().accept();
 		
 		String fullname = driver.findElement(By.id("fullname")).getText();
