@@ -46,10 +46,8 @@ public class UpdateTest {
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless", "--disable-gpu", "--disable-extensions"); 
 		driver = new ChromeDriver(options);
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		
 		//log in as Hot: Wheels
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get(base_url + "login");
 		
 		WebElement username = driver.findElement(By.id("username"));
