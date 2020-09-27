@@ -60,7 +60,7 @@ public class LoginTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		driver = new ChromeDriver();
+		driver = new ChromeDriver(options);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		UserDAO ud = new UserDAO();
 		User u = new User();
