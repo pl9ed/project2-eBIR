@@ -96,7 +96,7 @@ public class LoginTest {
 		loginBtn.click();
 		
 		try {
-			wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("logout_btn"))));
+			wait.until(driver -> driver.findElement(By.id("logout_btn")));
 		} catch (UnhandledAlertException e) {
 			driver.switchTo().alert().dismiss();
 			fail("Couldn't login");
