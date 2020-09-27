@@ -74,6 +74,7 @@ public class LoginTest {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		wait = new WebDriverWait(driver, 2);
 		ud = new UserDAO();
+		u = new User();
 		u.setUsername(user);
 		u.setPasswordPlain(pass);
 		ud.saveUser(u);
