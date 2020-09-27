@@ -6,11 +6,12 @@ import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,7 +25,7 @@ public class LoginTest {
 	// in case we need to set env var
 	private static final String base_url = System.getenv("base_url"); // = System.getenv("base_url");
 	
-	@BeforeAll
+	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		String os = System.getProperty("os.name").toLowerCase();
 		
@@ -43,18 +44,23 @@ public class LoginTest {
 		options.addArguments("--headless", "--disable-gpu", "--disable-extensions");
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		
+		System.out.println("Before Class");
 	}
 
-	@AfterAll
+	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-	}
-
+		System.out.println("After Class");
+	} 	
+	
 	@Before
 	public void setUp() throws Exception {
+		System.out.println("Before");
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		System.out.println("After");
 	}
 
 	@Test
@@ -63,7 +69,7 @@ public class LoginTest {
 		driver.get(base_url + "login");
 		
 		WebElement username = driver.findElement(By.id("username"));
-		driver.findElement(By.id("username")).clear();
+		username.sendKeys(Keys.BACK_SPACE);
 		
 		try {
 			Thread.sleep(2000);
@@ -72,8 +78,9 @@ public class LoginTest {
 			e.printStackTrace();
 		}
 		
-		
 		WebElement password = driver.findElement(By.id("password"));
+		password.sendKeys(Keys.BACK_SPACE);
+		
 		WebElement loginBtn = driver.findElement(By.name("login"));
 		
 		username.sendKeys("Hot");
@@ -90,13 +97,6 @@ public class LoginTest {
 	public void testFailedLoginWrongUsername() {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get(base_url + "login");
-		
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		WebElement username = driver.findElement(By.id("username"));
 		WebElement password = driver.findElement(By.id("password"));
@@ -128,6 +128,13 @@ public class LoginTest {
 		WebElement username = driver.findElement(By.id("username"));
 		WebElement password = driver.findElement(By.id("password"));
 		WebElement loginBtn = driver.findElement(By.name("login"));
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		username.sendKeys("Hot");
 		password.sendKeys("NotWheels");
