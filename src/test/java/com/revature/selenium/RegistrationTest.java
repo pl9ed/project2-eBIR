@@ -20,7 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.revature.TestUtilities;
 
-class RegistrationTest {
+public class RegistrationTest {
 	
 	private static final String base_url = System.getenv("base_url"); // Structure example: http://localhost:4200/eBIRProject#/
 	private static WebDriver driver;
