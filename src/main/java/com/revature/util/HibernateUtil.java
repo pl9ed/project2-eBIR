@@ -48,7 +48,7 @@ public class HibernateUtil {
 	}
 
 	public static void closeSession() {
-		if (session != null) {
+		if (session != null && session.isOpen()) {
 			session.close();
 		}
 	}

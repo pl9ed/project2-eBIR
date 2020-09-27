@@ -83,6 +83,7 @@ public class UpdateTest {
 		wait.until(driver -> driver.findElement(By.name("update")));
 		System.out.println("At profile page");
 		WebElement updateBtn = driver.findElement(By.name("update"));
+		
 		wait.until(ExpectedConditions.elementToBeClickable(updateBtn));
 
 		updateBtn.click();

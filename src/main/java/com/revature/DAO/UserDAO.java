@@ -64,6 +64,7 @@ public class UserDAO implements IUserDAO {
 		if (u == null || u.getUsername().length() < 1) {
 			return false;
 		}
+		HibernateUtil.getSession().clear();
 		HibernateUtil.closeSession();
 		Session s = HibernateUtil.getSession();
 		Transaction tx = s.beginTransaction();

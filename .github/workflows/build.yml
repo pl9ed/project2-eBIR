@@ -37,4 +37,6 @@ jobs:
           project2_schema: ${{ secrets.project2_schema}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        run: 
+          chmod +x /home/runner/work/project2-eBIR/project2-eBIR/src/test/resources/chromedriver
+          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
