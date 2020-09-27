@@ -77,6 +77,7 @@ public class UserControllerWACTest {
 		.when()
 			.post("/user/register")
 		.then()
+			.log().ifValidationFails()
 			.statusCode(HttpStatus.SC_CREATED)
 			.assertThat()
 				.body("username", equalTo(td.u2.getUsername()));
@@ -120,6 +121,7 @@ public class UserControllerWACTest {
 		.when()
 			.post("/user/login")
 		.then()
+			.log().ifValidationFails()
 			.statusCode(200)
 			.assertThat()
 				.body("username", equalTo(td.u1.getUsername()));
@@ -133,6 +135,7 @@ public class UserControllerWACTest {
 		.when()
 			.post("/user/login")
 		.then()
+			.log().ifValidationFails()
 			.statusCode(400);
 		
 	}
@@ -184,6 +187,7 @@ public class UserControllerWACTest {
 		.when()
 			.put("/user")
 		.then()
+			.log().ifValidationFails()
 			.statusCode(200)
 			.assertThat()
 				.body("username", equalTo(td.u1.getUsername()));
@@ -199,51 +203,4 @@ public class UserControllerWACTest {
 		.then()
 			.statusCode(400);
 	}
-	
-	/*
-	@Test
-	public void testUpdateFN() {
-		
-	}
-	
-	@Test
-	public void testUpdateFNNull() {
-		
-	}
-	
-	@Test
-	public void testUpdateFNInvalid() {
-		
-	}
-	
-	@Test
-	public void testUpdateLN() {
-		
-	}
-	
-	@Test
-	public void testUpdateLNNull() {
-		
-	}
-	
-	@Test
-	public void testUpdateLNInvalid() {
-		
-	}
-	
-	@Test
-	public void testChangePW() {
-		
-	}
-	
-	@Test
-	public void testChangePWNull() {
-		
-	}
-	
-	@Test
-	public void testChangePWInvalid() {
-		
-	}
-	*/
 }

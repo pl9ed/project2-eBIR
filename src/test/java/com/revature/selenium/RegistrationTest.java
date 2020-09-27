@@ -14,6 +14,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,6 +23,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.revature.TestUtilities;
+import com.revature.DAO.UserDAO;
 import com.revature.util.HibernateUtil;
 
 public class RegistrationTest {
@@ -105,12 +107,15 @@ public class RegistrationTest {
 		WebElement registerBtn = driver.findElement(By.id("register"));
 		
 		registerBtn.click(); 
-		
-		wait = new WebDriverWait(driver,5);
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("logout_btn"))));
-		
-		String url = driver.getCurrentUrl();
-		assertEquals(base_url + "home",url);
+		try {
+			wait = new WebDriverWait(driver,5);		
+			wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("logout_btn"))));
+			String url = driver.getCurrentUrl();
+			assertEquals(base_url + "home",url);
+		} catch (UnhandledAlertException e) {
+			fail("Couldn't register");
+			System.out.println(new UserDAO().findUser("Hot"));
+		}
 	}
 	
 	@Test
