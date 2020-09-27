@@ -18,9 +18,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.revature.TestUtilities;
+
 class RegistrationTest {
 	
 	private static WebDriver driver;
+	private static final String base_url = System.getenv("base_url");
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -37,9 +40,9 @@ class RegistrationTest {
 			File f = new File("src/test/resources/chromedriver");
 			System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
 		}
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--headless", "--disable-gpu", "--disable-extensions");
-		driver = new ChromeDriver(options);
+//		ChromeOptions options = new ChromeOptions();
+//		options.addArguments("--headless", "--disable-gpu", "--disable-extensions");
+		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 
@@ -53,12 +56,12 @@ class RegistrationTest {
 
 	@AfterEach
 	void tearDown() throws Exception {
+		TestUtilities.clearDB();
 	}
 
 	@Test
 	void registerTestPass() {
-		
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		System.out.println("registerTestPass");
 		driver.get("http://localhost:4200/eBIRProject/#/login");
 		WebElement toRegisterBtn = driver.findElement(By.name("toRegister"));
 		toRegisterBtn.click();
@@ -77,26 +80,23 @@ class RegistrationTest {
 		lastname.sendKeys("Mario");
 		email.sendKeys("nintendo@gmail.com");
 		
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
 		WebElement registerBtn = driver.findElement(By.id("register"));
 		
 		boolean test = registerBtn.isEnabled();
 		assertEquals(test,true);
 		registerBtn.click(); 
-		
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
-		
+				
 		WebDriverWait wait = new WebDriverWait(driver,5);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"homeDiv\"]")));
 		
 		String url = driver.getCurrentUrl();
-		assertEquals("http://localhost:4200/eBIRProject#/home",url);
+		assertEquals(base_url + "home",url);
 	}
 	
 	@Test
 	void registerTestNoUsername() {
+		System.out.println("registerTestNoUsername");
 		//fail if user does not include username
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get("http://localhost:4200/eBIRProject/#/login");
 		WebElement toRegisterBtn = driver.findElement(By.name("toRegister"));
 		toRegisterBtn.click();
@@ -113,14 +113,12 @@ class RegistrationTest {
 		lastname.sendKeys("Mario");
 		email.sendKeys("nintendo@gmail.com");
 		
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
 		WebElement registerBtn = driver.findElement(By.id("register"));
 		
 		boolean test = registerBtn.isEnabled();
 		assertEquals(test,true);
 		registerBtn.click(); 
 		
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
 		String url = driver.getCurrentUrl();
 		//if register fails, user will still be in the register page
 		assertEquals("http://localhost:4200/eBIRProject#/register", url);

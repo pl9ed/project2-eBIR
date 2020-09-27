@@ -57,15 +57,12 @@ class UpdateTest {
 		username.sendKeys("Hot");
 		password.sendKeys("Wheels");
 	
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
 		WebElement loginBtn = driver.findElement(By.name("login"));
 		loginBtn.click(); 
 		
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
 		WebElement profileBtn = driver.findElement(By.id("ProfileBtn"));
 		profileBtn.click();
 		
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
 		WebElement updateBtn = driver.findElement(By.name("update"));
 		updateBtn.click();
 		

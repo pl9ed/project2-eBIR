@@ -18,6 +18,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.revature.DAO.UserDAO;
+import com.revature.models.User;
+
 public class LoginTest {
 	private static WebDriver driver;
 	
@@ -51,6 +54,10 @@ public class LoginTest {
 
 	@Before
 	public void setUp() throws Exception {
+		UserDAO ud = new UserDAO();
+		User u = new User();
+		u.setUsername("Hot");
+		u.setPassword("Wheels");
 	}
 
 	@After
