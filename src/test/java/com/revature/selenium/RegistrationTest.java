@@ -112,21 +112,18 @@ public class RegistrationTest {
 		firstname.sendKeys("Mario");
 		lastname.sendKeys("Mario");
 		email.sendKeys("nintendo@gmail.com");
-		
+
 		WebElement registerBtn = driver.findElement(By.id("register"));
-		
-		registerBtn.click(); 
-		try {
-			wait = new WebDriverWait(driver,10);
-			wait.until(driver -> driver.findElement(By.id("logout_btn")));
-			String url = driver.getCurrentUrl();
-			assertEquals(base_url + "home",url);
-		} catch (UnhandledAlertException e) {
-			System.out.println(new UserDAO().findUser("Hot"));
-			fail("Couldn't register");
-		}
+
+		registerBtn.click();
+
+		wait = new WebDriverWait(driver, 10);
+		wait.until(driver -> driver.findElement(By.id("logout_btn")));
+		String url = driver.getCurrentUrl();
+		assertEquals(base_url + "home", url);
+
 	}
-	
+
 	@Test
 	public void registerTestNoUsername() {
 		WebElement toRegisterBtn = driver.findElement(By.name("toRegister"));
