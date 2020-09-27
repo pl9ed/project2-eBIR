@@ -31,6 +31,9 @@ public class LoginTest {
 	private WebDriverWait wait;
 	private static ChromeOptions options;
 	
+	private static UserDAO ud;
+	private User u = new User();
+	
 	// in case we need to set env var
 	private static final String base_url = System.getenv("base_url"); // = System.getenv("base_url");
 	
@@ -67,8 +70,7 @@ public class LoginTest {
 		driver = new ChromeDriver(options);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		wait = new WebDriverWait(driver, 2);
-		UserDAO ud = new UserDAO();
-		User u = new User();
+		ud = new UserDAO();
 		u.setUsername("Hot");
 		u.setPasswordPlain("Wheels");
 		ud.saveUser(u);
@@ -79,6 +81,7 @@ public class LoginTest {
 
 	@After
 	public void tearDown() throws Exception {
+		ud.deleteUser(u);
 		TestUtilities.clearDB();
 		HibernateUtil.closeSession();
 		Thread.sleep(1500);
