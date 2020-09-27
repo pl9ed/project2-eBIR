@@ -149,7 +149,7 @@ public class UpdateTest {
 	public void updateAllFieldsButFirstName() {
 		String ln = "Killi";
 		String em = "Kk@gmail.com";
-		String ps = "LOTR";
+		String ps = "Wheels";
 		
 		updateEmail(em);
 		updateLastName(ln);

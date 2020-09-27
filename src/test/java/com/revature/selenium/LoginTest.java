@@ -19,14 +19,18 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.revature.DAO.UserDAO;
+
 public class LoginTest {
 	private static WebDriver driver;
+	private static UserDAO dao;
 	
 	// in case we need to set env var
 	private static final String base_url = System.getenv("base_url"); // = System.getenv("base_url");
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		
 		String os = System.getProperty("os.name").toLowerCase();
 		
 		// use windows
@@ -65,7 +69,6 @@ public class LoginTest {
 
 	@Test
 	public void testSuccessfulLogin() {
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get(base_url + "login");
 		
 		WebElement username = driver.findElement(By.id("username"));
@@ -95,7 +98,6 @@ public class LoginTest {
 	
 	@Test
 	public void testFailedLoginWrongUsername() {
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get(base_url + "login");
 		
 		WebElement username = driver.findElement(By.id("username"));
@@ -122,7 +124,6 @@ public class LoginTest {
 	
 	@Test
 	public void testFailedLoginWrongPassword() {
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get(base_url + "login");
 		
 		WebElement username = driver.findElement(By.id("username"));
