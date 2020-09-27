@@ -19,7 +19,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.revature.TestUtilities;
 import com.revature.DAO.UserDAO;
 import com.revature.models.User;
 import com.revature.util.HibernateUtil;
@@ -63,7 +62,7 @@ public class UpdateTest {
 		driver.get(base_url + "login");
 		ud = new UserDAO();
 		
-		u.setUsername("Hot_updatetest");
+		u.setUsername("UPDATETESTUSER");
 		u.setPasswordPlain("Wheels");
 		ud.saveUser(u);
 		
@@ -72,7 +71,7 @@ public class UpdateTest {
 		
 		WebElement username = driver.findElement(By.id("username"));
 		WebElement password = driver.findElement(By.id("password"));
-		username.sendKeys("Hot_updatetest");
+		username.sendKeys("UPDATETESTUSER");
 		password.sendKeys("Wheels");
 
 		WebElement loginBtn = driver.findElement(By.name("login"));

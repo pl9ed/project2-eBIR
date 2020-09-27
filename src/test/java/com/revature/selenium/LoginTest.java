@@ -71,7 +71,7 @@ public class LoginTest {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		wait = new WebDriverWait(driver, 2);
 		ud = new UserDAO();
-		u.setUsername("Hot");
+		u.setUsername("LOGINTESTUSER");
 		u.setPasswordPlain("Wheels");
 		ud.saveUser(u);
 		
@@ -94,7 +94,7 @@ public class LoginTest {
 		WebElement password = driver.findElement(By.id("password"));
 		WebElement loginBtn = driver.findElement(By.name("login"));
 		
-		username.sendKeys("Hot");
+		username.sendKeys("LOGINTESTUSER");
 		password.sendKeys("Wheels");
 		loginBtn.click();
 		
@@ -136,7 +136,7 @@ public class LoginTest {
 		WebElement password = driver.findElement(By.id("password"));
 		WebElement loginBtn = driver.findElement(By.name("login"));
 		
-		username.sendKeys("Hot");
+		username.sendKeys("LOGINTESTUSER");
 		password.sendKeys("NotWheels");
 		loginBtn.click();
 		

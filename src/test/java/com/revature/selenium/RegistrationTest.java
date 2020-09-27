@@ -95,7 +95,7 @@ public class RegistrationTest {
 		WebElement lastname = driver.findElement(By.id("lastname"));
 		WebElement email = driver.findElement(By.id("email"));
 		
-		username.sendKeys("Hot");
+		username.sendKeys("REGTESTUSER");
 		password.sendKeys("Wheels");
 		passwordConfirm.sendKeys("Wheels");
 		firstname.sendKeys("Mario");
