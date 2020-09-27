@@ -31,6 +31,11 @@ public class LoginTest {
 	private WebDriverWait wait;
 	private static ChromeOptions options;
 	
+	private static UserDAO ud;
+	private static User u;
+	private static final String user = "LOGINTEST";
+	private static final String pass = "Wheels";
+	
 	// in case we need to set env var
 	private static final String base_url = System.getenv("base_url"); // = System.getenv("base_url");
 	
@@ -54,10 +59,17 @@ public class LoginTest {
 		options = new ChromeOptions();
 		options.addArguments("headless", "disable-gpu", "disable-extensions");
 		
+		ud = new UserDAO();
+		u = new User();
+		u.setUsername(user);
+		u.setPasswordPlain(pass);
+		ud.saveUser(u);
+		
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		ud.deleteUser(u);
 		TestUtilities.clearDB();
 		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
 	} 	
@@ -67,12 +79,7 @@ public class LoginTest {
 		driver = new ChromeDriver(options);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		wait = new WebDriverWait(driver, 2);
-		UserDAO ud = new UserDAO();
-		User u = new User();
-		u.setUsername("Hot");
-		u.setPasswordPlain("Wheels");
-		ud.saveUser(u);
-		
+
 		driver.get(base_url + "login");
 		wait.until(driver -> driver.findElement(By.id("username")));
 	}
@@ -91,16 +98,11 @@ public class LoginTest {
 		WebElement password = driver.findElement(By.id("password"));
 		WebElement loginBtn = driver.findElement(By.name("login"));
 		
-		username.sendKeys("Hot");
-		password.sendKeys("Wheels");
+		username.sendKeys(user);
+		password.sendKeys(pass);
 		loginBtn.click();
 		
-		try {
-			wait.until(driver -> driver.findElement(By.id("logout_btn")));
-		} catch (UnhandledAlertException e) {
-			driver.switchTo().alert().dismiss();
-			fail("Couldn't login");
-		}
+		wait.until(driver -> driver.findElement(By.id("logout_btn")));
 		
 		assertEquals(base_url + "home", driver.getCurrentUrl());
 	}
@@ -112,7 +114,7 @@ public class LoginTest {
 		WebElement loginBtn = driver.findElement(By.name("login"));
 		
 		username.sendKeys("NotHot");
-		password.sendKeys("Wheels");
+		password.sendKeys(pass);
 		loginBtn.click();
 		
 		wait.until(ExpectedConditions.alertIsPresent());
@@ -133,7 +135,7 @@ public class LoginTest {
 		WebElement password = driver.findElement(By.id("password"));
 		WebElement loginBtn = driver.findElement(By.name("login"));
 		
-		username.sendKeys("Hot");
+		username.sendKeys(user);
 		password.sendKeys("NotWheels");
 		loginBtn.click();
 		

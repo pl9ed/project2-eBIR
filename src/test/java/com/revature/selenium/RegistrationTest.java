@@ -1,5 +1,6 @@
 package com.revature.selenium;
 
+import static org.assertj.core.api.Assertions.useDefaultDateFormatsOnly;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -23,6 +24,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.revature.TestUtilities;
 import com.revature.DAO.UserDAO;
+import com.revature.models.User;
 import com.revature.util.HibernateUtil;
 
 public class RegistrationTest {
@@ -31,6 +33,8 @@ public class RegistrationTest {
 	private static WebDriver driver;
 	private WebDriverWait wait;
 	private static ChromeOptions options;
+	
+	private static User u = new User();
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -52,11 +56,18 @@ public class RegistrationTest {
 
 		options = new ChromeOptions();
 		options.addArguments("headless", "disable-gpu", "disable-extensions");
+		
+		u.setUsername("REGTESTUSER");
+		u.setPasswordPlain("Wheels");
+		u.setFirstName("Mario");
+		u.setLastName("Mario");
+		u.setEmail("nintendo@gmail.com");
 
 	}
 	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		new UserDAO().deleteUser(u);
 		TestUtilities.clearDB();
 		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
 	}
@@ -74,7 +85,6 @@ public class RegistrationTest {
 	public void tearDown() throws Exception {
 		TestUtilities.clearDB();
 		HibernateUtil.closeSession();
-		Thread.sleep(1000);
 		driver.quit();
 	}
 
@@ -95,27 +105,24 @@ public class RegistrationTest {
 		WebElement lastname = driver.findElement(By.id("lastname"));
 		WebElement email = driver.findElement(By.id("email"));
 		
-		username.sendKeys("Hot");
+		username.sendKeys("REGTESTUSER");
 		password.sendKeys("Wheels");
 		passwordConfirm.sendKeys("Wheels");
 		firstname.sendKeys("Mario");
 		lastname.sendKeys("Mario");
 		email.sendKeys("nintendo@gmail.com");
-		
+
 		WebElement registerBtn = driver.findElement(By.id("register"));
-		
-		registerBtn.click(); 
-		try {
-			wait = new WebDriverWait(driver,10);
-			wait.until(driver -> driver.findElement(By.id("logout_btn")));
-			String url = driver.getCurrentUrl();
-			assertEquals(base_url + "home",url);
-		} catch (UnhandledAlertException e) {
-			System.out.println(new UserDAO().findUser("Hot"));
-			fail("Couldn't register");
-		}
+
+		registerBtn.click();
+
+		wait = new WebDriverWait(driver, 10);
+		wait.until(driver -> driver.findElement(By.id("logout_btn")));
+		String url = driver.getCurrentUrl();
+		assertEquals(base_url + "home", url);
+
 	}
-	
+
 	@Test
 	public void registerTestNoUsername() {
 		WebElement toRegisterBtn = driver.findElement(By.name("toRegister"));
