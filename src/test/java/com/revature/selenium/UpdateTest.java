@@ -18,6 +18,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import com.revature.TestUtilities;
+import com.revature.DAO.UserDAO;
+import com.revature.models.User;
+
 public class UpdateTest {
 
 	private static WebDriver driver;
@@ -45,7 +49,7 @@ public class UpdateTest {
 		}
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless", "--disable-gpu", "--disable-extensions"); 
-		driver = new ChromeDriver(options);
+		driver = new ChromeDriver();
 		
 		//log in as Hot: Wheels
 		driver.get(base_url + "login");
@@ -56,7 +60,14 @@ public class UpdateTest {
 		password.sendKeys("Wheels");
 	
 		WebElement loginBtn = driver.findElement(By.name("login"));
-		loginBtn.click(); 
+		loginBtn.click();
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		WebElement profileBtn = driver.findElement(By.id("ProfileBtn"));
 		profileBtn.click();
@@ -78,12 +89,20 @@ public class UpdateTest {
 	
 	@Before
 	public void before() {
-		
+		UserDAO ud = new UserDAO();
+		User u = new User();
+		u.setUsername("Hot");
+		u.setPasswordPlain("Wheels");
+		u.setFirstName("Mario");
+		u.setLastName("Mario");
+		u.setEmail("Kk@email.com");
+		System.out.println(u);
+		ud.saveUser(u);
 	}
 	
 	@After
 	public void after() {
-		
+		TestUtilities.clearDB();
 	}
 	
 	@Ignore
@@ -167,6 +186,66 @@ public class UpdateTest {
 		
 		assertTrue(fullname.contains(ln));
 		assertEquals(em,email);
+		//need to check password change
+		
+	}
+	
+	@Test
+	public void updateAllFieldsButLastName() {
+		String fn = "Maria";
+		String em = "Kk@gmail.com";
+		String ps = "Wheels";
+		
+		updateEmail(em);
+		updateFirstName(fn);
+		updatePassword(ps);
+			
+		WebElement updateBtn = driver.findElement(By.id("updatBtn"));
+		updateBtn.click(); 
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.switchTo().alert().accept();
+		
+		String fullname = driver.findElement(By.id("fullname")).getText();
+		String email = driver.findElement(By.id("email")).getText();
+		
+		assertTrue(fullname.contains(fn));
+		assertEquals(em,email);
+		
+	}
+	
+	@Test
+	public void updateAllFieldsButEmail() {
+		String fn = "Luigi";
+		String ln = "Daisy";
+		String ps = "Wheels";
+		
+		updateFirstName(fn);
+		updateLastName(ln);
+		updatePassword(ps);
+			
+		WebElement updateBtn = driver.findElement(By.id("updatBtn"));
+		updateBtn.click(); //button doesn't work, do I need to use pageFactory???
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.switchTo().alert().accept();
+		
+		String fullname = driver.findElement(By.id("fullname")).getText();
+		String email = driver.findElement(By.id("email")).getText();
+		
+		assertTrue(fullname.contains(fn));
 		//need to check password change
 		
 	}

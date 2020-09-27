@@ -24,7 +24,6 @@ import com.revature.models.User;
 
 public class LoginTest {
 	private static WebDriver driver;
-	private static UserDAO dao = new UserDAO();
 	
 	// in case we need to set env var
 	private static final String base_url = System.getenv("base_url"); // = System.getenv("base_url");
