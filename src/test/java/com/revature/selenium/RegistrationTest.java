@@ -60,7 +60,6 @@ class RegistrationTest {
 	@Test
 	void registerTestPass() {
 		
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get(base_url + "login");
 		WebElement toRegisterBtn = driver.findElement(By.name("toRegister"));
 		toRegisterBtn.click();
@@ -79,15 +78,12 @@ class RegistrationTest {
 		lastname.sendKeys("Mario");
 		email.sendKeys("nintendo@gmail.com");
 		
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
 		WebElement registerBtn = driver.findElement(By.id("register"));
 		
 		boolean test = registerBtn.isEnabled();
 		assertEquals(test,true);
 		registerBtn.click(); 
-		
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
-		
+				
 		WebDriverWait wait = new WebDriverWait(driver,5);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"homeDiv\"]")));
 		
@@ -98,7 +94,6 @@ class RegistrationTest {
 	@Test
 	void registerTestNoUsername() {
 		//fail if user does not include username
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get(base_url+"login");
 		WebElement toRegisterBtn = driver.findElement(By.name("toRegister"));
 		toRegisterBtn.click();
@@ -115,14 +110,12 @@ class RegistrationTest {
 		lastname.sendKeys("Mario");
 		email.sendKeys("nintendo@gmail.com");
 		
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
 		WebElement registerBtn = driver.findElement(By.id("register"));
 		
 		boolean test = registerBtn.isEnabled();
 		assertEquals(test,true);
 		registerBtn.click(); 
 		
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);	
 		String url = driver.getCurrentUrl();
 		//if register fails, user will still be in the register page
 		assertEquals(base_url+"register", url);
