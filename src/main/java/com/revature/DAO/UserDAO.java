@@ -66,6 +66,7 @@ public class UserDAO implements IUserDAO {
 			return false;
 		}
 		Session s = HibernateUtil.getSession();
+		s.clear();
 		Transaction tx = s.beginTransaction();
 		
 		try {

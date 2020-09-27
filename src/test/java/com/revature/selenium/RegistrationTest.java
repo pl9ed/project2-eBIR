@@ -1,6 +1,8 @@
 package com.revature.selenium;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -11,6 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -25,6 +28,7 @@ public class RegistrationTest {
 	
 	private static final String base_url = System.getenv("base_url"); // Structure example: http://localhost:4200/eBIRProject#/
 	private static WebDriver driver;
+	private static ChromeOptions options;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -43,11 +47,9 @@ public class RegistrationTest {
 			System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
 		}
 
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--headless", "--disable-gpu", "--disable-extensions");
+		options = new ChromeOptions();
+		options.addArguments("headless", "disable-gpu", "disable-extensions");
 
-		driver = new ChromeDriver(options);
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 	
 	@AfterClass
@@ -56,12 +58,17 @@ public class RegistrationTest {
 	
 	@Before
 	public void setUp() throws Exception {
+		driver = new ChromeDriver(options);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		TestUtilities.clearDB();
 		HibernateUtil.closeSession();
+		Thread.sleep(1000);
+		driver.close();
+		driver = null;
 	}
 
 	@Test
@@ -87,8 +94,6 @@ public class RegistrationTest {
 		
 		WebElement registerBtn = driver.findElement(By.id("register"));
 		
-		boolean test = registerBtn.isEnabled();
-		assertEquals(test,true);
 		registerBtn.click(); 
 		
 		WebDriverWait wait = new WebDriverWait(driver,5);
@@ -118,10 +123,17 @@ public class RegistrationTest {
 		email.sendKeys("nintendo@gmail.com");
 		
 		WebElement registerBtn = driver.findElement(By.id("register"));
-		
-		boolean test = registerBtn.isEnabled();
-		assertEquals(test,true);
+				
 		registerBtn.click(); 
+		
+		WebDriverWait wait = new WebDriverWait(driver, 2);
+		wait.until(ExpectedConditions.alertIsPresent());
+		
+		try {
+			driver.switchTo().alert().dismiss();
+		} catch (NoAlertPresentException e) {
+			fail("No alert");
+		}
 		
 		String url = driver.getCurrentUrl();
 		//if register fails, user will still be in the register page

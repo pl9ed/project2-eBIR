@@ -17,6 +17,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.revature.TestUtilities;
 import com.revature.DAO.UserDAO;
@@ -48,9 +50,10 @@ public class UpdateTest {
 			System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
 		}
 		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--headless", "--disable-gpu", "--disable-extensions"); 
-		driver = new ChromeDriver();
+		options.addArguments("headless", "disable-gpu", "disable-extensions"); 
+		driver = new ChromeDriver(options);
 		
+		System.out.println(base_url + "login");
 		//log in as Hot: Wheels
 		driver.get(base_url + "login");
 		
@@ -58,21 +61,29 @@ public class UpdateTest {
 		WebElement password = driver.findElement(By.id("password"));
 		username.sendKeys("Hot");
 		password.sendKeys("Wheels");
-	
+		WebDriverWait wait = new WebDriverWait(driver, 2);
+
 		WebElement loginBtn = driver.findElement(By.name("login"));
+		wait.until(ExpectedConditions.elementToBeClickable(loginBtn));
+
 		loginBtn.click();
 		
 		try {
-			Thread.sleep(500);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		
 		WebElement profileBtn = driver.findElement(By.id("ProfileBtn"));
+		wait.until(ExpectedConditions.elementToBeClickable(profileBtn));
+
 		profileBtn.click();
 		
 		WebElement updateBtn = driver.findElement(By.name("update"));
+		wait.until(ExpectedConditions.elementToBeClickable(updateBtn));
+
 		updateBtn.click();
 		
 		newFirstName = "newFirstName";

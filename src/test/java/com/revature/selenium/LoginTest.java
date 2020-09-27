@@ -27,6 +27,7 @@ import com.revature.util.HibernateUtil;
 
 public class LoginTest {
 	private static WebDriver driver;
+	private static ChromeOptions options;
 	
 	// in case we need to set env var
 	private static final String base_url = System.getenv("base_url"); // = System.getenv("base_url");
@@ -47,8 +48,8 @@ public class LoginTest {
 			File f = new File("src/test/resources/chromedriver");
 			System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
 		}
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--headless", "--disable-gpu", "--disable-extensions");
+		options = new ChromeOptions();
+		options.addArguments("headless", "disable-gpu", "disable-extensions");
 		System.out.println("Before Class");
 	}
 
@@ -66,7 +67,7 @@ public class LoginTest {
 		u.setUsername("Hot");
 		u.setPasswordPlain("Wheels");
 		ud.saveUser(u);
-		
+		System.out.println(ud.findUser("Hot"));
 	}
 
 	@After
@@ -76,14 +77,6 @@ public class LoginTest {
 
 		}catch(Exception e) {
 			
-		}finally {
-			driver.get(base_url + "login");
-			WebElement usr = driver.findElement(By.id("username"));
-			WebElement pass = driver.findElement(By.id("password"));
-			usr.clear();
-			usr.sendKeys("");
-			pass.clear();
-			pass.sendKeys("");
 		}
 
 		TestUtilities.clearDB();
@@ -113,9 +106,6 @@ public class LoginTest {
 		username.sendKeys("Hot");
 		password.sendKeys("Wheels");
 		loginBtn.click();
-		
-		WebDriverWait wait = new WebDriverWait(driver,5);
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("logout_btn"))));
 		
 		assertEquals(base_url + "home", driver.getCurrentUrl());
 	}
