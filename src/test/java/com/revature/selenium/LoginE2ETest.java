@@ -88,7 +88,9 @@ public class LoginE2ETest {
 		this.page.getUsername().sendKeys(user);
 		this.page.getPassword().sendKeys(pass);
 		this.page.getLoginBtn().click();
-
+		
+		Thread.sleep(1000);
+		
 		wait.until(driver -> driver.findElement(By.id("searchBtn")));
 
 		assertEquals(base_url + "home", driver.getCurrentUrl());
@@ -101,6 +103,8 @@ public class LoginE2ETest {
 		this.page.getPassword().sendKeys(pass);
 		this.page.getPassword().sendKeys(Keys.ENTER);
 
+		Thread.sleep(1000);
+		
 		wait.until(driver -> driver.findElement(By.id("searchBtn")));
 
 		assertEquals(base_url + "home", driver.getCurrentUrl());
