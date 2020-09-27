@@ -52,7 +52,6 @@ public class UserDAO implements IUserDAO {
 			return HibernateUtil.getSession().get(User.class, username);
 		} catch (IllegalArgumentException e) {
 			log.info("IllegalArgumentException encountered");
-
 		} catch (NullPointerException e) {
 			log.info("NullPointerException encountered");
 		}
@@ -65,8 +64,8 @@ public class UserDAO implements IUserDAO {
 		if (u == null || u.getUsername().length() < 1) {
 			return false;
 		}
+		HibernateUtil.closeSession();
 		Session s = HibernateUtil.getSession();
-		s.clear();
 		Transaction tx = s.beginTransaction();
 		
 		try {

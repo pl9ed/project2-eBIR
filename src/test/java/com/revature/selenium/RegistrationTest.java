@@ -76,8 +76,7 @@ public class RegistrationTest {
 		TestUtilities.clearDB();
 		HibernateUtil.closeSession();
 		Thread.sleep(1000);
-		driver.close();
-		driver = null;
+		driver.quit();
 	}
 
 	@Test
@@ -108,8 +107,8 @@ public class RegistrationTest {
 		
 		registerBtn.click(); 
 		try {
-			wait = new WebDriverWait(driver,5);		
-			wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.id("logout_btn"))));
+			wait = new WebDriverWait(driver,5);
+			wait.until(driver -> driver.findElement(By.id("logout_btn")));
 			String url = driver.getCurrentUrl();
 			assertEquals(base_url + "home",url);
 		} catch (UnhandledAlertException e) {

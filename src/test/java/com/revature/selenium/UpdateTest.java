@@ -94,6 +94,7 @@ public class UpdateTest {
 	public static void afterClass() {
 		TestUtilities.clearDB();
 		HibernateUtil.reconfigureSchema(System.getenv("project2_schema"));
+		driver.quit();
 	}
 	
 	@Before

@@ -26,16 +26,19 @@ public class ReviewDAO implements IReviewDAO {
 	private Session s;
 
 	public ReviewDAO() {
-		s = HibernateUtil.getSession();
+		super();
 	}
 
 	@Override
 	public Set<Review> findAll() {
+		s = HibernateUtil.getSession();
 		return s.createQuery("FROM Review r", Review.class).getResultStream().collect(Collectors.toSet()); //.getResultList();
 	}
 
 	@Override
 	public Set<Review> findByBrewery(int b) {
+		s = HibernateUtil.getSession();
+
 		Set<Review> ret = new HashSet<>();
 		if (b > 0) {
 //			Transaction tx = s.beginTransaction();
@@ -50,6 +53,7 @@ public class ReviewDAO implements IReviewDAO {
 
 	@Override
 	public Set<Review> findByUser(String username) {
+		s = HibernateUtil.getSession();
 		Set<Review> ret = new HashSet<>();
 		if (username != null) {
 			Query<Review> q = s.createQuery("FROM Review r WHERE r.submitter.username = :username", Review.class);
@@ -72,8 +76,8 @@ public class ReviewDAO implements IReviewDAO {
 //		if (review == null) {
 //			return false;
 //		}
+		HibernateUtil.closeSession();
 		s = HibernateUtil.getSession();
-		s.clear();
 		Transaction t = s.beginTransaction();
 
 		try {
@@ -93,6 +97,7 @@ public class ReviewDAO implements IReviewDAO {
 
 	@Override
 	public Review find(int id) {
+		s = HibernateUtil.getSession();
 		return s.get(Review.class, id);
 	}
 

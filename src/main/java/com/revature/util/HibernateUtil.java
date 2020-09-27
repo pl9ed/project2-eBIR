@@ -48,7 +48,9 @@ public class HibernateUtil {
 	}
 
 	public static void closeSession() {
-		session.close();
+		if (session != null) {
+			session.close();
+		}
 	}
 	
 	public static void reconfigureSchema(String s) {

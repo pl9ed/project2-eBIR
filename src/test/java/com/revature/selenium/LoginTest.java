@@ -82,8 +82,7 @@ public class LoginTest {
 		TestUtilities.clearDB();
 		HibernateUtil.closeSession();
 		Thread.sleep(1500);
-		driver.close();
-		driver = null;
+		driver.quit();
 	}
 
 	@Test
