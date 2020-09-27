@@ -1,6 +1,7 @@
 package com.revature.models;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -39,6 +40,8 @@ public class Review {
 	private int brewery;
 	
 	private int rating;
+	
+	@Column(length = 1500)
 	private String reviewText;
 	
 	public Review() {
