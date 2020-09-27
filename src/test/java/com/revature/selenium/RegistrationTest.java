@@ -40,8 +40,13 @@ public class RegistrationTest {
 			File f = new File("src/test/resources/chromedriver");
 			System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
 		}
+<<<<<<< HEAD
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless", "--disable-gpu", "--disable-extensions");
+=======
+//		ChromeOptions options = new ChromeOptions();
+//		options.addArguments("--headless", "--disable-gpu", "--disable-extensions");
+>>>>>>> 093ac74d77b92c4c233d2c3f3878531f91b76031
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
