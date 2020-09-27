@@ -20,8 +20,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RegistrationTest {
 	
+	private static final String base_url = System.getenv("base_url"); // Structure example: http://localhost:4200/eBIRProject#/
 	private static WebDriver driver;
-	private static final String base_url = System.getenv("base_url");
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -43,7 +43,7 @@ public class RegistrationTest {
 		driver = new ChromeDriver(options);
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
-
+	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
@@ -58,8 +58,6 @@ public class RegistrationTest {
 
 	@Test
 	public void registerTestPass() {
-		
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get(base_url + "login");
 		WebElement toRegisterBtn = driver.findElement(By.name("toRegister"));
 		toRegisterBtn.click();
@@ -83,7 +81,6 @@ public class RegistrationTest {
 		boolean test = registerBtn.isEnabled();
 		assertEquals(test,true);
 		registerBtn.click(); 
-		
 		WebDriverWait wait = new WebDriverWait(driver,5);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"homeDiv\"]")));
 		
@@ -94,8 +91,7 @@ public class RegistrationTest {
 	@Test
 	public void registerTestNoUsername() {
 		//fail if user does not include username
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		driver.get("http://localhost:4200/eBIRProject/#/login");
+		driver.get(base_url+"login");
 		WebElement toRegisterBtn = driver.findElement(By.name("toRegister"));
 		toRegisterBtn.click();
 		
@@ -116,7 +112,6 @@ public class RegistrationTest {
 		boolean test = registerBtn.isEnabled();
 		assertEquals(test,true);
 		registerBtn.click(); 
-			
 		String url = driver.getCurrentUrl();
 		//if register fails, user will still be in the register page
 		assertEquals(base_url + "register", url);
